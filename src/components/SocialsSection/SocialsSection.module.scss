@@ -1,0 +1,11 @@
+.linksWrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 40px;
+  justify-content: center;
+  margin-bottom: 40px;
+
+  @include for-tablet-lg-up {
+    column-gap: 60px;
+  }
+}

@@ -1,0 +1,47 @@
+.primary {
+  color: $primary-text-color;
+}
+
+.secondary {
+  color: $secondary-text-color;
+}
+
+.mainHeader {
+  font-size: 35px;
+
+  @include for-tablet-lg-up {
+    font-size: 50px;
+  }
+
+  @include for-desktop-up {
+    font-size: 70px;
+  }
+}
+
+.header {
+  font-size: 24px;
+
+  @include for-tablet-lg-up {
+    font-size: 30px;
+  }
+}
+
+.para {
+  font-size: 18px;
+
+  @include for-tablet-lg-up {
+    font-size: 24px;
+  }
+}
+
+.smallText {
+  font-size: 12px;
+
+  @include for-tablet-lg-up {
+    font-size: 16px;
+  }
+}
+
+.justify {
+  text-align: justify;
+}

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import styles from './BaseIcon.module.scss'
+
 type Props = {
   src: string
   alt: string
@@ -15,37 +17,7 @@ const openUrl = () => {
 </script>
 
 <template>
-  <div @click="openUrl" class="wrapper" :class="{ clickable: link }">
+  <div @click="openUrl" :class="[styles.wrapper, { [styles.clickable]: link }]">
     <img :src="src" alt="" />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.wrapper {
-  height: 60px;
-
-  @include for-tablet-lg-up {
-    height: 80px;
-  }
-
-  img {
-    width: auto;
-    height: 100%;
-
-    @include for-tablet-lg-up {
-      filter: grayscale(0);
-      transition: filter 300ms;
-
-      &:hover {
-        filter: grayscale(1);
-      }
-    }
-  }
-}
-
-.clickable {
-  @include for-tablet-lg-up {
-    cursor: pointer;
-  }
-}
-</style>

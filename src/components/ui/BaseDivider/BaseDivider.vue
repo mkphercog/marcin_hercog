@@ -1,13 +1,7 @@
-<template>
-  <div></div>
-</template>
+<script lang="ts" setup>
+import styles from './BaseDivider.module.scss'
+</script>
 
-<style lang="scss" scoped>
-div {
-  width: 100%;
-  max-width: 1200px;
-  height: 2px;
-  margin: 30px auto;
-  background-color: $primary-bg-color;
-}
-</style>
+<template>
+  <div :class="styles.divider"></div>
+</template>

@@ -1,0 +1,27 @@
+.wrapper {
+  height: 60px;
+
+  @include for-tablet-lg-up {
+    height: 80px;
+  }
+
+  img {
+    width: auto;
+    height: 100%;
+
+    @include for-tablet-lg-up {
+      filter: grayscale(0);
+      transition: filter 300ms;
+
+      &:hover {
+        filter: grayscale(1);
+      }
+    }
+  }
+}
+
+.clickable {
+  @include for-tablet-lg-up {
+    cursor: pointer;
+  }
+}

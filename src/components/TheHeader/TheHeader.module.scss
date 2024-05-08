@@ -1,0 +1,27 @@
+.header {
+  width: 100%;
+  background-color: $primary-bg-color;
+  padding: 20px;
+
+  @include for-tablet-lg-up {
+    padding: 30px;
+  }
+}
+
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.fullNameWrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

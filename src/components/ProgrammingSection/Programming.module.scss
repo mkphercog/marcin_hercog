@@ -1,0 +1,40 @@
+.programmingItem {
+  display: flex;
+  align-items: baseline;
+  justify-content: right;
+  gap: 10px;
+  margin-top: 10px;
+  list-style: none;
+}
+
+.scaleBg {
+  position: relative;
+  width: 250px;
+  height: 20px;
+  background-color: $secondary-bg-color;
+
+  @include for-tablet-lg-up {
+    width: 400px;
+  }
+}
+
+.scaleValue {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $primary-bg-color;
+}
+
+.iconsSection {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+
+  @include for-tablet-lg-up {
+    gap: 50px;
+    max-width: 800px;
+  }
+}

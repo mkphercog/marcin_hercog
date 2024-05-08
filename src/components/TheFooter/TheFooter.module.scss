@@ -1,0 +1,36 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  padding: 20px 0;
+  background-color: $primary-lg-bg-color;
+}
+
+.contactWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+
+  @include for-tablet-lg-up {
+    flex-direction: row;
+    column-gap: 40px;
+  }
+}
+
+.infoWrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon {
+  height: 24px;
+}
+
+.visitedHint {
+  padding-right: 20px;
+  width: 100%;
+  text-align: right;
+}

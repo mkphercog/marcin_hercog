@@ -1,35 +1,26 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { BaseSection, BaseText, BaseIcon } from '@/components/ui'
 import ProgrammingList from './ProgrammingList.vue'
-import { PROGRAMMING_ICONS, PROGRAMMING_ADDITIONAL_INFO } from '@/constants'
+import { PROGRAMMING_ICONS } from '@/constants'
+import { useTranslationsStore } from '@/stores'
+
+import styles from './Programming.module.scss'
+
+const { programmingContent } = storeToRefs(useTranslationsStore())
 </script>
 
 <template>
-  <BaseSection :title="PROGRAMMING_ADDITIONAL_INFO.title">
+  <BaseSection :title="programmingContent.header">
     <ProgrammingList />
     <div>
-      <BaseText as="header">{{ PROGRAMMING_ADDITIONAL_INFO.header }} </BaseText>
+      <BaseText as="header">{{ programmingContent.additionalHeader }} </BaseText>
       <BaseText justify>
-        {{ PROGRAMMING_ADDITIONAL_INFO.description }}
+        {{ programmingContent.additionalDescription }}
       </BaseText>
     </div>
-    <ul class="icons">
+    <ul :class="styles.iconsSection">
       <BaseIcon v-for="{ id, icon, name } in PROGRAMMING_ICONS" :key="id" :src="icon" :alt="name" />
     </ul>
   </BaseSection>
 </template>
-
-<style lang="scss" scoped>
-.icons {
-  margin: 20px 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-
-  @include for-tablet-lg-up {
-    gap: 50px;
-    max-width: 800px;
-  }
-}
-</style>
