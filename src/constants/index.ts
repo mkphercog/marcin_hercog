@@ -22,13 +22,13 @@ export const SOCIALS: IconType[] = [
   {
     id: 'github',
     icon: GitHubIcon,
-    link: 'https://www.google.pl',
+    link: 'https://github.com/mkphercog',
     name: 'GitHub Icon'
   },
   {
     id: 'linkedIn',
     icon: LinkedInIcon,
-    link: 'https://www.wp.pl',
+    link: 'https://www.linkedin.com/in/marcin-hercog/',
     name: 'LinkedIn Icon'
   }
 ]

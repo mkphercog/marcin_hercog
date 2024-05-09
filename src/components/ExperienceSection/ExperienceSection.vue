@@ -2,14 +2,14 @@
 import { storeToRefs } from 'pinia'
 import { BaseSection, BaseText } from '@/components/ui'
 import ExperienceList from './ExperienceList.vue'
-import { useTranslationsStore } from '@/stores'
+import { useTranslationsStore } from '@/store'
 
-const { experienceContent } = storeToRefs(useTranslationsStore())
+const { translations } = storeToRefs(useTranslationsStore())
 </script>
 
 <template>
-  <BaseSection :title="experienceContent.header">
-    <BaseText justify>{{ experienceContent.description }}</BaseText>
+  <BaseSection :title="translations?.experience.header">
+    <BaseText justify>{{ translations?.experience.description }}</BaseText>
     <ExperienceList />
   </BaseSection>
 </template>

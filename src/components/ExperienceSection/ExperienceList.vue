@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import ExperienceItem from './ExperienceItem.vue'
-import { useTranslationsStore } from '@/stores'
+import { useTranslationsStore } from '@/store'
 
-const { experienceContent } = storeToRefs(useTranslationsStore())
+const { translations } = storeToRefs(useTranslationsStore())
 </script>
 
 <template>
   <ul>
     <ExperienceItem
-      v-for="{ id, description } in experienceContent.experienceList"
+      v-for="{ id, description } in translations?.experience.experienceList"
       :key="id"
       :description="description"
     />

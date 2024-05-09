@@ -4,7 +4,7 @@ import BaseDivider from '../BaseDivider/BaseDivider.vue'
 
 import styles from './BaseSection.module.scss'
 
-type Props = { title: string; hideDivider?: boolean }
+type Props = { title?: string; hideDivider?: boolean }
 
 defineProps<Props>()
 </script>

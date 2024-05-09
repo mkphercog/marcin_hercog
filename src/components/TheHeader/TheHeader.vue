@@ -1,26 +1,27 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { BaseText, BaseButton } from '@/components/ui'
-import { useTranslationsStore } from '@/stores'
+import { useTranslationsStore } from '@/store'
 
 import styles from './TheHeader.module.scss'
 
 const store = useTranslationsStore()
-const { headerContent } = storeToRefs(store)
-const { changeLang } = store
+const { translations } = storeToRefs(store)
+const { toggleLang } = store
 </script>
 
 <template>
   <header :class="styles.header">
     <div :class="styles.wrapper">
       <nav :class="styles.nav">
-        <BaseButton type="small">{{ headerContent.editBtn }}</BaseButton>
-        <BaseButton @click="changeLang">{{ headerContent.langBtn }}</BaseButton>
+        <!-- TODO add edit site content  -->
+        <BaseButton v-if="false" type="small">{{ translations?.header.editBtn }}</BaseButton>
+        <BaseButton @click="toggleLang">{{ translations?.header.langBtn }}</BaseButton>
       </nav>
 
       <div :class="styles.fullNameWrapper">
-        <BaseText as="mainHeader" variant="secondary">{{ headerContent.fullName }}</BaseText>
-        <BaseText variant="secondary">{{ headerContent.jobPosition }}</BaseText>
+        <BaseText as="mainHeader" variant="secondary">{{ translations?.header.fullName }}</BaseText>
+        <BaseText variant="secondary">{{ translations?.header.jobPosition }}</BaseText>
       </div>
     </div>
   </header>

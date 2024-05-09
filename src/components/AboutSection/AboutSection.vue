@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { BaseText } from '@/components/ui'
-import { useTranslationsStore } from '@/stores'
+import { useTranslationsStore } from '@/store'
 
 import styles from './About.module.scss'
 
-const { aboutContent } = storeToRefs(useTranslationsStore())
+const { translations } = storeToRefs(useTranslationsStore())
 </script>
 
 <template>
   <section :class="styles.wrapper">
     <BaseText justify>
-      {{ aboutContent.description }}
+      {{ translations?.about.description }}
     </BaseText>
-    <div :class="styles.photoWrapper">
-      <img :src="aboutContent.photoUrl" alt="Marcin Hercog" />
+    <div v-if="translations?.about.photoUrl" :class="styles.photoWrapper">
+      <img :src="translations?.about.photoUrl" alt="Marcin Hercog" />
     </div>
   </section>
 </template>

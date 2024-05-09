@@ -21,8 +21,15 @@
 
 .infoWrapper {
   display: flex;
-  gap: 15px;
   align-items: center;
+  gap: 15px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 300ms ease-in;
+
+  &:hover {
+    background-color: $primary-bg-color;
+  }
 }
 
 .icon {
