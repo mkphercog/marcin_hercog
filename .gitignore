@@ -30,4 +30,3 @@ coverage
 *.tsbuildinfo
 .env
 *.env
-firebase.config.ts
