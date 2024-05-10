@@ -1,11 +1,31 @@
-import { initializeApp } from 'firebase/app'
-import { getFirestore, doc, getDoc, Firestore, collection, setDoc } from 'firebase/firestore'
-import { collectionPath, firebaseConfig } from './firebase.config'
 import { ref, type Ref } from 'vue'
-import type { DeepPartial, LangEnums, Translations } from '../types'
+import { initializeApp } from 'firebase/app'
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  Firestore,
+  collection,
+  setDoc,
+  initializeFirestore,
+  persistentLocalCache,
+  getDocFromCache
+} from 'firebase/firestore'
+import { collectionPath, firebaseConfig } from './firebase.config'
+import type { DeepPartial, LangEnums, Translations } from '@/types'
+import { useLSLastUpdate } from '@/helpers/useLocalStorageLastUpdate'
 
 const app = initializeApp(firebaseConfig)
+initializeFirestore(app, {
+  localCache: persistentLocalCache({})
+})
 const db = getFirestore(app)
+
+type GetTranslationPropsType = {
+  lang: LangEnums
+  ref: Ref<Translations | undefined>
+  forceUpdate?: boolean
+}
 
 class FirebaseApi {
   private db: Firestore
@@ -24,16 +44,50 @@ class FirebaseApi {
     this.isLoading.value = value
   }
 
-  public async getTranslations(lang: LangEnums, ref: Ref<Translations | undefined>) {
+  private async getTranslationsFromCache({ lang, ref, forceUpdate }: GetTranslationPropsType) {
+    const currentTime = new Date().getTime()
+    const { isUpdateDataNeeded } = useLSLastUpdate({ currentTime, lang, forceUpdate })
+
+    try {
+      const cachedDocRef = doc(this.db, this.mainPath, lang)
+      const cachedDocSnap = await getDocFromCache(cachedDocRef)
+
+      if (cachedDocSnap.exists() && !isUpdateDataNeeded) {
+        ref.value = cachedDocSnap.data() as Translations
+        console.log('Cached data loaded correctly.')
+        return true
+      }
+    } catch (error) {
+      console.error('Something went wrong with cache.')
+    }
+
+    return false
+  }
+
+  public async fetchTranslations({ lang, ref, forceUpdate = false }: GetTranslationPropsType) {
     this.setIsLoading(true)
+
+    const isCachedDataAvailable = await this.getTranslationsFromCache({
+      lang,
+      ref,
+      forceUpdate
+    })
+
+    if (isCachedDataAvailable) {
+      this.setIsLoading(false)
+      return
+    }
+
     const docRef = doc(this.db, this.mainPath, lang)
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
       ref.value = docSnap.data() as Translations
+      console.log('Fetched data loaded correctly.')
     } else {
       console.error('There is no data in this firebase document.')
     }
+
     this.setIsLoading(false)
   }
 

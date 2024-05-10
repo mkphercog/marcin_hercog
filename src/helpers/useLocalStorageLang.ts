@@ -1,17 +1,19 @@
 import { LangEnums } from '@/types'
 
-export const useLocalStorageLang = () => {
-  const langItemName = 'lang'
-  const getLocalLang = () => localStorage.getItem(langItemName) as LangEnums
-  const setLocalLang = (lang: LangEnums) => localStorage.setItem(langItemName, lang)
+export const useLSLang = () => {
+  const localStorageKey = 'lang'
+  const getLocalLang = () => localStorage.getItem(localStorageKey) as LangEnums
+
+  const setLocalLang = (lang: LangEnums) => localStorage.setItem(localStorageKey, lang)
   const getDetectedLang = () => (navigator.language.includes('pl') ? LangEnums.PL : LangEnums.EN)
 
   if (!getLocalLang()) {
-    setLocalLang(getDetectedLang())
+    const detectedLang = getDetectedLang()
+    setLocalLang(detectedLang)
   }
 
   return {
-    localLanguage: getLocalLang(),
+    localLang: getLocalLang(),
     setLocalLang
   }
 }

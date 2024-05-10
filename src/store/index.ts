@@ -2,11 +2,12 @@ import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
 import { firebaseApi } from '@/firebase/firebase'
 import { LangEnums, type DeepPartial, type Translations } from '@/types'
-import { useLocalStorageLang } from '@/helpers/useLocalStorageLang'
+import { useLSLang } from '@/helpers/useLocalStorageLang'
 
 export const useTranslationsStore = defineStore('translations', () => {
-  const { localLanguage, setLocalLang } = useLocalStorageLang()
-  const currentLang = ref<LangEnums>(localLanguage)
+  const { localLang, setLocalLang } = useLSLang()
+
+  const currentLang = ref<LangEnums>(localLang)
   const translations = ref<Translations>()
 
   const toggleLang = () => {
@@ -15,20 +16,21 @@ export const useTranslationsStore = defineStore('translations', () => {
     setLocalLang(currentLang.value)
   }
 
-  const fetchTranslations = async () => {
-    await firebaseApi.getTranslations(currentLang.value, translations)
+  const fetchTranslations = async (forceUpdate = false) => {
+    await firebaseApi.fetchTranslations({ lang: currentLang.value, ref: translations, forceUpdate })
   }
 
   const uptadeTranslations = async (newData: DeepPartial<Translations>) => {
     await firebaseApi.setTranslations(currentLang.value, newData)
-    await fetchTranslations()
+    await fetchTranslations(true)
   }
 
-  watch(currentLang, fetchTranslations, {
+  watch(currentLang, async () => await fetchTranslations(false), {
     immediate: true
   })
 
   const isLoading = computed(() => firebaseApi.getIsLoading())
+
   return {
     toggleLang,
     uptadeTranslations,
