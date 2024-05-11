@@ -37,7 +37,7 @@ function initializeEmail() {
     </div>
     <div :class="styles.visitedHint">
       <!-- TODO add visitors counter -->
-      <BaseText v-if="false" variant="secondary" as="smallText"
+      <BaseText v-if="false" variant="secondary" size="sm"
         >{{ translations?.footer.visitors }} {{ 1 }}</BaseText
       >
     </div>

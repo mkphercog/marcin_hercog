@@ -14,7 +14,7 @@ const { translations } = storeToRefs(useTranslationsStore())
   <BaseSection :title="translations?.programmingSkills.header">
     <ProgrammingList />
     <div :class="styles.additionalInfoWrapper">
-      <BaseText :class="styles.additionalInfoHeader"
+      <BaseText size="lg" :class="styles.additionalInfoHeader"
         >{{ translations?.programmingSkills.additionalHeader }}
       </BaseText>
       <BaseText justify>

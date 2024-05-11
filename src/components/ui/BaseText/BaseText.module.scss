@@ -6,39 +6,65 @@
   color: $secondary-text-color;
 }
 
-.mainHeader {
-  font-size: 35px;
+.h1 {
+  &.md {
+    font-size: 25px;
 
-  @include for-tablet-lg-up {
-    font-size: 50px;
+    @include for-tablet-lg-up {
+      font-size: 40px;
+    }
+
+    @include for-desktop-up {
+      font-size: 60px;
+    }
   }
 
-  @include for-desktop-up {
-    font-size: 70px;
+  &.lg {
+    font-size: 35px;
+
+    @include for-tablet-lg-up {
+      font-size: 50px;
+    }
+
+    @include for-desktop-up {
+      font-size: 70px;
+    }
   }
 }
 
-.header {
-  font-size: 24px;
-
-  @include for-tablet-lg-up {
-    font-size: 30px;
-  }
-}
-
-.para {
-  font-size: 18px;
-
-  @include for-tablet-lg-up {
+.h3 {
+  &.md {
     font-size: 24px;
+
+    @include for-tablet-lg-up {
+      font-size: 30px;
+    }
   }
 }
 
-.smallText {
-  font-size: 12px;
+.p {
+  &.sm {
+    font-size: 12px;
 
-  @include for-tablet-lg-up {
-    font-size: 16px;
+    @include for-tablet-lg-up {
+      font-size: 16px;
+    }
+  }
+
+  &.md {
+    font-size: 18px;
+
+    @include for-tablet-lg-up {
+      font-size: 24px;
+    }
+  }
+
+  &.lg {
+    font-size: 22px;
+
+    @include for-tablet-lg-up {
+      font-size: 28px;
+    }
   }
 }
 

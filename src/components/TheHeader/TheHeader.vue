@@ -15,14 +15,16 @@ const { toggleLang } = store
     <div :class="styles.wrapper">
       <nav :class="styles.nav">
         <!-- TODO add edit site content  -->
-        <BaseButton v-if="false" type="small">{{ translations?.header.editBtn }}</BaseButton>
+        <BaseButton v-if="false" size="sm">{{ translations?.header.editBtn }}</BaseButton>
         <BaseButton @click="toggleLang" type="normal">{{
           translations?.header.langBtn
         }}</BaseButton>
       </nav>
 
       <div :class="styles.fullNameWrapper">
-        <BaseText as="mainHeader" variant="secondary">{{ translations?.header.fullName }}</BaseText>
+        <BaseText as="h1" size="lg" variant="secondary">{{
+          translations?.header.fullName
+        }}</BaseText>
         <BaseText variant="secondary">{{ translations?.header.jobPosition }}</BaseText>
       </div>
     </div>

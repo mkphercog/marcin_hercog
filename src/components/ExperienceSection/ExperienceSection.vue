@@ -21,7 +21,7 @@ const { downloadCVFile } = store
         @click="downloadCVFile"
         :class="styles.downloadBtn"
         variant="secondary"
-        type="big"
+        size="lg"
         >{{ translations?.experience.downloadBtn }}</BaseButton
       >
     </div>
