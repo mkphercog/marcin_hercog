@@ -4,6 +4,7 @@ import { createPinia } from 'pinia'
 import './firebase/firebase'
 import BaseLoader from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
+import './assets/styles/global.scss'
 
 const pinia = createPinia()
 const app = createApp(App)

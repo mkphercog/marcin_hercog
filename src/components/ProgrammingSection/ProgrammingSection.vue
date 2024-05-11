@@ -13,8 +13,10 @@ const { translations } = storeToRefs(useTranslationsStore())
 <template>
   <BaseSection :title="translations?.programmingSkills.header">
     <ProgrammingList />
-    <div>
-      <BaseText as="header">{{ translations?.programmingSkills.additionalHeader }} </BaseText>
+    <div :class="styles.additionalInfoWrapper">
+      <BaseText :class="styles.additionalInfoHeader"
+        >{{ translations?.programmingSkills.additionalHeader }}
+      </BaseText>
       <BaseText justify>
         {{ translations?.programmingSkills.additionalDescription }}
       </BaseText>

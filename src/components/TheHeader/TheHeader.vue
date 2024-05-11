@@ -16,7 +16,9 @@ const { toggleLang } = store
       <nav :class="styles.nav">
         <!-- TODO add edit site content  -->
         <BaseButton v-if="false" type="small">{{ translations?.header.editBtn }}</BaseButton>
-        <BaseButton @click="toggleLang">{{ translations?.header.langBtn }}</BaseButton>
+        <BaseButton @click="toggleLang" type="normal">{{
+          translations?.header.langBtn
+        }}</BaseButton>
       </nav>
 
       <div :class="styles.fullNameWrapper">

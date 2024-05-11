@@ -25,6 +25,10 @@ export const useTranslationsStore = defineStore('translations', () => {
     await fetchTranslations(true)
   }
 
+  const downloadCVFile = () => {
+    firebaseApi.downloadCVFile(currentLang.value)
+  }
+
   watch(currentLang, async () => await fetchTranslations(false), {
     immediate: true
   })
@@ -34,6 +38,7 @@ export const useTranslationsStore = defineStore('translations', () => {
   return {
     toggleLang,
     uptadeTranslations,
+    downloadCVFile,
     isLoading,
     translations
   }

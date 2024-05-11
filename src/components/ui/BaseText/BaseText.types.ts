@@ -3,8 +3,10 @@ type LinkType = {
   link: string
 }
 
+export type TextAs = 'mainHeader' | 'header' | 'text' | 'smallText'
+
 type OtherTypes = {
-  as?: 'mainHeader' | 'header' | 'text' | 'smallText'
+  as?: TextAs
   link?: never
 }
 

@@ -27,7 +27,7 @@
 }
 
 .iconsSection {
-  margin: 20px 0;
+  margin: 40px 0 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -37,4 +37,13 @@
     gap: 50px;
     max-width: 800px;
   }
+}
+
+.additionalInfoWrapper {
+  margin-top: 30px;
+}
+
+.additionalInfoHeader {
+  margin-bottom: 10px;
+  font-weight: bold;
 }

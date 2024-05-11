@@ -37,6 +37,7 @@ export type Translations = {
     header: string
     description: string
     experienceList: ExperienceListItemType[]
+    downloadBtn: string
   }
   socials: {
     header: string

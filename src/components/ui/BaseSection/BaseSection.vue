@@ -11,7 +11,7 @@ defineProps<Props>()
 
 <template>
   <section :class="styles.wrapper">
-    <BaseText as="header">{{ title }}</BaseText>
+    <BaseText :class="styles.header" as="header">{{ title }}</BaseText>
     <slot></slot>
 
     <BaseDivider v-if="!hideDivider" />

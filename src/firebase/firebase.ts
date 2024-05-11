@@ -14,6 +14,8 @@ import {
 import { collectionPath, firebaseConfig } from './firebase.config'
 import type { DeepPartial, LangEnums, Translations } from '@/types'
 import { useLSLastUpdate } from '@/helpers/useLocalStorageLastUpdate'
+import { getStorage, ref as firebaseRef, getDownloadURL } from 'firebase/storage'
+import axios from 'axios'
 
 const app = initializeApp(firebaseConfig)
 initializeFirestore(app, {
@@ -105,6 +107,32 @@ class FirebaseApi {
       }
     )
     this.setIsLoading(false)
+  }
+
+  public downloadCVFile(lang: LangEnums) {
+    const storage = getStorage()
+    const fileName = `CV Marcin Hercog ${lang}.pdf`
+    const fileRef = firebaseRef(storage, fileName)
+
+    getDownloadURL(fileRef)
+      .then(async (url) => {
+        axios
+          .get(url, {
+            responseType: 'blob'
+          })
+          .then((response) => {
+            const blob = new Blob([response.data], { type: 'application/pdf' })
+            const link = document.createElement('a')
+            link.href = URL.createObjectURL(blob)
+            link.download = fileName
+            link.click()
+            URL.revokeObjectURL(link.href)
+          })
+          .catch((err) => console.warn('Failure while downloading the file', err))
+      })
+      .catch((error) => {
+        console.warn(error)
+      })
   }
 }
 

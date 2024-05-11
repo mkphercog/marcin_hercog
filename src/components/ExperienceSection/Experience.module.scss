@@ -13,3 +13,19 @@
   background-color: $primary-bg-color;
   transform: rotate(45deg);
 }
+
+.list {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.downloadBtn {
+  margin-top: 30px;
+  text-transform: uppercase;
+}
