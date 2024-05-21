@@ -12,7 +12,7 @@ import {
   getDocFromCache
 } from 'firebase/firestore'
 import { collectionPath, firebaseConfig } from './firebase.config'
-import type { DeepPartial, LangEnums, Translations } from '@/types'
+import type { DeepPartial, LangEnums, WebContentType } from '@/types'
 import { useLSLastUpdate } from '@/helpers/useLocalStorageLastUpdate'
 import { getStorage, ref as firebaseRef, getDownloadURL } from 'firebase/storage'
 import axios from 'axios'
@@ -23,10 +23,10 @@ initializeFirestore(app, {
 })
 const db = getFirestore(app)
 
-type GetTranslationPropsType = {
+type GetWebContentPropsType = {
   lang: LangEnums
   forceUpdate?: boolean
-  callback: (newTranslations: Translations) => void
+  callback: (newWebContent: WebContentType) => void
 }
 
 class FirebaseApi {
@@ -37,7 +37,7 @@ class FirebaseApi {
     this.db = db
   }
 
-  private async getTranslationsFromCache({ lang, forceUpdate, callback }: GetTranslationPropsType) {
+  private async getWebContentFromCache({ lang, forceUpdate, callback }: GetWebContentPropsType) {
     const currentTime = new Date().getTime()
     const { isUpdateDataNeeded } = useLSLastUpdate({ currentTime, lang, forceUpdate })
 
@@ -46,8 +46,8 @@ class FirebaseApi {
       const cachedDocSnap = await getDocFromCache(cachedDocRef)
 
       if (cachedDocSnap.exists() && !isUpdateDataNeeded) {
-        const newTranslations = cachedDocSnap.data() as Translations
-        callback(newTranslations)
+        const newWebContent = cachedDocSnap.data() as WebContentType
+        callback(newWebContent)
         console.log('Cached data loaded correctly.')
         return true
       }
@@ -58,8 +58,8 @@ class FirebaseApi {
     return false
   }
 
-  public async fetchTranslations({ lang, forceUpdate = false, callback }: GetTranslationPropsType) {
-    const isCachedDataAvailable = await this.getTranslationsFromCache({
+  public async fetchWebContent({ lang, forceUpdate = false, callback }: GetWebContentPropsType) {
+    const isCachedDataAvailable = await this.getWebContentFromCache({
       lang,
       forceUpdate,
       callback
@@ -73,15 +73,15 @@ class FirebaseApi {
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
-      const newTranslations = docSnap.data() as Translations
-      callback(newTranslations)
+      const newWebContent = docSnap.data() as WebContentType
+      callback(newWebContent)
       console.log('Fetched data loaded correctly.')
     } else {
       console.error('There is no data in this firebase document.')
     }
   }
 
-  public async setTranslations(lang: LangEnums, newData: DeepPartial<Translations>) {
+  public async setWebContent(lang: LangEnums, newData: DeepPartial<WebContentType>) {
     const headerRef = collection(this.db, this.mainPath)
 
     await setDoc(
@@ -114,24 +114,24 @@ class FirebaseApi {
             link.click()
             URL.revokeObjectURL(link.href)
           })
-          .catch((err) => console.warn('Failure while downloading the file', err))
+          .catch((err) => console.error('Failure while downloading the file', err))
       })
       .catch((error) => {
-        console.warn(error)
+        console.error(error)
       })
   }
 
-  public getProfilePhotoUrl(ref: Ref<string | undefined>) {
+  public getProfilePhotoUrl(callback: (url: string) => void) {
     const storage = getStorage()
     const fileName = `MH_Photo.jpg`
     const fileRef = firebaseRef(storage, fileName)
 
     getDownloadURL(fileRef)
-      .then(async (url) => {
-        ref.value = url
+      .then((url) => {
+        callback(url)
       })
       .catch((error) => {
-        console.warn(error)
+        console.error('Failure while fetching profile photo url', error)
       })
   }
 }

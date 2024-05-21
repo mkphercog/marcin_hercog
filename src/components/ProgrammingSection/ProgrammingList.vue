@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import ProgrammingItem from './ProgrammingItem.vue'
-import { useTranslationsStore } from '@/store'
+import { useWebContentStore } from '@/store'
 
-const { translations } = storeToRefs(useTranslationsStore())
+const { webContent } = storeToRefs(useWebContentStore())
 </script>
 
 <template>
   <ul>
     <ProgrammingItem
-      v-for="{ id, label, scaleValue } in translations.programmingSkills.skillsList"
+      v-for="{ id, label, scaleValue } in webContent.programmingSkills.skillsList"
       :key="id"
       :label="label"
       :scale-value="scaleValue"

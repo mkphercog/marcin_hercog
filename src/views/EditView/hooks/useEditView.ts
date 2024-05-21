@@ -3,15 +3,14 @@ import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 
 import { checkIsFieldValid, isFieldValid } from '../EditView.helpers'
-import { useTranslationsStore, useAppStateStore } from '@/store'
+import { useAppStateStore, useWebContentStore } from '@/store'
 import type { InputValuesType } from '../EditView.types'
-import type { Translations } from '@/types'
+import type { WebContentType } from '@/types'
 
 export const useEditView = () => {
-  const store = useTranslationsStore()
+  const webContentStore = useWebContentStore()
+  const { webContent, originalWebContent } = storeToRefs(webContentStore)
   const appStateStore = useAppStateStore()
-  const { translations, originalTranslations } = storeToRefs(store)
-  const { changeTranslationsLocally } = store
   const { push: routerPush } = useRouter()
 
   const jobPosition = reactive<InputValuesType>({
@@ -27,38 +26,38 @@ export const useEditView = () => {
   })
 
   watchEffect(() => {
-    jobPosition.value = translations.value.header.jobPosition
-    aboutDesc.value = translations.value.about.description
+    jobPosition.value = webContent.value.header.jobPosition
+    aboutDesc.value = webContent.value.about.description
   })
 
   onUpdated(() => {
     isFieldValid(
       jobPosition,
-      originalTranslations.value.header.jobPosition,
-      appStateStore.getHasLocalChanges
+      originalWebContent.value.header.jobPosition,
+      appStateStore.hasLocalChanges
     )
     isFieldValid(
       aboutDesc,
-      originalTranslations.value.about.description,
-      appStateStore.getHasLocalChanges
+      originalWebContent.value.about.description,
+      appStateStore.hasLocalChanges
     )
   })
 
   watch(jobPosition, () => {
     checkIsFieldValid(
       jobPosition,
-      originalTranslations.value.header.jobPosition,
+      originalWebContent.value.header.jobPosition,
       40,
-      appStateStore.getHasLocalChanges
+      appStateStore.hasLocalChanges
     )
   })
 
   watch(aboutDesc, () => {
     checkIsFieldValid(
       aboutDesc,
-      originalTranslations.value.about.description,
+      originalWebContent.value.about.description,
       1024,
-      appStateStore.getHasLocalChanges
+      appStateStore.hasLocalChanges
     )
   })
 
@@ -78,19 +77,19 @@ export const useEditView = () => {
       return
     }
 
-    const formData: Translations = {
-      ...translations.value,
+    const formData: WebContentType = {
+      ...originalWebContent.value,
       header: {
-        ...translations.value.header,
+        ...originalWebContent.value.header,
         jobPosition: jobPosition.value!
       },
       about: {
-        ...translations.value.about,
+        ...originalWebContent.value.about,
         description: aboutDesc.value!
       }
     }
 
-    changeTranslationsLocally(formData)
+    webContentStore.changeWebContentLocally(formData)
     routerPush({
       name: 'home',
       replace: true

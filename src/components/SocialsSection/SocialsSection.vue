@@ -2,15 +2,15 @@
 import { storeToRefs } from 'pinia'
 import { BaseSection, BaseIcon } from '@/components/ui'
 import { SOCIALS } from '@/constants'
-import { useTranslationsStore } from '@/store'
+import { useWebContentStore } from '@/store'
 
 import styles from './SocialsSection.module.scss'
 
-const { translations } = storeToRefs(useTranslationsStore())
+const { webContent } = storeToRefs(useWebContentStore())
 </script>
 
 <template>
-  <BaseSection :title="translations.socials.header" hideDivider>
+  <BaseSection :title="webContent.socials.header" hideDivider>
     <ul :class="styles.linksWrapper">
       <BaseIcon
         v-for="{ id, icon, name, link } in SOCIALS"

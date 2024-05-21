@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { useAppStateStore, useTranslationsStore } from '@/store'
+import { useAppStateStore, useWebContentStore } from '@/store'
 import { TheFooter, TheHeader } from './components'
+import { watch } from 'vue'
+import { storeToRefs } from 'pinia'
 
-useTranslationsStore()
 const appStateStore = useAppStateStore()
+const webContentStore = useWebContentStore()
+const { currentLanguage } = storeToRefs(appStateStore)
+
+watch(currentLanguage, () => webContentStore.fetchWebContent(false), {
+  immediate: true
+})
 </script>
 
 <template>
-  <BaseLoader :active="appStateStore.getIsLoading" loader="dots" />
-  <div v-if="appStateStore.getHasLoadedTranslations">
+  <BaseLoader :active="appStateStore.isLoading" loader="dots" />
+  <div v-if="appStateStore.hasLoadedWebContent">
     <TheHeader />
 
     <RouterView v-slot="{ Component }">

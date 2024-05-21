@@ -1,2 +1,2 @@
 export * from './appStateStore'
-export * from './translationsStore'
+export * from './webContentStore'

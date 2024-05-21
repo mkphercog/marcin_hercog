@@ -4,43 +4,43 @@ import { defineStore } from 'pinia'
 
 const { getLocalLang, setLocalLang } = useLSLang()
 
-export const useAppStateStore = defineStore('appState', {
+export const useAppStateStore = defineStore('app-state-store', {
   state: () => {
     return {
-      currentLanguage: getLocalLang(),
-      hasLocalChanges: false,
-      hasLoadedTranslations: false,
-      isLoading: false
+      currentLanguageRef: getLocalLang(),
+      hasLocalChangesRef: false,
+      hasLoadedWebContentRef: false,
+      isLoadingRef: false
     }
   },
   getters: {
-    getCurrentLanguage: (state) => {
-      return state.currentLanguage
+    currentLanguage: (state) => {
+      return state.currentLanguageRef
     },
-    getHasLocalChanges: (state) => {
-      return state.hasLocalChanges
+    hasLocalChanges: (state) => {
+      return state.hasLocalChangesRef
     },
-    getHasLoadedTranslations: (state) => {
-      return state.hasLoadedTranslations
+    hasLoadedWebContent: (state) => {
+      return state.hasLoadedWebContentRef
     },
-    getIsLoading: (state) => {
-      return state.isLoading
+    isLoading: (state) => {
+      return state.isLoadingRef
     }
   },
   actions: {
     toggleCurrentLanguage() {
-      const toggledLang = this.currentLanguage === LangEnums.PL ? LangEnums.EN : LangEnums.PL
-      this.currentLanguage = toggledLang
+      const toggledLang = this.currentLanguageRef === LangEnums.PL ? LangEnums.EN : LangEnums.PL
+      this.currentLanguageRef = toggledLang
       setLocalLang(toggledLang)
     },
     setHasLocalChanges(newState: boolean) {
-      this.hasLocalChanges = newState
+      this.hasLocalChangesRef = newState
     },
-    setHasLoadedTranslations(newState: boolean) {
-      this.hasLoadedTranslations = newState
+    setHasLoadedWebContent(newState: boolean) {
+      this.hasLoadedWebContentRef = newState
     },
     setIsLoading(newState: boolean) {
-      this.isLoading = newState
+      this.isLoadingRef = newState
     }
   }
 })

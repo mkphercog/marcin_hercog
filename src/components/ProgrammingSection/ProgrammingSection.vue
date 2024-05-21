@@ -3,22 +3,22 @@ import { storeToRefs } from 'pinia'
 import { BaseSection, BaseText, BaseIcon } from '@/components/ui'
 import ProgrammingList from './ProgrammingList.vue'
 import { PROGRAMMING_ICONS } from '@/constants'
-import { useTranslationsStore } from '@/store'
+import { useWebContentStore } from '@/store'
 
 import styles from './Programming.module.scss'
 
-const { translations } = storeToRefs(useTranslationsStore())
+const { webContent } = storeToRefs(useWebContentStore())
 </script>
 
 <template>
-  <BaseSection :title="translations.programmingSkills.header">
+  <BaseSection :title="webContent.programmingSkills.header">
     <ProgrammingList />
     <div :class="styles.additionalInfoWrapper">
       <BaseText size="lg" :class="styles.additionalInfoHeader"
-        >{{ translations.programmingSkills.additionalHeader }}
+        >{{ webContent.programmingSkills.additionalHeader }}
       </BaseText>
       <BaseText justify>
-        {{ translations.programmingSkills.additionalDescription }}
+        {{ webContent.programmingSkills.additionalDescription }}
       </BaseText>
     </div>
     <ul :class="styles.iconsSection">

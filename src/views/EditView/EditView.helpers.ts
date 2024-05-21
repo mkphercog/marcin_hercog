@@ -2,7 +2,7 @@ import type { InputValuesType } from './EditView.types'
 
 export const checkIsFieldValid = (
   field: InputValuesType,
-  originalTranslation: string,
+  originalWebContent: string,
   maxLength: number,
   areLocalChanges: boolean
 ) => {
@@ -14,15 +14,15 @@ export const checkIsFieldValid = (
     field.error = null
   }
 
-  isFieldValid(field, originalTranslation, areLocalChanges)
+  isFieldValid(field, originalWebContent, areLocalChanges)
 }
 
 export const isFieldValid = (
   field: InputValuesType,
-  originalTranslation: string,
+  originalWebContent: string,
   areLocalChanges: boolean
 ) => {
-  if (field.value !== originalTranslation) {
+  if (field.value !== originalWebContent) {
     field.isValid = true
   } else if (!areLocalChanges) {
     field.isValid = undefined

@@ -16,7 +16,7 @@ import NpmIcon from '@/assets/icons/npm.svg'
 import YarnIcon from '@/assets/icons/yarn.svg'
 import ConfluenceIcon from '@/assets/icons/Confluence.svg'
 import JiraIcon from '@/assets/icons/Jira_with_text.svg'
-import type { IconType, Translations } from '@/types'
+import type { IconType, WebContentType } from '@/types'
 
 export const SOCIALS: IconType[] = [
   {
@@ -120,7 +120,7 @@ export const ONE_SECOND_IN_MS = 1000
 export const ONE_MINUTE_IN_MS = ONE_SECOND_IN_MS * 60
 export const FIFTEEN_MINUTES_IN_MS = ONE_MINUTE_IN_MS * 15
 
-export const TRANSLATIONS_DEFAULT: Translations = {
+export const DEFAULT_WEB_CONTENT: WebContentType = {
   header: {
     editBtn: '',
     langBtn: '',

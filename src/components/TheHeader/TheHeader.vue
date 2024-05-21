@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { BaseText, BaseButton, BaseLink } from '@/components/ui'
-import { useTranslationsStore, useAppStateStore } from '@/store'
+import { useAppStateStore, useWebContentStore } from '@/store'
 import { useRoute, type RouterLinkProps } from 'vue-router'
 import { computed, type ComputedRef } from 'vue'
 import { RouteNamesEnum } from '@/routes'
@@ -15,29 +15,28 @@ type HeaderContent = {
   additionalInfoText: ComputedRef<string>
 }
 
-const store = useTranslationsStore()
-const { translations } = storeToRefs(store)
+const { webContent } = storeToRefs(useWebContentStore())
 const appStateStore = useAppStateStore()
 const route = useRoute()
 
-const TRANSLATIONS_PER_PAGE_MAP: Record<RouteNamesEnum, HeaderContent> = {
+const WEB_CONTENT_PER_PAGE_MAP: Record<RouteNamesEnum, HeaderContent> = {
   home: {
     linkTo: { name: RouteNamesEnum.EDIT_MODE },
-    linkBtnText: computed(() => translations.value.header.editBtn),
-    headerText: computed(() => translations.value.header.fullName),
-    additionalInfoText: computed(() => translations.value.header.jobPosition)
+    linkBtnText: computed(() => webContent.value.header.editBtn),
+    headerText: computed(() => webContent.value.header.fullName),
+    additionalInfoText: computed(() => webContent.value.header.jobPosition)
   },
   editMode: {
     linkTo: { name: RouteNamesEnum.HOME },
-    linkBtnText: computed(() => translations.value.editMode.backBtn),
-    headerText: computed(() => translations.value.editMode.header),
+    linkBtnText: computed(() => webContent.value.editMode.backBtn),
+    headerText: computed(() => webContent.value.editMode.header),
     additionalInfoText: computed(
-      () => `${translations.value.editMode.currentLang} ${appStateStore.getCurrentLanguage}`
+      () => `${webContent.value.editMode.currentLang} ${appStateStore.currentLanguage}`
     )
   }
 }
 
-const headerContent = computed(() => TRANSLATIONS_PER_PAGE_MAP[route.name as RouteNamesEnum])
+const headerContent = computed(() => WEB_CONTENT_PER_PAGE_MAP[route.name as RouteNamesEnum])
 </script>
 
 <template>
@@ -47,11 +46,11 @@ const headerContent = computed(() => TRANSLATIONS_PER_PAGE_MAP[route.name as Rou
         <BaseLink :to="headerContent.linkTo" size="sm" variant="secondary">
           {{ headerContent.linkBtnText.value }}
         </BaseLink>
-        <BaseText v-if="appStateStore.getHasLocalChanges" :class="styles.localChanges" size="sm">
-          {{ translations.editMode.localChangesInfo }}
+        <BaseText v-if="appStateStore.hasLocalChanges" :class="styles.localChanges" size="sm">
+          {{ webContent.editMode.localChangesInfo }}
         </BaseText>
         <BaseButton @click="appStateStore.toggleCurrentLanguage" type="normal">{{
-          translations.header.langBtn
+          webContent.header.langBtn
         }}</BaseButton>
       </nav>
 

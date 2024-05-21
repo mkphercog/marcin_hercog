@@ -16,7 +16,7 @@ export type IconType = {
   name: string
 }
 
-export type Translations = {
+export type WebContentType = {
   header: {
     editBtn: string
     langBtn: string

@@ -3,20 +3,20 @@ import { storeToRefs } from 'pinia'
 import { BaseText } from '@/components/ui'
 import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
 import MailIcon from '@/assets/icons/MailIcon.vue'
-import { useTranslationsStore } from '@/store'
+import { useWebContentStore } from '@/store'
 
 import styles from './TheFooter.module.scss'
 
-const { translations } = storeToRefs(useTranslationsStore())
+const { webContent } = storeToRefs(useWebContentStore())
 
 const initializePhoneCall = () => {
-  window.open(`tel:${translations.value.footer.phoneNumber}`)
+  window.open(`tel:${webContent.value.footer.phoneNumber}`)
 }
 
 function initializeEmail() {
-  const email = translations.value.footer.email
-  const title = translations.value.emailTemplate.title || ''
-  const message = translations.value.emailTemplate.message || ''
+  const email = webContent.value.footer.email
+  const title = webContent.value.emailTemplate.title || ''
+  const message = webContent.value.emailTemplate.message || ''
 
   window.location.href = `mailto:${email}?subject=${title}&body=${message}`
 }
@@ -24,21 +24,21 @@ function initializeEmail() {
 
 <template>
   <footer :class="styles.footer">
-    <BaseText variant="secondary">{{ translations.footer.header }}</BaseText>
+    <BaseText variant="secondary">{{ webContent.footer.header }}</BaseText>
     <div :class="styles.contactWrapper">
       <div :class="styles.infoWrapper" @click="initializePhoneCall">
         <PhoneIcon :class="styles.icon" />
-        <BaseText variant="secondary">{{ translations.footer.phoneNumber }}</BaseText>
+        <BaseText variant="secondary">{{ webContent.footer.phoneNumber }}</BaseText>
       </div>
       <div :class="styles.infoWrapper" @click="initializeEmail">
         <MailIcon :class="styles.icon" />
-        <BaseText variant="secondary">{{ translations.footer.email }}</BaseText>
+        <BaseText variant="secondary">{{ webContent.footer.email }}</BaseText>
       </div>
     </div>
     <div :class="styles.visitedHint">
       <!-- TODO add visitors counter -->
       <BaseText v-if="false" variant="secondary" size="sm"
-        >{{ translations.footer.visitors }} {{ 1 }}</BaseText
+        >{{ webContent.footer.visitors }} {{ 1 }}</BaseText
       >
     </div>
   </footer>
