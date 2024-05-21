@@ -1,4 +1,4 @@
-import type { InputValuesType } from './EditView.types'
+import type { InputValuesType } from '../types/EditView.types'
 
 export const checkIsFieldValid = (
   field: InputValuesType,

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { BaseCard, BaseTextarea } from '@/components/ui'
-import type { InputValuesType } from '../../EditView.types'
+import type { InputValuesType } from '../../types/EditView.types'
 
 type Props = {
   aboutDesc: InputValuesType

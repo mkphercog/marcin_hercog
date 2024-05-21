@@ -2,9 +2,9 @@ import { computed, onUpdated, reactive, shallowReactive, watch, watchEffect } fr
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 
-import { checkIsFieldValid, isFieldValid } from '../EditView.helpers'
+import { checkIsFieldValid, isFieldValid } from '../utils/EditView.helpers'
 import { useAppStateStore, useWebContentStore } from '@/store'
-import type { InputValuesType } from '../EditView.types'
+import type { InputValuesType } from '../types/EditView.types'
 import type { WebContentType } from '@/types'
 
 export const useEditView = () => {

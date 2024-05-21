@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AboutSection, ProgrammingSection, ExperienceSection, SocialsSection } from '@/components'
+import { AboutSection, ProgrammingSection, ExperienceSection, SocialsSection } from './components'
 import { BaseDivider } from '@/components/ui'
 
 import styles from './HomeView.module.scss'
