@@ -1,0 +1,29 @@
+.editMain {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 30px;
+}
+
+.infoCard {
+  display: flex;
+  gap: 10px;
+}
+
+.infoIcon {
+  height: 24px;
+  display: inline-block;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitBtn {
+  align-self: center;
+}
+
+.actionsWrapper {
+  display: flex;
+  gap: 10px;
+}

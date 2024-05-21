@@ -11,14 +11,14 @@ const { translations } = storeToRefs(useTranslationsStore())
 </script>
 
 <template>
-  <BaseSection :title="translations?.programmingSkills.header">
+  <BaseSection :title="translations.programmingSkills.header">
     <ProgrammingList />
     <div :class="styles.additionalInfoWrapper">
       <BaseText size="lg" :class="styles.additionalInfoHeader"
-        >{{ translations?.programmingSkills.additionalHeader }}
+        >{{ translations.programmingSkills.additionalHeader }}
       </BaseText>
       <BaseText justify>
-        {{ translations?.programmingSkills.additionalDescription }}
+        {{ translations.programmingSkills.additionalDescription }}
       </BaseText>
     </div>
     <ul :class="styles.iconsSection">

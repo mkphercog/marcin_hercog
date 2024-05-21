@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.textarea {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid $primary-bg-color;
+  color: $primary-text-color;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.error {
+    border: 1px solid $error-color;
+  }
+
+  &.changes {
+    border: 1px solid $success-color;
+  }
+}
+
+.errorMessage {
+  color: $error-color;
+}

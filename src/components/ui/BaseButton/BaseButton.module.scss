@@ -8,6 +8,11 @@
   &:hover {
     background-color: $primary-lg-bg-color;
   }
+
+  &:disabled {
+    background-color: $secondary-bg-color;
+    cursor: not-allowed;
+  }
 }
 
 .secondary {

@@ -52,6 +52,16 @@ export type Translations = {
     title: string
     message: string
   }
+  editMode: {
+    header: string
+    currentLang: string
+    localChangesInfo: string
+    hintInfo: string
+    backBtn: string
+    submitBtn: string
+    restoreBtn: string
+    publishBtn: string
+  }
 }
 
 export enum LangEnums {

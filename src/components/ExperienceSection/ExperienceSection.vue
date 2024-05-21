@@ -12,9 +12,9 @@ const { downloadCVFile } = store
 </script>
 
 <template>
-  <BaseSection :title="translations?.experience.header">
+  <BaseSection :title="translations.experience.header">
     <div :class="styles.contentWrapper">
-      <BaseText justify>{{ translations?.experience.description }}</BaseText>
+      <BaseText justify>{{ translations.experience.description }}</BaseText>
       <ExperienceList />
 
       <BaseButton
@@ -22,7 +22,7 @@ const { downloadCVFile } = store
         :class="styles.downloadBtn"
         variant="secondary"
         size="lg"
-        >{{ translations?.experience.downloadBtn }}</BaseButton
+        >{{ translations.experience.downloadBtn }}</BaseButton
       >
     </div>
   </BaseSection>

@@ -11,7 +11,7 @@ const { translations } = storeToRefs(useTranslationsStore())
 <template>
   <ul :class="styles.list">
     <ExperienceItem
-      v-for="{ id, description } in translations?.experience.experienceList"
+      v-for="{ id, description } in translations.experience.experienceList"
       :key="id"
       :description="description"
     />

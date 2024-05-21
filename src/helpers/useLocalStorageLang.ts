@@ -13,7 +13,7 @@ export const useLSLang = () => {
   }
 
   return {
-    localLang: getLocalLang(),
+    getLocalLang,
     setLocalLang
   }
 }

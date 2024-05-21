@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import { TheHeader, TheFooter } from '@/components'
-import HomeView from '@/views/HomeView/HomeView.vue'
-import { useTranslationsStore } from '@/store'
+import { useAppStateStore, useTranslationsStore } from '@/store'
+import { TheFooter, TheHeader } from './components'
 
-const store = useTranslationsStore()
+useTranslationsStore()
+const appStateStore = useAppStateStore()
 </script>
 
 <template>
-  <BaseLoader :active="store.isLoading" loader="dots" />
-  <div v-if="!!store.translations">
+  <BaseLoader :active="appStateStore.getIsLoading" loader="dots" />
+  <div v-if="appStateStore.getHasLoadedTranslations">
     <TheHeader />
-    <HomeView />
+
+    <RouterView v-slot="{ Component }">
+      <KeepAlive>
+        <component :is="Component" />
+      </KeepAlive>
+    </RouterView>
+
     <TheFooter />
   </div>
 </template>

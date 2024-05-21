@@ -1,0 +1,40 @@
+.primary {
+  color: $primary-text-color;
+}
+
+.secondary {
+  color: $secondary-text-color;
+}
+
+.link {
+  text-decoration: none;
+  transition: all 300ms;
+
+  &:hover {
+    color: $success-color;
+  }
+
+  &.sm {
+    font-size: 12px;
+
+    @include for-tablet-lg-up {
+      font-size: 16px;
+    }
+  }
+
+  &.md {
+    font-size: 18px;
+
+    @include for-tablet-lg-up {
+      font-size: 24px;
+    }
+  }
+
+  &.lg {
+    font-size: 22px;
+
+    @include for-tablet-lg-up {
+      font-size: 28px;
+    }
+  }
+}

@@ -5,16 +5,17 @@ import { useTranslationsStore } from '@/store'
 
 import styles from './About.module.scss'
 
-const { translations } = storeToRefs(useTranslationsStore())
+const { translations, profilePhotoUrl } = storeToRefs(useTranslationsStore())
 </script>
 
 <template>
   <section :class="styles.wrapper">
     <BaseText justify>
-      {{ translations?.about.description }}
+      {{ translations.about.description }}
     </BaseText>
-    <div v-if="translations?.about.photoUrl" :class="styles.photoWrapper">
-      <img :src="translations?.about.photoUrl" alt="Marcin Hercog" />
+    <div :class="styles.photoWrapper">
+      <BaseLoader :active="!profilePhotoUrl" loader="dots" :is-full-page="false" />
+      <img v-if="profilePhotoUrl" :src="profilePhotoUrl" alt="Marcin Hercog photo" />
     </div>
   </section>
 </template>

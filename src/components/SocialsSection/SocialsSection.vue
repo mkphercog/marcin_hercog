@@ -10,7 +10,7 @@ const { translations } = storeToRefs(useTranslationsStore())
 </script>
 
 <template>
-  <BaseSection :title="translations?.socials.header" hideDivider>
+  <BaseSection :title="translations.socials.header" hideDivider>
     <ul :class="styles.linksWrapper">
       <BaseIcon
         v-for="{ id, icon, name, link } in SOCIALS"

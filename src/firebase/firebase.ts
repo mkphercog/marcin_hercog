@@ -1,4 +1,4 @@
-import { ref, type Ref } from 'vue'
+import type { Ref } from 'vue'
 import { initializeApp } from 'firebase/app'
 import {
   getFirestore,
@@ -25,28 +25,19 @@ const db = getFirestore(app)
 
 type GetTranslationPropsType = {
   lang: LangEnums
-  ref: Ref<Translations | undefined>
   forceUpdate?: boolean
+  callback: (newTranslations: Translations) => void
 }
 
 class FirebaseApi {
   private db: Firestore
   private mainPath = collectionPath
-  private isLoading = ref(false)
 
   constructor(db: Firestore) {
     this.db = db
   }
 
-  public getIsLoading() {
-    return this.isLoading.value
-  }
-
-  private setIsLoading(value: boolean) {
-    this.isLoading.value = value
-  }
-
-  private async getTranslationsFromCache({ lang, ref, forceUpdate }: GetTranslationPropsType) {
+  private async getTranslationsFromCache({ lang, forceUpdate, callback }: GetTranslationPropsType) {
     const currentTime = new Date().getTime()
     const { isUpdateDataNeeded } = useLSLastUpdate({ currentTime, lang, forceUpdate })
 
@@ -55,7 +46,8 @@ class FirebaseApi {
       const cachedDocSnap = await getDocFromCache(cachedDocRef)
 
       if (cachedDocSnap.exists() && !isUpdateDataNeeded) {
-        ref.value = cachedDocSnap.data() as Translations
+        const newTranslations = cachedDocSnap.data() as Translations
+        callback(newTranslations)
         console.log('Cached data loaded correctly.')
         return true
       }
@@ -66,17 +58,14 @@ class FirebaseApi {
     return false
   }
 
-  public async fetchTranslations({ lang, ref, forceUpdate = false }: GetTranslationPropsType) {
-    this.setIsLoading(true)
-
+  public async fetchTranslations({ lang, forceUpdate = false, callback }: GetTranslationPropsType) {
     const isCachedDataAvailable = await this.getTranslationsFromCache({
       lang,
-      ref,
-      forceUpdate
+      forceUpdate,
+      callback
     })
 
     if (isCachedDataAvailable) {
-      this.setIsLoading(false)
       return
     }
 
@@ -84,17 +73,15 @@ class FirebaseApi {
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
-      ref.value = docSnap.data() as Translations
+      const newTranslations = docSnap.data() as Translations
+      callback(newTranslations)
       console.log('Fetched data loaded correctly.')
     } else {
       console.error('There is no data in this firebase document.')
     }
-
-    this.setIsLoading(false)
   }
 
   public async setTranslations(lang: LangEnums, newData: DeepPartial<Translations>) {
-    this.setIsLoading(true)
     const headerRef = collection(this.db, this.mainPath)
 
     await setDoc(
@@ -106,7 +93,6 @@ class FirebaseApi {
         merge: true
       }
     )
-    this.setIsLoading(false)
   }
 
   public downloadCVFile(lang: LangEnums) {
@@ -129,6 +115,20 @@ class FirebaseApi {
             URL.revokeObjectURL(link.href)
           })
           .catch((err) => console.warn('Failure while downloading the file', err))
+      })
+      .catch((error) => {
+        console.warn(error)
+      })
+  }
+
+  public getProfilePhotoUrl(ref: Ref<string | undefined>) {
+    const storage = getStorage()
+    const fileName = `MH_Photo.jpg`
+    const fileRef = firebaseRef(storage, fileName)
+
+    getDownloadURL(fileRef)
+      .then(async (url) => {
+        ref.value = url
       })
       .catch((error) => {
         console.warn(error)

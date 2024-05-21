@@ -9,10 +9,10 @@ const { translations } = storeToRefs(useTranslationsStore())
 <template>
   <ul>
     <ProgrammingItem
-      v-for="{ id, label, scaleValue } in translations?.programmingSkills.skillsList"
+      v-for="{ id, label, scaleValue } in translations.programmingSkills.skillsList"
       :key="id"
       :label="label"
-      :scaleValue="scaleValue"
+      :scale-value="scaleValue"
     />
   </ul>
 </template>
