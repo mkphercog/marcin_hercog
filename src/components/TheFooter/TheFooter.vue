@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { BaseIcon, BaseText } from '@/components/ui'
-import PhoneIcon from '@/assets/icons/PhoneIcon.svg'
-import MainIcon from '@/assets/icons/MailIcon.svg'
+import { BaseText } from '@/components/ui'
+import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
+import MailIcon from '@/assets/icons/MailIcon.vue'
 import { useTranslationsStore } from '@/store'
 
 import styles from './TheFooter.module.scss'
@@ -27,11 +27,11 @@ function initializeEmail() {
     <BaseText variant="secondary">{{ translations.footer.header }}</BaseText>
     <div :class="styles.contactWrapper">
       <div :class="styles.infoWrapper" @click="initializePhoneCall">
-        <BaseIcon :class="styles.icon" :src="PhoneIcon" alt="Phone icon"></BaseIcon>
+        <PhoneIcon :class="styles.icon" />
         <BaseText variant="secondary">{{ translations.footer.phoneNumber }}</BaseText>
       </div>
       <div :class="styles.infoWrapper" @click="initializeEmail">
-        <BaseIcon :class="styles.icon" :src="MainIcon" alt="Mail icon"></BaseIcon>
+        <MailIcon :class="styles.icon" />
         <BaseText variant="secondary">{{ translations.footer.email }}</BaseText>
       </div>
     </div>

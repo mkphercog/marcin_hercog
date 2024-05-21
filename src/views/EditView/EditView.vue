@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { BaseButton, BaseText, BaseIcon, BaseCard } from '@/components/ui'
-import InfoIcon from '@/assets/icons/info-icon.svg'
+import InfoIcon from '@/assets/icons/InfoIcon.vue'
 import { useTranslationsStore, useAppStateStore } from '@/store'
 import EditHeader from './components/EditHeader/EditHeader.vue'
 import EditAbout from './components/EditAbout/EditAbout.vue'
@@ -20,7 +20,7 @@ const { restoreTranslations } = store
 <template>
   <main :class="styles.editMain">
     <BaseCard :class="styles.infoCard">
-      <BaseIcon :class="styles.infoIcon" :src="InfoIcon" alt="Info icon" />
+      <InfoIcon :class="styles.infoIcon" />
       <BaseText size="sm" justify>
         {{ translations.editMode.hintInfo }}
       </BaseText>

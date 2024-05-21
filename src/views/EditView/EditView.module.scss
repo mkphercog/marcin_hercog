@@ -10,8 +10,10 @@
 }
 
 .infoIcon {
+  flex-shrink: 0;
   height: 24px;
-  display: inline-block;
+  width: auto;
+  color: $success-color;
 }
 
 .form {

@@ -30,3 +30,16 @@
   text-transform: uppercase;
   font-weight: bold;
 }
+
+.pdfBtnContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pdfIcon {
+  flex-shrink: 0;
+  height: 30px;
+  width: auto;
+  color: $secondary-text-color;
+}
