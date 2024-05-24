@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, type ButtonHTMLAttributes } from 'vue'
+import type { BaseTextSizeType } from '../BaseText/BaseText.types'
 import BaseText from '../BaseText/BaseText.vue'
 
 import styles from './BaseButton.module.scss'
-import type { BaseTextSizeType } from '../BaseText/BaseText.types'
 
 type Props = {
   size?: BaseTextSizeType
   variant?: 'primary' | 'secondary'
-  disabled?: boolean
+  restProps?: ButtonHTMLAttributes
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -21,7 +21,7 @@ const asSecondary = computed(() => props.variant === 'secondary')
 </script>
 
 <template>
-  <button :class="[styles.button, { [styles.secondary]: asSecondary }]" :disabled="disabled">
+  <button :class="[styles.button, { [styles.secondary]: asSecondary }]" v-bind="restProps">
     <BaseText :size="size" variant="secondary">
       <slot></slot>
     </BaseText>

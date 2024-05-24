@@ -1,4 +1,5 @@
-import type { InputValuesType } from '../types/EditView.types'
+import { reactive } from 'vue'
+import type { InputValuesType, ProgrammingSkillInputType } from '../types/EditView.types'
 
 export const checkIsFieldValid = (
   field: InputValuesType,
@@ -27,4 +28,71 @@ export const isFieldValid = (
   } else if (!areLocalChanges) {
     field.isValid = undefined
   }
+}
+
+export const checkIsProgrammingSkillFieldValid = (
+  field: ProgrammingSkillInputType,
+  originalWebContent:
+    | {
+        id: string
+        label: string
+        scaleValue: number
+      }
+    | undefined,
+  maxLength: number,
+  areLocalChanges: boolean
+) => {
+  const label = field.label
+  if (!label.value?.length) {
+    label.error = 'Pole nie może być puste.'
+  } else if (label.value?.length > maxLength) {
+    label.error = `Max ${maxLength} znaków.`
+  } else {
+    label.error = null
+  }
+
+  const scaleValue = field.scaleValue
+  if (!scaleValue.value && scaleValue.value !== 0) {
+    scaleValue.error = 'Pole nie może być puste.'
+  } else if (scaleValue.value < 0 || scaleValue.value > 100) {
+    scaleValue.error = `Podana wartość wykracza poza zakres (0 - 100)`
+  } else {
+    scaleValue.error = null
+  }
+
+  isProgrammingSkillFieldValid(field, originalWebContent, areLocalChanges)
+}
+
+export const isProgrammingSkillFieldValid = (
+  field: ProgrammingSkillInputType,
+  originalWebContent:
+    | {
+        id: string
+        label: string
+        scaleValue: number
+      }
+    | undefined,
+  areLocalChanges: boolean
+) => {
+  if (field.label.value !== originalWebContent?.label) {
+    field.label.isValid = true
+  } else if (!areLocalChanges) {
+    field.label.isValid = undefined
+  }
+
+  if (field.scaleValue.value !== originalWebContent?.scaleValue) {
+    field.scaleValue.isValid = true
+  } else if (!areLocalChanges) {
+    field.scaleValue.isValid = undefined
+  }
+}
+
+export const defineInputsRefs = (data: string[]) => {
+  return data.map((item) => {
+    return reactive<InputValuesType>({
+      value: item,
+      error: null,
+      isValid: undefined
+    })
+  })
 }

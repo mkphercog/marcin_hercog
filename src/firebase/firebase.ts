@@ -1,4 +1,3 @@
-import type { Ref } from 'vue'
 import { initializeApp } from 'firebase/app'
 import {
   getFirestore,

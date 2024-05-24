@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .label {
@@ -13,11 +14,9 @@
   padding: 10px 15px;
   font-size: 16px;
   border: 1px solid $primary-bg-color;
+  border-radius: 5px;
   color: $primary-text-color;
-  resize: none;
-  overflow: hidden;
-  min-height: 40px;
-  max-height: 120px;
+  width: 100%;
 
   &:focus {
     outline: none;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { BaseCard, BaseTextarea } from '@/components/ui'
+import { BaseCard, BaseText, BaseTextarea } from '@/components/ui'
 import type { InputValuesType } from '../../types/EditView.types'
 
 type Props = {
@@ -13,9 +13,10 @@ const aboutDesc = reactive(props.aboutDesc)
 
 <template>
   <BaseCard>
+    <BaseText as="h3">About section</BaseText>
     <BaseTextarea
       name="aboutDesc"
-      label="About >> Description"
+      label="about.description"
       :is-valid="aboutDesc.isValid && !aboutDesc.error"
       :error-message="aboutDesc.error"
       v-model="aboutDesc.value"

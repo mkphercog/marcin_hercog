@@ -66,6 +66,39 @@ export const useWebContentStore = defineStore('web-content-store', {
       }
     },
 
+    addProgrammingSkill(label: string, scaleValue: number) {
+      const newSkills = [
+        ...this.webContent.programmingSkills.skillsList,
+        {
+          id: new Date().getTime().toLocaleString(),
+          label: label,
+          scaleValue: scaleValue
+        }
+      ]
+
+      this.changeWebContentLocally({
+        ...this.webContent,
+        programmingSkills: {
+          ...this.webContent.programmingSkills,
+          skillsList: newSkills
+        }
+      })
+    },
+
+    deleteProgrammingSkill(id: string) {
+      const filteredSkills = this.webContent.programmingSkills.skillsList.filter(
+        (skill) => skill.id !== id
+      )
+
+      this.changeWebContentLocally({
+        ...this.webContent,
+        programmingSkills: {
+          ...this.webContent.programmingSkills,
+          skillsList: filteredSkills
+        }
+      })
+    },
+
     clearLocalWebContent() {
       this.localWebContentRef = null
     },

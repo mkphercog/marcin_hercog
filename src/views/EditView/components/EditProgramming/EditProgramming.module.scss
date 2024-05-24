@@ -1,0 +1,6 @@
+.containter {
+  @include for-tablet-lg-up {
+    margin: 30px auto 0;
+    width: 80%;
+  }
+}

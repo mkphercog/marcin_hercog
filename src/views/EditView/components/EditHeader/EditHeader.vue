@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { BaseCard, BaseInput } from '@/components/ui'
+import { BaseCard, BaseInput, BaseText } from '@/components/ui'
 import type { InputValuesType } from '../../types/EditView.types'
 
 type Props = {
@@ -13,9 +13,10 @@ const jobPosition = reactive(props.jobPosition)
 
 <template>
   <BaseCard>
+    <BaseText as="h3">Header</BaseText>
     <BaseInput
       name="jobPosition"
-      label="Header >> jobPosition"
+      label="header.jobPosition"
       :is-valid="jobPosition.isValid && !jobPosition.error"
       :error-message="jobPosition.error"
       v-model="jobPosition.value"
