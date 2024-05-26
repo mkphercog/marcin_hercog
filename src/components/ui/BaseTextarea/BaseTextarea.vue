@@ -7,7 +7,8 @@ import { ref, watch, type TextareaHTMLAttributes } from 'vue'
 type Props = {
   name: string
   label: string
-  isValid?: boolean | undefined
+  isValid?: boolean
+  hasChanges?: boolean
   errorMessage?: string | null
   restProps?: TextareaHTMLAttributes
 }
@@ -50,7 +51,7 @@ watch(
         styles.textarea,
         {
           [styles.error]: !!errorMessage,
-          [styles.changes]: isValid
+          [styles.changes]: isValid || hasChanges
         }
       ]"
       restProps

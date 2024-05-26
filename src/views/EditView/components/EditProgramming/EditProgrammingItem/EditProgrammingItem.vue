@@ -21,14 +21,14 @@ const skill = computed(() => props.programmingSkill)
       <BaseInput
         name="label"
         label="Label"
-        :is-valid="skill.label.isValid && !skill.label.error"
+        :has-changes="skill.label.hasChanges && !skill.label.error"
         :error-message="skill.label.error"
         v-model="skill.label.value"
       />
       <BaseInput
         name="label"
         label="ScaleValue"
-        :is-valid="skill.scaleValue.isValid && !skill.scaleValue.error"
+        :has-changes="skill.scaleValue.hasChanges && !skill.scaleValue.error"
         :error-message="skill.scaleValue.error"
         v-model="skill.scaleValue.value"
         :rest-props="{

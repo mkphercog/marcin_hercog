@@ -1,4 +1,3 @@
-import { reactive } from 'vue'
 import type { InputValuesType, ProgrammingSkillInputType } from '../types/EditView.types'
 
 export const checkIsFieldValid = (
@@ -28,6 +27,8 @@ export const isFieldValid = (
   } else if (!areLocalChanges) {
     field.isValid = undefined
   }
+
+  field.hasChanges = field.value !== originalWebContent
 }
 
 export const checkIsProgrammingSkillFieldValid = (
@@ -85,14 +86,7 @@ export const isProgrammingSkillFieldValid = (
   } else if (!areLocalChanges) {
     field.scaleValue.isValid = undefined
   }
-}
 
-export const defineInputsRefs = (data: string[]) => {
-  return data.map((item) => {
-    return reactive<InputValuesType>({
-      value: item,
-      error: null,
-      isValid: undefined
-    })
-  })
+  field.label.hasChanges = field.label.value !== originalWebContent?.label
+  field.scaleValue.hasChanges = field.scaleValue.value !== originalWebContent?.scaleValue
 }

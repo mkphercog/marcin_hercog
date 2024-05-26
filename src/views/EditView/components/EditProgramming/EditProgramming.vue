@@ -28,7 +28,7 @@ const skills = computed(() => props.programmingSkills)
       <BaseTextarea
         name="programmingAdditionalDesc"
         label="programmingSkills.additionalDescription"
-        :is-valid="additionalInfo.isValid && !additionalInfo.error"
+        :has-changes="additionalInfo.hasChanges && !additionalInfo.error"
         :error-message="additionalInfo.error"
         v-model="additionalInfo.value"
       />

@@ -17,7 +17,7 @@ const jobPosition = reactive(props.jobPosition)
     <BaseInput
       name="jobPosition"
       label="header.jobPosition"
-      :is-valid="jobPosition.isValid && !jobPosition.error"
+      :has-changes="jobPosition.hasChanges && !jobPosition.error"
       :error-message="jobPosition.error"
       v-model="jobPosition.value"
     />

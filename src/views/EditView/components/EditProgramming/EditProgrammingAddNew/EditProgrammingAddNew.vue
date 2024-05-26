@@ -16,12 +16,14 @@ const newSkill = reactive<ProgrammingSkillInputType>({
   label: {
     value: undefined,
     error: null,
-    isValid: undefined
+    isValid: undefined,
+    hasChanges: false
   },
   scaleValue: {
     value: undefined,
     error: null,
-    isValid: undefined
+    isValid: undefined,
+    hasChanges: false
   }
 })
 
@@ -47,13 +49,15 @@ const addNewSkill = () => {
     newSkill.label = {
       value: undefined,
       error: null,
-      isValid: undefined
+      isValid: undefined,
+      hasChanges: false
     }
 
     newSkill.scaleValue = {
       value: undefined,
       error: null,
-      isValid: undefined
+      isValid: undefined,
+      hasChanges: false
     }
   }
 }

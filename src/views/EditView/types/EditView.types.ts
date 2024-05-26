@@ -2,6 +2,7 @@ export type InputValuesType = {
   value: string | undefined
   error: string | null
   isValid: boolean | undefined
+  hasChanges: boolean
 }
 
 export type ProgrammingSkillInputType = {
@@ -10,10 +11,12 @@ export type ProgrammingSkillInputType = {
     value: string | undefined
     error: string | null
     isValid: boolean | undefined
+    hasChanges: boolean
   }
   scaleValue: {
     value: number | undefined
     error: string | null
     isValid: boolean | undefined
+    hasChanges: boolean
   }
 }

@@ -7,7 +7,8 @@ import styles from './BaseInput.module.scss'
 type Props = {
   name: string
   label: string
-  isValid?: boolean | undefined
+  isValid?: boolean
+  hasChanges?: boolean
   errorMessage?: string | null
   restProps?: InputHTMLAttributes
 }
@@ -33,7 +34,7 @@ withDefaults(defineProps<Props>(), {
         styles.input,
         {
           [styles.error]: !!errorMessage,
-          [styles.changes]: isValid
+          [styles.changes]: isValid || hasChanges
         }
       ]"
     />

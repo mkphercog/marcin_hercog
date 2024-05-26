@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import isEqual from 'lodash.isequal'
 import { DEFAULT_WEB_CONTENT } from '@/constants'
 import type { DeepPartial, WebContentType } from '@/types'
 import { useAppStateStore } from './appStateStore'
@@ -57,9 +58,7 @@ export const useWebContentStore = defineStore('web-content-store', {
       const appStateStore = useAppStateStore()
 
       this.localWebContentRef = newWebContent
-      appStateStore.setHasLocalChanges(
-        JSON.stringify(this.localWebContentRef) !== JSON.stringify(this.originalWebContent)
-      )
+      appStateStore.setHasLocalChanges(!isEqual(this.localWebContentRef, this.originalWebContent))
 
       if (!appStateStore.hasLocalChanges) {
         this.clearLocalWebContent()

@@ -17,12 +17,15 @@ export const useAppStateStore = defineStore('app-state-store', {
     currentLanguage: (state) => {
       return state.currentLanguageRef
     },
+
     hasLocalChanges: (state) => {
       return state.hasLocalChangesRef
     },
+
     hasLoadedWebContent: (state) => {
       return state.hasLoadedWebContentRef
     },
+
     isLoading: (state) => {
       return state.isLoadingRef
     }
@@ -33,12 +36,15 @@ export const useAppStateStore = defineStore('app-state-store', {
       this.currentLanguageRef = toggledLang
       setLocalLang(toggledLang)
     },
+
     setHasLocalChanges(newState: boolean) {
       this.hasLocalChangesRef = newState
     },
+
     setHasLoadedWebContent(newState: boolean) {
       this.hasLoadedWebContentRef = newState
     },
+
     setIsLoading(newState: boolean) {
       this.isLoadingRef = newState
     }

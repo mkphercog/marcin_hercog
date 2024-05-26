@@ -17,7 +17,7 @@ const aboutDesc = reactive(props.aboutDesc)
     <BaseTextarea
       name="aboutDesc"
       label="about.description"
-      :is-valid="aboutDesc.isValid && !aboutDesc.error"
+      :has-changes="aboutDesc.hasChanges && !aboutDesc.error"
       :error-message="aboutDesc.error"
       v-model="aboutDesc.value"
     />
