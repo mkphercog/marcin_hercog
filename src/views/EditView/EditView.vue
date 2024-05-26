@@ -24,10 +24,10 @@ const { webContent } = storeToRefs(webContentStore)
     </BaseCard>
     <form @submit.prevent="submitForm" :class="styles.form">
       <EditHeader :job-position="formFields.jobPosition" />
-      <EditAbout :about-desc="formFields.aboutDesc" />
+      <EditAbout :about-description="formFields.aboutDescription" />
       <EditProgramming
-        :programming-skills="formFields.mappedProgrammingSkillsList"
-        :additional-programming-desc="formFields.additionalProgrammingDesc"
+        :programming-skills="formFields.formCodingSkillsList"
+        :additional-programming-desc="formFields.codingDescription"
       />
       <EditViewActions :is-form-valid="formState.isValid" />
     </form>

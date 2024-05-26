@@ -1,140 +1,44 @@
-import { computed, reactive, shallowReactive, watch, watchEffect } from 'vue'
+import { computed, shallowReactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { checkIsFieldValid, checkIsProgrammingSkillFieldValid } from '../utils/EditView.helpers'
-import { useAppStateStore, useWebContentStore } from '@/store'
-import type { InputValuesType, ProgrammingSkillInputType } from '../types/EditView.types'
-import type { ProgrammingSkillType, WebContentType } from '@/types'
+import { mapSkillsToDisplay } from '../utils/EditView.helpers'
+import { useWebContentStore } from '@/store'
+import type { WebContentType } from '@/types'
+import { useEditJobPositionField } from './useEditJobPosition'
+import { useEditAboutDescriptionField } from './useEditAboutDescription'
+import { useEditCodingDescriptionField } from './useEditCodingDescription'
+import { useEditCodingSkills } from './useEditCodingSkills'
 
 export const useEditView = () => {
   const webContentStore = useWebContentStore()
-  const { webContent, originalWebContent } = storeToRefs(webContentStore)
-  const appStateStore = useAppStateStore()
+  const { originalWebContent } = storeToRefs(webContentStore)
   const { push: routerPush } = useRouter()
 
-  const jobPosition = reactive<InputValuesType>({
-    value: undefined,
-    error: null,
-    isValid: undefined,
-    hasChanges: false
-  })
-
-  const aboutDesc = reactive<InputValuesType>({
-    value: undefined,
-    error: null,
-    isValid: undefined,
-    hasChanges: false
-  })
-
-  const additionalProgrammingDesc = reactive<InputValuesType>({
-    value: undefined,
-    error: null,
-    isValid: undefined,
-    hasChanges: false
-  })
-
-  const mappedProgrammingSkillsList = reactive<ProgrammingSkillInputType[]>([])
-
-  watchEffect(() => {
-    jobPosition.value = webContent.value.header.jobPosition
-    aboutDesc.value = webContent.value.about.description
-    additionalProgrammingDesc.value = webContent.value.programmingSkills.additionalDescription
-  })
-
-  const webProgrammingSkills = computed(() => webContent.value.programmingSkills.skillsList)
-  watch(
-    webProgrammingSkills,
-    () => {
-      mappedProgrammingSkillsList.splice(0, mappedProgrammingSkillsList.length)
-      webProgrammingSkills.value.map((skill) => {
-        mappedProgrammingSkillsList.push({
-          id: skill.id,
-          label: {
-            value: skill.label,
-            error: null,
-            isValid: undefined,
-            hasChanges: false
-          },
-          scaleValue: {
-            value: skill.scaleValue,
-            error: null,
-            isValid: undefined,
-            hasChanges: false
-          }
-        })
-      })
-    },
-    {
-      immediate: true
-    }
-  )
-
-  watch(mappedProgrammingSkillsList, () => {
-    mappedProgrammingSkillsList.forEach((skill) => {
-      const originalContent = originalWebContent.value.programmingSkills.skillsList.find(
-        (originalSkill) => skill.id === originalSkill.id
-      )
-
-      checkIsProgrammingSkillFieldValid(skill, originalContent, 50, appStateStore.hasLocalChanges)
-    })
-  })
-
-  watch(jobPosition, () => {
-    checkIsFieldValid(
-      jobPosition,
-      originalWebContent.value.header.jobPosition,
-      40,
-      appStateStore.hasLocalChanges
-    )
-  })
-
-  watch(aboutDesc, () => {
-    checkIsFieldValid(
-      aboutDesc,
-      originalWebContent.value.about.description,
-      1024,
-      appStateStore.hasLocalChanges
-    )
-  })
-
-  watch(additionalProgrammingDesc, () => {
-    checkIsFieldValid(
-      additionalProgrammingDesc,
-      originalWebContent.value.programmingSkills.additionalDescription,
-      1024,
-      appStateStore.hasLocalChanges
-    )
-  })
-
-  const mapSkillsToDisplay = (
-    mappedSkills: ProgrammingSkillInputType[]
-  ): ProgrammingSkillType[] => {
-    return mappedSkills.map((skill) => ({
-      id: skill.id,
-      label: skill.label.value || '',
-      scaleValue: Number(skill.scaleValue.value)
-    }))
-  }
+  const { jobPosition } = useEditJobPositionField()
+  const { aboutDescription } = useEditAboutDescriptionField()
+  const { codingDescription } = useEditCodingDescriptionField()
+  const { formCodingSkillsList } = useEditCodingSkills()
 
   const formState = computed(() => {
-    const formFields = shallowReactive([jobPosition, aboutDesc, additionalProgrammingDesc])
-    const hasErrors = formFields.some((field) => field.error)
-    const isValid = formFields.some((field) => !!field.isValid)
-    const skillsError = mappedProgrammingSkillsList.some(
+    const formFields = shallowReactive([jobPosition, aboutDescription, codingDescription])
+    const hasFormError = formFields.some((field) => field.error)
+    const isFormValid = formFields.some((field) => !!field.isValid)
+
+    const haveSkillsError = formCodingSkillsList.some(
       (skill) => skill.label.error || skill.scaleValue.error
     )
-    const skillsValid = mappedProgrammingSkillsList.some(
+    const areSkillsValid = formCodingSkillsList.some(
       (skill) => !!skill.label.isValid || !!skill.scaleValue.isValid
     )
 
     return {
-      hasErrors: hasErrors || skillsError,
-      isValid: (skillsValid || isValid) && !hasErrors && !skillsError
+      hasErrors: hasFormError || haveSkillsError,
+      isValid: (isFormValid || areSkillsValid) && !hasFormError && !haveSkillsError
     }
   })
 
   const submitForm = () => {
-    if (!formState.value.isValid) {
+    if (!formState.value.isValid && formState.value.hasErrors) {
       return
     }
 
@@ -146,12 +50,12 @@ export const useEditView = () => {
       },
       about: {
         ...originalWebContent.value.about,
-        description: aboutDesc.value!
+        description: aboutDescription.value!
       },
       programmingSkills: {
         ...originalWebContent.value.programmingSkills,
-        skillsList: mapSkillsToDisplay(mappedProgrammingSkillsList),
-        additionalDescription: additionalProgrammingDesc.value!
+        skillsList: mapSkillsToDisplay(formCodingSkillsList),
+        additionalDescription: codingDescription.value!
       }
     }
 
@@ -165,9 +69,9 @@ export const useEditView = () => {
   return {
     formFields: {
       jobPosition,
-      aboutDesc,
-      mappedProgrammingSkillsList,
-      additionalProgrammingDesc
+      aboutDescription,
+      formCodingSkillsList,
+      codingDescription
     },
     formState,
     submitForm

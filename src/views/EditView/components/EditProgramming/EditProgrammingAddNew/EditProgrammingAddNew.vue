@@ -3,7 +3,7 @@ import { reactive, ref, watch } from 'vue'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { BaseButton, BaseCard, BaseInput } from '@/components/ui'
 import type { ProgrammingSkillInputType } from '@/views/EditView/types/EditView.types'
-import { checkIsProgrammingSkillFieldValid } from '@/views/EditView/utils/EditView.helpers'
+import { checkCodingSkillField } from '@/views/EditView/utils/EditView.helpers'
 
 import styles from './EditProgrammingAddNew.module.scss'
 
@@ -38,7 +38,7 @@ watch(newSkill, () => {
       (originalSkill) => newSkill.id === originalSkill.id
     )
 
-    checkIsProgrammingSkillFieldValid(newSkill, originalContent, 50, appStateStore.hasLocalChanges)
+    checkCodingSkillField(newSkill, originalContent, 50, appStateStore.hasLocalChanges)
   }
 })
 

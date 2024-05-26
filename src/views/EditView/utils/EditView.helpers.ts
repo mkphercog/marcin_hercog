@@ -1,6 +1,7 @@
+import type { ProgrammingSkillType } from '@/types'
 import type { InputValuesType, ProgrammingSkillInputType } from '../types/EditView.types'
 
-export const checkIsFieldValid = (
+export const checkInputField = (
   field: InputValuesType,
   originalWebContent: string,
   maxLength: number,
@@ -14,24 +15,15 @@ export const checkIsFieldValid = (
     field.error = null
   }
 
-  isFieldValid(field, originalWebContent, areLocalChanges)
-}
-
-export const isFieldValid = (
-  field: InputValuesType,
-  originalWebContent: string,
-  areLocalChanges: boolean
-) => {
   if (field.value !== originalWebContent) {
     field.isValid = true
   } else if (!areLocalChanges) {
     field.isValid = undefined
   }
-
   field.hasChanges = field.value !== originalWebContent
 }
 
-export const checkIsProgrammingSkillFieldValid = (
+export const checkCodingSkillField = (
   field: ProgrammingSkillInputType,
   originalWebContent:
     | {
@@ -52,6 +44,13 @@ export const checkIsProgrammingSkillFieldValid = (
     label.error = null
   }
 
+  if (label.value !== originalWebContent?.label) {
+    label.isValid = true
+  } else if (!areLocalChanges) {
+    label.isValid = undefined
+  }
+  label.hasChanges = label.value !== originalWebContent?.label
+
   const scaleValue = field.scaleValue
   if (!scaleValue.value && scaleValue.value !== 0) {
     scaleValue.error = 'Pole nie może być puste.'
@@ -61,32 +60,40 @@ export const checkIsProgrammingSkillFieldValid = (
     scaleValue.error = null
   }
 
-  isProgrammingSkillFieldValid(field, originalWebContent, areLocalChanges)
+  if (scaleValue.value !== originalWebContent?.scaleValue) {
+    scaleValue.isValid = true
+  } else if (!areLocalChanges) {
+    scaleValue.isValid = undefined
+  }
+  scaleValue.hasChanges = scaleValue.value !== originalWebContent?.scaleValue
 }
 
-export const isProgrammingSkillFieldValid = (
-  field: ProgrammingSkillInputType,
-  originalWebContent:
-    | {
-        id: string
-        label: string
-        scaleValue: number
-      }
-    | undefined,
-  areLocalChanges: boolean
-) => {
-  if (field.label.value !== originalWebContent?.label) {
-    field.label.isValid = true
-  } else if (!areLocalChanges) {
-    field.label.isValid = undefined
+export const createFormProgrammingSkill = (
+  skill: ProgrammingSkillType
+): ProgrammingSkillInputType => {
+  return {
+    id: skill.id,
+    label: {
+      value: skill.label,
+      error: null,
+      isValid: undefined,
+      hasChanges: false
+    },
+    scaleValue: {
+      value: skill.scaleValue,
+      error: null,
+      isValid: undefined,
+      hasChanges: false
+    }
   }
+}
 
-  if (field.scaleValue.value !== originalWebContent?.scaleValue) {
-    field.scaleValue.isValid = true
-  } else if (!areLocalChanges) {
-    field.scaleValue.isValid = undefined
-  }
-
-  field.label.hasChanges = field.label.value !== originalWebContent?.label
-  field.scaleValue.hasChanges = field.scaleValue.value !== originalWebContent?.scaleValue
+export const mapSkillsToDisplay = (
+  mappedSkills: ProgrammingSkillInputType[]
+): ProgrammingSkillType[] => {
+  return mappedSkills.map((skill) => ({
+    id: skill.id,
+    label: skill.label.value || '',
+    scaleValue: Number(skill.scaleValue.value)
+  }))
 }

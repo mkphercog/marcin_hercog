@@ -4,11 +4,11 @@ import { BaseCard, BaseText, BaseTextarea } from '@/components/ui'
 import type { InputValuesType } from '../../types/EditView.types'
 
 type Props = {
-  aboutDesc: InputValuesType
+  aboutDescription: InputValuesType
 }
 
 const props = defineProps<Props>()
-const aboutDesc = reactive(props.aboutDesc)
+const aboutDesc = reactive(props.aboutDescription)
 </script>
 
 <template>
