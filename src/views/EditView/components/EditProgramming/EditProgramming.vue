@@ -19,8 +19,8 @@ const skills = computed(() => props.programmingSkills)
 </script>
 
 <template>
+  <BaseText as="h3">Programming section</BaseText>
   <BaseCard>
-    <BaseText as="h3">Programming section</BaseText>
     <EditProgrammingAddNew />
     <EditProgrammingList :programming-skills="skills" />
 

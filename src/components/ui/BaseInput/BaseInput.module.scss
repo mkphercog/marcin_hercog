@@ -12,11 +12,11 @@
 .input {
   margin-top: 10px;
   padding: 10px 15px;
+  width: 100%;
   font-size: 16px;
   border: 1px solid $primary-bg-color;
   border-radius: 5px;
   color: $primary-text-color;
-  width: 100%;
 
   &:focus {
     outline: none;

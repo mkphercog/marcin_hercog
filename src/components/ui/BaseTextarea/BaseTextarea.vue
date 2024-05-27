@@ -11,6 +11,7 @@ type Props = {
   hasChanges?: boolean
   errorMessage?: string | null
   restProps?: TextareaHTMLAttributes
+  isResizable?: boolean
 }
 
 const textarea = ref<HTMLTextAreaElement | undefined>()
@@ -19,7 +20,8 @@ const model = defineModel<TextareaHTMLAttributes['value']>()
 
 withDefaults(defineProps<Props>(), {
   isValid: undefined,
-  errorMessage: null
+  errorMessage: null,
+  isResizable: false
 })
 
 watch(
@@ -46,12 +48,12 @@ watch(
       :id="name"
       v-model.trim="model"
       v-bind="restProps"
-      rows="5"
       :class="[
         styles.textarea,
         {
           [styles.error]: !!errorMessage,
-          [styles.changes]: isValid || hasChanges
+          [styles.changes]: isValid || hasChanges,
+          [styles.noResizable]: !isResizable
         }
       ]"
       restProps

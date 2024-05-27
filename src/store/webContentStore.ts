@@ -98,6 +98,38 @@ export const useWebContentStore = defineStore('web-content-store', {
       })
     },
 
+    addExperienceListItem(description: string) {
+      const newExperienceListItems = [
+        ...this.webContent.experience.experienceList,
+        {
+          id: new Date().getTime().toString(),
+          description
+        }
+      ]
+
+      this.changeWebContentLocally({
+        ...this.webContent,
+        experience: {
+          ...this.webContent.experience,
+          experienceList: newExperienceListItems
+        }
+      })
+    },
+
+    deleteExperienceListItem(id: string | undefined) {
+      const filteredExperienceListItems = this.webContent.experience.experienceList.filter(
+        (item) => item.id !== id
+      )
+
+      this.changeWebContentLocally({
+        ...this.webContent,
+        experience: {
+          ...this.webContent.experience,
+          experienceList: filteredExperienceListItems
+        }
+      })
+    },
+
     clearLocalWebContent() {
       this.localWebContentRef = null
     },

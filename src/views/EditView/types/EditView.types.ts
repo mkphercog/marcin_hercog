@@ -1,4 +1,5 @@
 export type InputValuesType = {
+  id?: string
   value: string | undefined
   error: string | null
   isValid: boolean | undefined

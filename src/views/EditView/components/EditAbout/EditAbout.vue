@@ -12,8 +12,8 @@ const aboutDesc = reactive(props.aboutDescription)
 </script>
 
 <template>
+  <BaseText as="h3">About section</BaseText>
   <BaseCard>
-    <BaseText as="h3">About section</BaseText>
     <BaseTextarea
       name="aboutDesc"
       label="about.description"

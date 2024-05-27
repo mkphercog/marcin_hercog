@@ -3,7 +3,13 @@ import { storeToRefs } from 'pinia'
 import { BaseText, BaseCard } from '@/components/ui'
 import InfoIcon from '@/assets/icons/InfoIcon.vue'
 import { useWebContentStore } from '@/store'
-import { EditAbout, EditHeader, EditProgramming, EditViewActions } from './components'
+import {
+  EditAbout,
+  EditExperience,
+  EditHeader,
+  EditProgramming,
+  EditViewActions
+} from './components'
 import { useEditView } from './hooks/useEditView'
 
 import styles from './EditView.module.scss'
@@ -28,6 +34,10 @@ const { webContent } = storeToRefs(webContentStore)
       <EditProgramming
         :programming-skills="formFields.formCodingSkillsList"
         :additional-programming-desc="formFields.codingDescription"
+      />
+      <EditExperience
+        :experience-description="formFields.experienceDescription"
+        :experience-list-items="formFields.formExperienceListItems"
       />
       <EditViewActions :is-form-valid="formState.isValid" />
     </form>

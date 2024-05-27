@@ -12,8 +12,8 @@ const jobPosition = reactive(props.jobPosition)
 </script>
 
 <template>
+  <BaseText as="h3">Header</BaseText>
   <BaseCard>
-    <BaseText as="h3">Header</BaseText>
     <BaseInput
       name="jobPosition"
       label="header.jobPosition"

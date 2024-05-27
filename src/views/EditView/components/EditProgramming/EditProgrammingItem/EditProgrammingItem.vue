@@ -19,14 +19,14 @@ const skill = computed(() => props.programmingSkill)
   <li :class="styles.listItem">
     <BaseCard :class="styles.skillCard">
       <BaseInput
-        name="label"
+        :name="`label-${skill.id}`"
         label="Label"
         :has-changes="skill.label.hasChanges && !skill.label.error"
         :error-message="skill.label.error"
         v-model="skill.label.value"
       />
       <BaseInput
-        name="label"
+        :name="`scaleValue-${skill.id}`"
         label="ScaleValue"
         :has-changes="skill.scaleValue.hasChanges && !skill.scaleValue.error"
         :error-message="skill.scaleValue.error"

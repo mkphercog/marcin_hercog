@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
 import { useAppStateStore, useWebContentStore } from '@/store'
-import { BaseButton, BaseCard, BaseInput } from '@/components/ui'
+import { BaseButton, BaseCard, BaseInput, BaseText } from '@/components/ui'
 import type { ProgrammingSkillInputType } from '@/views/EditView/types/EditView.types'
 import { checkCodingSkillField } from '@/views/EditView/utils/EditView.helpers'
 
@@ -65,15 +65,16 @@ const addNewSkill = () => {
 
 <template>
   <BaseCard :class="styles.addNewContainer">
+    <BaseText>New skill</BaseText>
     <BaseInput
-      name="label"
+      name="newlabel"
       label="Label"
       :is-valid="newSkill.label.isValid && !newSkill.label.error"
       :error-message="newSkill.label.error"
       v-model="newSkill.label.value"
     />
     <BaseInput
-      name="label"
+      name="newScaleValue"
       label="ScaleValue"
       :is-valid="newSkill.scaleValue.isValid && !newSkill.scaleValue.error"
       :error-message="newSkill.scaleValue.error"

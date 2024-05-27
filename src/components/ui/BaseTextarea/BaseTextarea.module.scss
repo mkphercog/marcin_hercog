@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .label {
@@ -11,6 +12,7 @@
 .textarea {
   margin-top: 10px;
   padding: 10px 15px;
+  width: 100%;
   font-size: 16px;
   border: 1px solid $primary-bg-color;
   border-radius: 5px;
@@ -26,6 +28,10 @@
 
   &.changes {
     border: 1px solid $success-color;
+  }
+
+  &.noResizable {
+    resize: none;
   }
 }
 
