@@ -36,7 +36,14 @@ const skill = computed(() => props.programmingSkill)
         }"
       />
 
-      <BaseButton @click="$emit('deleteSkill', skill.id)" :size="'sm'" :variant="'secondary'">
+      <BaseButton
+        @click="$emit('deleteSkill', skill.id)"
+        :size="'sm'"
+        :variant="'secondary'"
+        :rest-props="{
+          type: 'button'
+        }"
+      >
         Delete
       </BaseButton>
     </BaseCard>

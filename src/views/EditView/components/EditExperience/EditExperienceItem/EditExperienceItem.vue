@@ -26,7 +26,14 @@ const listItem = computed(() => props.experienceListItem)
         v-model="listItem.value"
       />
 
-      <BaseButton @click="$emit('deleteListItem', listItem.id)" :size="'sm'" :variant="'secondary'">
+      <BaseButton
+        @click="$emit('deleteListItem', listItem.id)"
+        :size="'sm'"
+        :variant="'secondary'"
+        :rest-props="{
+          type: 'button'
+        }"
+      >
         Delete
       </BaseButton>
     </BaseCard>
