@@ -12,7 +12,9 @@ defineProps<Props>()
 
 <template>
   <li :class="styles.listItem">
-    <div :class="styles.listIndicator"></div>
-    <BaseText>{{ description }}</BaseText>
+    <div :class="styles.listIndicator" />
+    <BaseText>
+      {{ description }}
+    </BaseText>
   </li>
 </template>

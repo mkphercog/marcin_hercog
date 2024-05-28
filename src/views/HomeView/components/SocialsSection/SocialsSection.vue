@@ -10,7 +10,7 @@ const { webContent } = storeToRefs(useWebContentStore())
 </script>
 
 <template>
-  <BaseSection :title="webContent.socials.header" hideDivider>
+  <BaseSection :title="webContent.socials.header" hide-divider>
     <ul :class="styles.linksWrapper">
       <BaseIcon
         v-for="{ id, icon, name, link } in SOCIALS"

@@ -16,12 +16,20 @@ defineProps<Props>()
 const webContentStore = useWebContentStore()
 
 const showSkills = ref(true)
-const buttonText = computed(() => (showSkills.value ? 'Hide skills' : 'Show skills'))
+const buttonText = computed(() =>
+  showSkills.value
+    ? webContentStore.webContent.editMode.hideListBtn
+    : webContentStore.webContent.editMode.showListBtn
+)
+
+const toggleListVisibility = () => {
+  showSkills.value = !showSkills.value
+}
 </script>
 
 <template>
   <BaseButton
-    @click="() => (showSkills = !showSkills)"
+    @click="toggleListVisibility"
     variant="secondary"
     size="sm"
     :rest-props="{
@@ -30,6 +38,7 @@ const buttonText = computed(() => (showSkills.value ? 'Hide skills' : 'Show skil
   >
     {{ buttonText }}
   </BaseButton>
+
   <ul :class="styles.containter" v-show="showSkills">
     <EditProgrammingItem
       v-for="skill in programmingSkills"

@@ -14,7 +14,9 @@ const { webContent } = storeToRefs(webContentStore)
 <template>
   <BaseSection :title="webContent.experience.header">
     <div :class="styles.contentWrapper">
-      <BaseText justify>{{ webContent.experience.description }}</BaseText>
+      <BaseText justify>
+        {{ webContent.experience.description }}
+      </BaseText>
       <ExperienceList />
 
       <BaseButton

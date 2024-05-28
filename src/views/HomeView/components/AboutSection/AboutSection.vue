@@ -13,6 +13,7 @@ const { webContent, profilePhotoUrl } = storeToRefs(useWebContentStore())
     <BaseText justify>
       {{ webContent.about.description }}
     </BaseText>
+
     <div :class="styles.photoWrapper">
       <BaseLoader :active="!profilePhotoUrl" loader="dots" :is-full-page="false" />
       <img v-if="profilePhotoUrl" :src="profilePhotoUrl" alt="Marcin Hercog photo" />

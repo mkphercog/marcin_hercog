@@ -1,5 +1,6 @@
 import type { ProgrammingSkillType } from '@/types'
 import type { InputValuesType, ProgrammingSkillInputType } from '../types/EditView.types'
+import { useWebContentStore } from '@/store'
 
 export const checkInputField = (
   field: InputValuesType,
@@ -7,10 +8,12 @@ export const checkInputField = (
   maxLength: number,
   areLocalChanges: boolean
 ) => {
+  const webContentStore = useWebContentStore()
+
   if (!field.value?.length) {
-    field.error = 'Pole nie może być puste.'
+    field.error = webContentStore.webContent.errors.emptyField
   } else if (field.value?.length > maxLength) {
-    field.error = `Max ${maxLength} znaków.`
+    field.error = `${webContentStore.webContent.errors.maxLength} ${maxLength}`
   } else {
     field.error = null
   }
@@ -35,11 +38,13 @@ export const checkCodingSkillField = (
   maxLength: number,
   areLocalChanges: boolean
 ) => {
+  const webContentStore = useWebContentStore()
+
   const label = field.label
   if (!label.value?.length) {
-    label.error = 'Pole nie może być puste.'
+    label.error = webContentStore.webContent.errors.emptyField
   } else if (label.value?.length > maxLength) {
-    label.error = `Max ${maxLength} znaków.`
+    label.error = `${webContentStore.webContent.errors.maxLength} ${maxLength}`
   } else {
     label.error = null
   }
@@ -53,9 +58,9 @@ export const checkCodingSkillField = (
 
   const scaleValue = field.scaleValue
   if (!scaleValue.value && scaleValue.value !== 0) {
-    scaleValue.error = 'Pole nie może być puste.'
+    scaleValue.error = webContentStore.webContent.errors.emptyField
   } else if (scaleValue.value < 0 || scaleValue.value > 100) {
-    scaleValue.error = `Podana wartość wykracza poza zakres (0 - 100)`
+    scaleValue.error = webContentStore.webContent.errors.exceededRange
   } else {
     scaleValue.error = null
   }

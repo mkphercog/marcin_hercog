@@ -39,7 +39,11 @@ const paraClasses = computed(() => {
   <h1 v-if="isH1" :class="h1Classes">
     <slot></slot>
   </h1>
-  <h3 v-else-if="isH3" :class="h3Classes"><slot></slot></h3>
+
+  <h3 v-else-if="isH3" :class="h3Classes">
+    <slot></slot>
+  </h3>
+
   <p v-else-if="isPara" :class="paraClasses">
     <slot></slot>
   </p>

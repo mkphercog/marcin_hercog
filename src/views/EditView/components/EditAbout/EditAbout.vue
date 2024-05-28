@@ -2,6 +2,9 @@
 import { reactive } from 'vue'
 import { BaseCard, BaseText, BaseTextarea } from '@/components/ui'
 import type { InputValuesType } from '../../types/EditView.types'
+import { useWebContentStore } from '@/store'
+
+const webContentStore = useWebContentStore()
 
 type Props = {
   aboutDescription: InputValuesType
@@ -12,7 +15,9 @@ const aboutDesc = reactive(props.aboutDescription)
 </script>
 
 <template>
-  <BaseText as="h3">About section</BaseText>
+  <BaseText as="h3">
+    {{ webContentStore.webContent.editMode.aboutSectionTitle }}
+  </BaseText>
   <BaseCard>
     <BaseTextarea
       name="aboutDesc"

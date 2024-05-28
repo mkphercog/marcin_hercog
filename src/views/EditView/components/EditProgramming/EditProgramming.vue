@@ -4,8 +4,11 @@ import { BaseCard, BaseText, BaseTextarea } from '@/components/ui'
 import EditProgrammingAddNew from './EditProgrammingAddNew/EditProgrammingAddNew.vue'
 import EditProgrammingList from './EditProgrammingList/EditProgrammingList.vue'
 import type { InputValuesType, ProgrammingSkillInputType } from '../../types/EditView.types'
+import { useWebContentStore } from '@/store'
 
 import styles from './EditProgramming.module.scss'
+
+const webContentStore = useWebContentStore()
 
 type Props = {
   programmingSkills: ProgrammingSkillInputType[]
@@ -19,7 +22,9 @@ const skills = computed(() => props.programmingSkills)
 </script>
 
 <template>
-  <BaseText as="h3">Programming section</BaseText>
+  <BaseText as="h3">
+    {{ webContentStore.webContent.editMode.codingSectionTitle }}
+  </BaseText>
   <BaseCard>
     <EditProgrammingAddNew />
     <EditProgrammingList :programming-skills="skills" />

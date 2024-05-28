@@ -28,6 +28,7 @@ const { webContent } = storeToRefs(webContentStore)
         {{ webContent.editMode.hintInfo }}
       </BaseText>
     </BaseCard>
+
     <form @submit.prevent="submitForm" :class="styles.form">
       <EditHeader :job-position="formFields.jobPosition" />
       <EditAbout :about-description="formFields.aboutDescription" />

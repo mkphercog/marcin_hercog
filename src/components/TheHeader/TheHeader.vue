@@ -11,7 +11,7 @@ import styles from './TheHeader.module.scss'
 type HeaderContent = {
   linkTo: RouterLinkProps['to']
   linkBtnText: ComputedRef<string>
-  headerText: ComputedRef<string>
+  headerText?: ComputedRef<string>
   additionalInfoText: ComputedRef<string>
 }
 
@@ -33,6 +33,11 @@ const WEB_CONTENT_PER_PAGE_MAP: Record<RouteNamesEnum, HeaderContent> = {
     additionalInfoText: computed(
       () => `${webContent.value.editMode.currentLang} ${appStateStore.currentLanguage}`
     )
+  },
+  notFound: {
+    linkTo: { name: RouteNamesEnum.HOME },
+    linkBtnText: computed(() => webContent.value.notFound.backBtn),
+    additionalInfoText: computed(() => webContent.value.notFound.header)
   }
 }
 
@@ -49,16 +54,18 @@ const headerContent = computed(() => WEB_CONTENT_PER_PAGE_MAP[route.name as Rout
         <BaseText v-if="appStateStore.hasLocalChanges" :class="styles.localChanges" size="sm">
           {{ webContent.editMode.localChangesInfo }}
         </BaseText>
-        <BaseButton @click="appStateStore.toggleCurrentLanguage" type="normal">{{
-          webContent.header.langBtn
-        }}</BaseButton>
+        <BaseButton @click="appStateStore.toggleCurrentLanguage" type="normal">
+          {{ webContent.header.langBtn }}
+        </BaseButton>
       </nav>
 
       <div :class="styles.fullNameWrapper">
-        <BaseText as="h1" size="lg" variant="secondary">{{
-          headerContent.headerText.value
-        }}</BaseText>
-        <BaseText variant="secondary">{{ headerContent.additionalInfoText.value }}</BaseText>
+        <BaseText v-if="headerContent.headerText?.value" as="h1" size="lg" variant="secondary">
+          {{ headerContent.headerText.value }}
+        </BaseText>
+        <BaseText variant="secondary">
+          {{ headerContent.additionalInfoText.value }}
+        </BaseText>
       </div>
     </div>
   </header>

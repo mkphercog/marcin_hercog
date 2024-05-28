@@ -24,22 +24,28 @@ function initializeEmail() {
 
 <template>
   <footer :class="styles.footer">
-    <BaseText variant="secondary">{{ webContent.footer.header }}</BaseText>
+    <BaseText variant="secondary">
+      {{ webContent.footer.header }}
+    </BaseText>
     <div :class="styles.contactWrapper">
       <div :class="styles.infoWrapper" @click="initializePhoneCall">
         <PhoneIcon :class="styles.icon" />
-        <BaseText variant="secondary">{{ webContent.footer.phoneNumber }}</BaseText>
+        <BaseText variant="secondary">
+          {{ webContent.footer.phoneNumber }}
+        </BaseText>
       </div>
       <div :class="styles.infoWrapper" @click="initializeEmail">
         <MailIcon :class="styles.icon" />
-        <BaseText variant="secondary">{{ webContent.footer.email }}</BaseText>
+        <BaseText variant="secondary">
+          {{ webContent.footer.email }}
+        </BaseText>
       </div>
     </div>
     <div :class="styles.visitedHint">
       <!-- TODO add visitors counter -->
-      <BaseText v-if="false" variant="secondary" size="sm"
-        >{{ webContent.footer.visitors }} {{ 1 }}</BaseText
-      >
+      <BaseText v-if="false" variant="secondary" size="sm">
+        {{ webContent.footer.visitors }} {{ 1 }}
+      </BaseText>
     </div>
   </footer>
 </template>

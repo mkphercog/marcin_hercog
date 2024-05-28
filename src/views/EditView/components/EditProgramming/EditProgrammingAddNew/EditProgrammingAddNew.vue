@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { BaseButton, BaseCard, BaseInput, BaseText } from '@/components/ui'
 import type { ProgrammingSkillInputType } from '@/views/EditView/types/EditView.types'
 import { checkCodingSkillField } from '@/views/EditView/utils/EditView.helpers'
+import { clearNewSkillFields } from '../EditProgramming.helpers'
 
 import styles from './EditProgrammingAddNew.module.scss'
 
@@ -42,30 +43,25 @@ watch(newSkill, () => {
   }
 })
 
+const currentLang = computed(() => appStateStore.currentLanguage)
+watch(currentLang, () => {
+  clearNewSkillFields(newSkill)
+})
+
 const addNewSkill = () => {
   if (isFormValid.value) {
     webContentStore.addProgrammingSkill(newSkill.label.value!, newSkill.scaleValue.value!)
 
-    newSkill.label = {
-      value: undefined,
-      error: null,
-      isValid: undefined,
-      hasChanges: false
-    }
-
-    newSkill.scaleValue = {
-      value: undefined,
-      error: null,
-      isValid: undefined,
-      hasChanges: false
-    }
+    clearNewSkillFields(newSkill)
   }
 }
 </script>
 
 <template>
   <BaseCard :class="styles.addNewContainer">
-    <BaseText>New skill</BaseText>
+    <BaseText>
+      {{ webContentStore.webContent.editMode.addNewHeader }}
+    </BaseText>
     <BaseInput
       name="newlabel"
       label="Label"
@@ -93,7 +89,7 @@ const addNewSkill = () => {
         disabled: !isFormValid
       }"
     >
-      Add new skill
+      {{ webContentStore.webContent.editMode.addNewBtn }}
     </BaseButton>
   </BaseCard>
 </template>

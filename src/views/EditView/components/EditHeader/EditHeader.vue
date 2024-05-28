@@ -2,6 +2,9 @@
 import { reactive } from 'vue'
 import { BaseCard, BaseInput, BaseText } from '@/components/ui'
 import type { InputValuesType } from '../../types/EditView.types'
+import { useWebContentStore } from '@/store'
+
+const webContentStore = useWebContentStore()
 
 type Props = {
   jobPosition: InputValuesType
@@ -12,7 +15,9 @@ const jobPosition = reactive(props.jobPosition)
 </script>
 
 <template>
-  <BaseText as="h3">Header</BaseText>
+  <BaseText as="h3">
+    {{ webContentStore.webContent.editMode.headerSectionTitle }}
+  </BaseText>
   <BaseCard>
     <BaseInput
       name="jobPosition"

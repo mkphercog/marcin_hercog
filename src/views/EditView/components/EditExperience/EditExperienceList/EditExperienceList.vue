@@ -2,10 +2,10 @@
 import { computed, ref } from 'vue'
 import { BaseButton } from '@/components/ui'
 import EditExperienceItem from '../EditExperienceItem/EditExperienceItem.vue'
+import type { InputValuesType } from '@/views/EditView/types/EditView.types'
 import { useWebContentStore } from '@/store'
 
 import styles from './EditExperienceList.module.scss'
-import type { InputValuesType } from '@/views/EditView/types/EditView.types'
 
 type Props = {
   listItems: InputValuesType[]
@@ -17,13 +17,19 @@ const webContentStore = useWebContentStore()
 
 const showListItems = ref(true)
 const buttonText = computed(() =>
-  showListItems.value ? 'Hide experience list' : 'Show experience list'
+  showListItems.value
+    ? webContentStore.webContent.editMode.hideListBtn
+    : webContentStore.webContent.editMode.showListBtn
 )
+
+const toggleListVisibility = () => {
+  showListItems.value = !showListItems.value
+}
 </script>
 
 <template>
   <BaseButton
-    @click="() => (showListItems = !showListItems)"
+    @click="toggleListVisibility"
     variant="secondary"
     size="sm"
     :rest-props="{
@@ -32,6 +38,7 @@ const buttonText = computed(() =>
   >
     {{ buttonText }}
   </BaseButton>
+
   <ul :class="styles.containter" v-show="showListItems">
     <EditExperienceItem
       v-for="item in listItems"

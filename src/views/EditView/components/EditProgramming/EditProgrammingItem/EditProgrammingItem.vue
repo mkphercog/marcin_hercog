@@ -2,8 +2,11 @@
 import { computed } from 'vue'
 import { BaseButton, BaseCard, BaseInput } from '@/components/ui'
 import type { ProgrammingSkillInputType } from '../../../types/EditView.types.ts'
+import { useWebContentStore } from '@/store'
 
 import styles from './EditProgrammingItem.module.scss'
+
+const webContentStore = useWebContentStore()
 
 type Props = {
   programmingSkill: ProgrammingSkillInputType
@@ -44,7 +47,7 @@ const skill = computed(() => props.programmingSkill)
           type: 'button'
         }"
       >
-        Delete
+        {{ webContentStore.webContent.editMode.deleteItemBtn }}
       </BaseButton>
     </BaseCard>
   </li>

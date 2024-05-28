@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { useAppStateStore, useWebContentStore } from '@/store'
-import { TheFooter, TheHeader } from './components'
 import { watch } from 'vue'
 import { storeToRefs } from 'pinia'
+import { useAppStateStore, useWebContentStore } from '@/store'
+import { TheFooter, TheHeader } from './components'
+
+import styles from './App.module.scss'
 
 const appStateStore = useAppStateStore()
 const webContentStore = useWebContentStore()
@@ -15,7 +17,7 @@ watch(currentLanguage, () => webContentStore.fetchWebContent(false), {
 
 <template>
   <BaseLoader :active="appStateStore.isLoading" loader="dots" />
-  <div v-if="appStateStore.hasLoadedWebContent">
+  <div v-if="appStateStore.hasLoadedWebContent" :class="styles.appWrapper">
     <TheHeader />
 
     <RouterView v-slot="{ Component }">

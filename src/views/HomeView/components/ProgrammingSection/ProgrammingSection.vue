@@ -14,13 +14,14 @@ const { webContent } = storeToRefs(useWebContentStore())
   <BaseSection :title="webContent.programmingSkills.header">
     <ProgrammingList />
     <div :class="styles.additionalInfoWrapper">
-      <BaseText size="lg" :class="styles.additionalInfoHeader"
-        >{{ webContent.programmingSkills.additionalHeader }}
+      <BaseText size="lg" :class="styles.additionalInfoHeader">
+        {{ webContent.programmingSkills.additionalHeader }}
       </BaseText>
       <BaseText justify>
         {{ webContent.programmingSkills.additionalDescription }}
       </BaseText>
     </div>
+
     <ul :class="styles.iconsSection">
       <BaseIcon v-for="{ id, icon, name } in PROGRAMMING_ICONS" :key="id" :src="icon" :alt="name" />
     </ul>

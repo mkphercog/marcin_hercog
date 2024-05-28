@@ -14,9 +14,11 @@ const scaleValueStyle = computed(() => ({
 
 <template>
   <li :class="styles.programmingItem">
-    <BaseText>{{ label }} </BaseText>
+    <BaseText>
+      {{ label }}
+    </BaseText>
     <div :class="styles.scaleBg">
-      <div :class="styles.scaleValue" :style="scaleValueStyle"></div>
+      <div :class="styles.scaleValue" :style="scaleValueStyle" />
     </div>
   </li>
 </template>

@@ -2,8 +2,11 @@
 import { computed } from 'vue'
 import { BaseButton, BaseCard, BaseTextarea } from '@/components/ui'
 import type { InputValuesType } from '../../../types/EditView.types.ts'
+import { useWebContentStore } from '@/store'
 
 import styles from './EditExperienceItem.module.scss'
+
+const webContentStore = useWebContentStore()
 
 type Props = {
   experienceListItem: InputValuesType
@@ -34,7 +37,7 @@ const listItem = computed(() => props.experienceListItem)
           type: 'button'
         }"
       >
-        Delete
+        {{ webContentStore.webContent.editMode.deleteItemBtn }}
       </BaseButton>
     </BaseCard>
   </li>

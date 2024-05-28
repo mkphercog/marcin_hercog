@@ -61,6 +61,25 @@ export type WebContentType = {
     submitBtn: string
     restoreBtn: string
     publishBtn: string
+    addNewHeader: string
+    addNewBtn: string
+    showListBtn: string
+    hideListBtn: string
+    deleteItemBtn: string
+    headerSectionTitle: string
+    aboutSectionTitle: string
+    codingSectionTitle: string
+    experienceSectionTitle: string
+  }
+  notFound: {
+    header: string
+    message: string
+    backBtn: string
+  }
+  errors: {
+    emptyField: string
+    maxLength: string
+    exceededRange: string
   }
 }
 

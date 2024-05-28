@@ -41,7 +41,9 @@ watch(
 <template>
   <div :class="styles.wrapper">
     <label :class="styles.label" :for="name">
-      <BaseText size="sm">{{ label }}</BaseText>
+      <BaseText size="sm">
+        {{ label }}
+      </BaseText>
     </label>
     <textarea
       ref="textarea"
