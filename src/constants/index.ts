@@ -164,6 +164,25 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
     localChangesInfo: '',
     publishBtn: '',
     restoreBtn: '',
-    submitBtn: ''
+    submitBtn: '',
+    aboutSectionTitle: '',
+    addNewBtn: '',
+    addNewHeader: '',
+    codingSectionTitle: '',
+    deleteItemBtn: '',
+    experienceSectionTitle: '',
+    headerSectionTitle: '',
+    hideListBtn: '',
+    showListBtn: ''
+  },
+  notFound: {
+    header: '',
+    message: '',
+    backBtn: ''
+  },
+  errors: {
+    emptyField: '',
+    exceededRange: '',
+    maxLength: ''
   }
 }

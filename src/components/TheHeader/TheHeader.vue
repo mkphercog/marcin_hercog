@@ -2,14 +2,14 @@
 import { storeToRefs } from 'pinia'
 import { BaseText, BaseButton, BaseLink } from '@/components/ui'
 import { useAppStateStore, useWebContentStore } from '@/store'
-import { useRoute, type RouterLinkProps } from 'vue-router'
+import { useRoute, type RouteLocationNamedRaw } from 'vue-router'
 import { computed, type ComputedRef } from 'vue'
 import { RouteNamesEnum } from '@/routes'
 
 import styles from './TheHeader.module.scss'
 
 type HeaderContent = {
-  linkTo: RouterLinkProps['to']
+  linkTo: RouteLocationNamedRaw
   linkBtnText: ComputedRef<string>
   headerText?: ComputedRef<string>
   additionalInfoText: ComputedRef<string>
