@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
 import { BaseCard, BaseText, BaseTextarea } from '@/components/ui'
-import EditProgrammingAddNew from './EditProgrammingAddNew/EditProgrammingAddNew.vue'
-import EditProgrammingList from './EditProgrammingList/EditProgrammingList.vue'
-import type { InputValuesType, ProgrammingSkillInputType } from '../../types/EditView.types'
+import EditCodingSectionAddNew from './EditCodingSectionAddNew.vue'
+import EditCodingSectionList from './EditCodingSectionList.vue'
+import type { InputValuesType, CodingSkillInputType } from '../../types/EditView.types'
 import { useWebContentStore } from '@/store'
 
-import styles from './EditProgramming.module.scss'
+import styles from './EditCodingSection.module.scss'
 
 const webContentStore = useWebContentStore()
 
 type Props = {
-  programmingSkills: ProgrammingSkillInputType[]
-  additionalProgrammingDesc: InputValuesType
+  codingSkills: CodingSkillInputType[]
+  additionalCodingDesc: InputValuesType
 }
 
 const props = defineProps<Props>()
 
-const additionalInfo = reactive(props.additionalProgrammingDesc)
-const skills = computed(() => props.programmingSkills)
+const additionalInfo = reactive(props.additionalCodingDesc)
+const skills = computed(() => props.codingSkills)
 </script>
 
 <template>
@@ -26,12 +26,12 @@ const skills = computed(() => props.programmingSkills)
     {{ webContentStore.webContent.editMode.codingSectionTitle }}
   </BaseText>
   <BaseCard>
-    <EditProgrammingAddNew />
-    <EditProgrammingList :programming-skills="skills" />
+    <EditCodingSectionAddNew />
+    <EditCodingSectionList :coding-skills="skills" />
 
     <BaseCard :class="styles.containter">
       <BaseTextarea
-        name="programmingAdditionalDesc"
+        name="codingAdditionalDesc"
         label="programmingSkills.additionalDescription"
         :has-changes="additionalInfo.hasChanges && !additionalInfo.error"
         :error-message="additionalInfo.error"

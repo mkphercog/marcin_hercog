@@ -5,7 +5,7 @@ import DownloadPdfIcon from '@/assets/icons/DownloadPdfIcon.vue'
 import ExperienceList from './ExperienceList.vue'
 import { useWebContentStore } from '@/store'
 
-import styles from './Experience.module.scss'
+import styles from './ExperienceSection.module.scss'
 
 const webContentStore = useWebContentStore()
 const { webContent } = storeToRefs(webContentStore)

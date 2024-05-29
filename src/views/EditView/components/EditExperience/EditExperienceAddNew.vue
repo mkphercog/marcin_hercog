@@ -3,10 +3,10 @@ import { computed, reactive, ref, watch } from 'vue'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { BaseButton, BaseCard, BaseInput, BaseText } from '@/components/ui'
 import type { InputValuesType } from '@/views/EditView/types/EditView.types'
-import { clearNewExperienceItemField } from '../EditExperience.helpers'
 import { checkInputField } from '@/views/EditView/utils/EditView.helpers'
+import { clearNewExperienceItemField } from './EditExperience.helpers'
 
-import styles from './EditExperienceAddNew.module.scss'
+import styles from './EditExperience.module.scss'
 
 const webContentStore = useWebContentStore()
 const appStateStore = useAppStateStore()

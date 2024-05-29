@@ -7,7 +7,7 @@ import {
   EditAbout,
   EditExperience,
   EditHeader,
-  EditProgramming,
+  EditCodingSection,
   EditViewActions
 } from './components'
 import { useEditView } from './hooks/useEditView'
@@ -32,9 +32,9 @@ const { webContent } = storeToRefs(webContentStore)
     <form @submit.prevent="submitForm" :class="styles.form">
       <EditHeader :job-position="formFields.jobPosition" />
       <EditAbout :about-description="formFields.aboutDescription" />
-      <EditProgramming
-        :programming-skills="formFields.formCodingSkillsList"
-        :additional-programming-desc="formFields.codingDescription"
+      <EditCodingSection
+        :coding-skills="formFields.formCodingSkillsList"
+        :additional-coding-desc="formFields.codingDescription"
       />
       <EditExperience
         :experience-description="formFields.experienceDescription"

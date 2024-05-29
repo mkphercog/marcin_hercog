@@ -1,23 +1,21 @@
 import { computed, reactive, watch } from 'vue'
-import type { ProgrammingSkillInputType } from '../types/EditView.types'
+import type { CodingSkillInputType } from '../types/EditView.types'
 import { useAppStateStore, useWebContentStore } from '@/store'
-import { checkCodingSkillField, createFormProgrammingSkill } from '../utils/EditView.helpers'
+import { checkCodingSkillField, createFormCodingSkill } from '../utils/EditView.helpers'
 
 export const useEditCodingSkills = () => {
   const webContentStore = useWebContentStore()
   const appStateStore = useAppStateStore()
 
-  const formCodingSkillsList = reactive<ProgrammingSkillInputType[]>([])
+  const formCodingSkillsList = reactive<CodingSkillInputType[]>([])
 
-  const webProgrammingSkills = computed(
-    () => webContentStore.webContent.programmingSkills.skillsList
-  )
+  const webCodingSkills = computed(() => webContentStore.webContent.programmingSkills.skillsList)
   watch(
-    webProgrammingSkills,
+    webCodingSkills,
     () => {
       formCodingSkillsList.splice(0, formCodingSkillsList.length)
-      webProgrammingSkills.value.map((skill) => {
-        formCodingSkillsList.push(createFormProgrammingSkill(skill))
+      webCodingSkills.value.map((skill) => {
+        formCodingSkillsList.push(createFormCodingSkill(skill))
       })
     },
     { immediate: true }

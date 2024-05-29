@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { computed, type ComputedRef } from 'vue'
+import { useRoute, type RouteLocationNamedRaw } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { BaseText, BaseButton, BaseLink } from '@/components/ui'
 import { useAppStateStore, useWebContentStore } from '@/store'
-import { useRoute, type RouteLocationNamedRaw } from 'vue-router'
-import { computed, type ComputedRef } from 'vue'
 import { RouteNamesEnum } from '@/routes'
 
 import styles from './TheHeader.module.scss'

@@ -2,17 +2,17 @@
 import { computed, reactive, ref, watch } from 'vue'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { BaseButton, BaseCard, BaseInput, BaseText } from '@/components/ui'
-import type { ProgrammingSkillInputType } from '@/views/EditView/types/EditView.types'
+import type { CodingSkillInputType } from '@/views/EditView/types/EditView.types'
 import { checkCodingSkillField } from '@/views/EditView/utils/EditView.helpers'
-import { clearNewSkillFields } from '../EditProgramming.helpers'
+import { clearNewSkillFields } from './EditCodingSection.helpers'
 
-import styles from './EditProgrammingAddNew.module.scss'
+import styles from './EditCodingSection.module.scss'
 
 const webContentStore = useWebContentStore()
 const appStateStore = useAppStateStore()
 
 const isFormValid = ref(false)
-const newSkill = reactive<ProgrammingSkillInputType>({
+const newSkill = reactive<CodingSkillInputType>({
   id: '',
   label: {
     value: undefined,
@@ -50,7 +50,7 @@ watch(currentLang, () => {
 
 const addNewSkill = () => {
   if (isFormValid.value) {
-    webContentStore.addProgrammingSkill(newSkill.label.value!, newSkill.scaleValue.value!)
+    webContentStore.addCodingSkill(newSkill.label.value!, newSkill.scaleValue.value!)
 
     clearNewSkillFields(newSkill)
   }

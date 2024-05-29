@@ -65,7 +65,7 @@ export const useWebContentStore = defineStore('web-content-store', {
       }
     },
 
-    addProgrammingSkill(label: string, scaleValue: number) {
+    addCodingSkill(label: string, scaleValue: number) {
       const newSkills = [
         ...this.webContent.programmingSkills.skillsList,
         {
@@ -84,7 +84,7 @@ export const useWebContentStore = defineStore('web-content-store', {
       })
     },
 
-    deleteProgrammingSkill(id: string) {
+    deleteCodingSkill(id: string) {
       const filteredSkills = this.webContent.programmingSkills.skillsList.filter(
         (skill) => skill.id !== id
       )

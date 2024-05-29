@@ -1,6 +1,6 @@
-import type { ProgrammingSkillInputType } from '../../types/EditView.types'
+import type { CodingSkillInputType } from '../../types/EditView.types'
 
-export const clearNewSkillFields = (newSkill: ProgrammingSkillInputType) => {
+export const clearNewSkillFields = (newSkill: CodingSkillInputType) => {
   newSkill.label = {
     value: undefined,
     error: null,

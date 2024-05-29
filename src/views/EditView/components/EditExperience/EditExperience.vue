@@ -2,8 +2,8 @@
 import { reactive } from 'vue'
 import { BaseCard, BaseText, BaseTextarea } from '@/components/ui'
 import type { InputValuesType } from '../../types/EditView.types'
-import EditExperienceList from './EditExperienceList/EditExperienceList.vue'
-import EditExperienceAddNew from './EditExperienceAddNew/EditExperienceAddNew.vue'
+import EditExperienceAddNew from './EditExperienceAddNew.vue'
+import EditExperienceList from './EditExperienceList.vue'
 import { useWebContentStore } from '@/store'
 
 import styles from './EditExperience.module.scss'

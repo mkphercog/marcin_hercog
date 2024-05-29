@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { BaseSection, BaseText, BaseIcon } from '@/components/ui'
-import ProgrammingList from './ProgrammingList.vue'
-import { PROGRAMMING_ICONS } from '@/constants'
+import CodingSectionList from './CodingSectionList.vue'
+import { CODING_ICONS } from '@/constants'
 import { useWebContentStore } from '@/store'
 
-import styles from './Programming.module.scss'
+import styles from './CodingSection.module.scss'
 
 const { webContent } = storeToRefs(useWebContentStore())
 </script>
 
 <template>
   <BaseSection :title="webContent.programmingSkills.header">
-    <ProgrammingList />
+    <CodingSectionList />
     <div :class="styles.additionalInfoWrapper">
       <BaseText size="lg" :class="styles.additionalInfoHeader">
         {{ webContent.programmingSkills.additionalHeader }}
@@ -23,7 +23,7 @@ const { webContent } = storeToRefs(useWebContentStore())
     </div>
 
     <ul :class="styles.iconsSection">
-      <BaseIcon v-for="{ id, icon, name } in PROGRAMMING_ICONS" :key="id" :src="icon" :alt="name" />
+      <BaseIcon v-for="{ id, icon, name } in CODING_ICONS" :key="id" :src="icon" :alt="name" />
     </ul>
   </BaseSection>
 </template>

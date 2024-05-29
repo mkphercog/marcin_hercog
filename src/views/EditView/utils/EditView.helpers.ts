@@ -1,5 +1,5 @@
-import type { ProgrammingSkillType } from '@/types'
-import type { InputValuesType, ProgrammingSkillInputType } from '../types/EditView.types'
+import type { CodingSkillType } from '@/types'
+import type { InputValuesType, CodingSkillInputType } from '../types/EditView.types'
 import { useWebContentStore } from '@/store'
 
 export const checkInputField = (
@@ -27,7 +27,7 @@ export const checkInputField = (
 }
 
 export const checkCodingSkillField = (
-  field: ProgrammingSkillInputType,
+  field: CodingSkillInputType,
   originalWebContent:
     | {
         id: string
@@ -73,9 +73,7 @@ export const checkCodingSkillField = (
   scaleValue.hasChanges = scaleValue.value !== originalWebContent?.scaleValue
 }
 
-export const createFormProgrammingSkill = (
-  skill: ProgrammingSkillType
-): ProgrammingSkillInputType => {
+export const createFormCodingSkill = (skill: CodingSkillType): CodingSkillInputType => {
   return {
     id: skill.id,
     label: {
@@ -93,9 +91,7 @@ export const createFormProgrammingSkill = (
   }
 }
 
-export const mapSkillsToDisplay = (
-  mappedSkills: ProgrammingSkillInputType[]
-): ProgrammingSkillType[] => {
+export const mapSkillsToDisplay = (mappedSkills: CodingSkillInputType[]): CodingSkillType[] => {
   return mappedSkills.map((skill) => ({
     id: skill.id,
     label: skill.label.value || '',

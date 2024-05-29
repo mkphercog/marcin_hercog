@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BaseText } from '@/components/ui'
 
-import styles from './Experience.module.scss'
+import styles from './ExperienceSection.module.scss'
 
 type Props = {
   description: string

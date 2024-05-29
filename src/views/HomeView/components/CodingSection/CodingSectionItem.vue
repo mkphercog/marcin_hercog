@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { BaseText } from '@/components/ui'
-import type { ProgrammingSkillType } from '@/types'
+import type { CodingSkillType } from '@/types'
 
-import styles from './Programming.module.scss'
+import styles from './CodingSection.module.scss'
 
-const props = defineProps<Omit<ProgrammingSkillType, 'id'>>()
+const props = defineProps<Omit<CodingSkillType, 'id'>>()
 
 const scaleValueStyle = computed(() => ({
   width: `${props.scaleValue}%`
@@ -13,7 +13,7 @@ const scaleValueStyle = computed(() => ({
 </script>
 
 <template>
-  <li :class="styles.programmingItem">
+  <li :class="styles.codingItem">
     <BaseText>
       {{ label }}
     </BaseText>

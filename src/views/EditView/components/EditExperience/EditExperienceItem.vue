@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { BaseButton, BaseCard, BaseTextarea } from '@/components/ui'
-import type { InputValuesType } from '../../../types/EditView.types.ts'
 import { useWebContentStore } from '@/store'
+import type { InputValuesType } from '../../types/EditView.types.ts'
 
-import styles from './EditExperienceItem.module.scss'
+import styles from './EditExperience.module.scss'
 
 const webContentStore = useWebContentStore()
 

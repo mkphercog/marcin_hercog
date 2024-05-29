@@ -1,4 +1,4 @@
-export type ProgrammingSkillType = {
+export type CodingSkillType = {
   id: string
   label: string
   scaleValue: number
@@ -29,7 +29,7 @@ export type WebContentType = {
   }
   programmingSkills: {
     header: string
-    skillsList: ProgrammingSkillType[]
+    skillsList: CodingSkillType[]
     additionalHeader: string
     additionalDescription: string
   }

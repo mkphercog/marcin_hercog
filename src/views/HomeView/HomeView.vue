@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AboutSection, ProgrammingSection, ExperienceSection, SocialsSection } from './components'
+import { AboutSection, CodingSection, ExperienceSection, SocialsSection } from './components'
 import { BaseDivider } from '@/components/ui'
 
 import styles from './HomeView.module.scss'
@@ -9,7 +9,7 @@ import styles from './HomeView.module.scss'
   <div :class="styles.wrapper">
     <AboutSection />
     <BaseDivider />
-    <ProgrammingSection />
+    <CodingSection />
     <ExperienceSection />
     <SocialsSection />
   </div>

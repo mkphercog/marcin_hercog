@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 import { BaseText } from '@/components/ui'
 import { useWebContentStore } from '@/store'
 
-import styles from './About.module.scss'
+import styles from './AboutSection.module.scss'
 
 const { webContent, profilePhotoUrl } = storeToRefs(useWebContentStore())
 </script>

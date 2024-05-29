@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import ProgrammingItem from './ProgrammingItem.vue'
+import CodingSectionItem from './CodingSectionItem.vue'
 import { useWebContentStore } from '@/store'
 
 const { webContent } = storeToRefs(useWebContentStore())
@@ -8,7 +8,7 @@ const { webContent } = storeToRefs(useWebContentStore())
 
 <template>
   <ul>
-    <ProgrammingItem
+    <CodingSectionItem
       v-for="{ id, label, scaleValue } in webContent.programmingSkills.skillsList"
       :key="id"
       :label="label"

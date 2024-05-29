@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { BaseButton, BaseCard, BaseInput } from '@/components/ui'
-import type { ProgrammingSkillInputType } from '../../../types/EditView.types.ts'
 import { useWebContentStore } from '@/store'
+import { BaseButton, BaseCard, BaseInput } from '@/components/ui'
+import type { CodingSkillInputType } from '../../types/EditView.types.ts'
 
-import styles from './EditProgrammingItem.module.scss'
+import styles from './EditCodingSection.module.scss'
 
 const webContentStore = useWebContentStore()
 
 type Props = {
-  programmingSkill: ProgrammingSkillInputType
+  codingSkill: CodingSkillInputType
 }
 
 const props = defineProps<Props>()
 defineEmits(['deleteSkill'])
 
-const skill = computed(() => props.programmingSkill)
+const skill = computed(() => props.codingSkill)
 </script>
 
 <template>

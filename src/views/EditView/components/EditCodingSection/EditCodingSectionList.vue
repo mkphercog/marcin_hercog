@@ -1,29 +1,29 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { BaseButton } from '@/components/ui'
-import EditExperienceItem from '../EditExperienceItem/EditExperienceItem.vue'
-import type { InputValuesType } from '@/views/EditView/types/EditView.types'
+import EditCodingSectionItem from './EditCodingSectionItem.vue'
+import type { CodingSkillInputType } from '@/views/EditView/types/EditView.types'
 import { useWebContentStore } from '@/store'
 
-import styles from './EditExperienceList.module.scss'
+import styles from './EditCodingSection.module.scss'
 
 type Props = {
-  listItems: InputValuesType[]
+  codingSkills: CodingSkillInputType[]
 }
 
 defineProps<Props>()
 
 const webContentStore = useWebContentStore()
 
-const showListItems = ref(true)
+const showSkills = ref(true)
 const buttonText = computed(() =>
-  showListItems.value
+  showSkills.value
     ? webContentStore.webContent.editMode.hideListBtn
     : webContentStore.webContent.editMode.showListBtn
 )
 
 const toggleListVisibility = () => {
-  showListItems.value = !showListItems.value
+  showSkills.value = !showSkills.value
 }
 </script>
 
@@ -39,12 +39,12 @@ const toggleListVisibility = () => {
     {{ buttonText }}
   </BaseButton>
 
-  <ul :class="styles.containter" v-show="showListItems">
-    <EditExperienceItem
-      v-for="item in listItems"
-      :key="item.id"
-      :experience-list-item="item"
-      @delete-list-item="webContentStore.deleteExperienceListItem(item?.id)"
+  <ul :class="styles.listContainter" v-show="showSkills">
+    <EditCodingSectionItem
+      v-for="skill in codingSkills"
+      :key="skill.id"
+      :coding-skill="skill"
+      @delete-skill="webContentStore.deleteCodingSkill(skill.id)"
     />
   </ul>
 </template>

@@ -6,7 +6,7 @@ export type InputValuesType = {
   hasChanges: boolean
 }
 
-export type ProgrammingSkillInputType = {
+export type CodingSkillInputType = {
   id: string
   label: {
     value: string | undefined

@@ -1,7 +1,7 @@
 import GitHubIcon from '@/assets/icons/Github.svg'
 import LinkedInIcon from '@/assets/icons/LinkedIn.svg'
 import TypeScriptIcon from '@/assets/icons/TS.svg'
-import JavaSscriptIcon from '@/assets/icons/JS.svg'
+import JavaScriptIcon from '@/assets/icons/JS.svg'
 import VueIcon from '@/assets/icons/Vue.svg'
 import ReactIcon from '@/assets/icons/React.svg'
 import CSSIcon from '@/assets/icons/CSS.svg'
@@ -33,16 +33,16 @@ export const SOCIALS: IconType[] = [
   }
 ]
 
-export const PROGRAMMING_ICONS: IconType[] = [
+export const CODING_ICONS: IconType[] = [
   {
     id: 'TypeScriptIcon',
     icon: TypeScriptIcon,
-    name: 'Typescript icon'
+    name: 'TypesScript icon'
   },
   {
-    id: 'JavaSscriptIcon',
-    icon: JavaSscriptIcon,
-    name: 'Javascript icon'
+    id: 'JavaScriptIcon',
+    icon: JavaScriptIcon,
+    name: 'JavaScript icon'
   },
   {
     id: 'VueIcon',
@@ -57,62 +57,62 @@ export const PROGRAMMING_ICONS: IconType[] = [
   {
     id: 'CSSIcon',
     icon: CSSIcon,
-    name: 'CSS Icon'
+    name: 'CSS icon'
   },
   {
     id: 'HTMLIcon',
     icon: HTMLIcon,
-    name: 'HTML Icon'
+    name: 'HTML icon'
   },
   {
     id: 'VSCodeIcon',
     icon: VSCodeIcon,
-    name: 'VSCode Icon'
+    name: 'VSCode icon'
   },
   {
     id: 'GITIcon',
     icon: GITIcon,
-    name: 'GIT Icon'
+    name: 'GIT icon'
   },
   {
     id: 'GitLabIcon',
     icon: GitLabIcon,
-    name: 'GitLab Icon'
+    name: 'GitLab icon'
   },
   {
     id: 'StorybookIcon',
     icon: StorybookIcon,
-    name: 'Storybook Icon'
+    name: 'Storybook icon'
   },
   {
     id: 'WindowsIcon',
     icon: WindowsIcon,
-    name: 'Windows Icon'
+    name: 'Windows icon'
   },
   {
     id: 'FigmaIcon',
     icon: FigmaIcon,
-    name: 'Figma Icon'
+    name: 'Figma icon'
   },
   {
     id: 'NpmIcon',
     icon: NpmIcon,
-    name: 'Npm Icon'
+    name: 'Npm icon'
   },
   {
     id: 'YarnIcon',
     icon: YarnIcon,
-    name: 'Yarn Icon'
+    name: 'Yarn icon'
   },
   {
     id: 'ConfluenceIcon',
     icon: ConfluenceIcon,
-    name: 'Confluence Icon'
+    name: 'Confluence icon'
   },
   {
     id: 'JiraIcon',
     icon: JiraIcon,
-    name: 'Jira Icon'
+    name: 'Jira icon'
   }
 ]
 
