@@ -37,7 +37,7 @@ const listItem = computed(() => props.experienceListItem)
           type: 'button'
         }"
       >
-        {{ webContentStore.webContent.editMode.deleteItemBtn }}
+        {{ webContentStore.webContent.staticEditMode.deleteItemBtn }}
       </BaseButton>
     </BaseCard>
   </li>

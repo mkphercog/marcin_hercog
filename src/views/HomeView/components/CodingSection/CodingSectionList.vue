@@ -9,7 +9,7 @@ const { webContent } = storeToRefs(useWebContentStore())
 <template>
   <ul>
     <CodingSectionItem
-      v-for="{ id, label, scaleValue } in webContent.programmingSkills.skillsList"
+      v-for="{ id, label, scaleValue } in webContent.editable.codingSectionList"
       :key="id"
       :label="label"
       :scale-value="scaleValue"

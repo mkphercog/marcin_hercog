@@ -47,7 +47,7 @@ const skill = computed(() => props.codingSkill)
           type: 'button'
         }"
       >
-        {{ webContentStore.webContent.editMode.deleteItemBtn }}
+        {{ webContentStore.webContent.staticEditMode.deleteItemBtn }}
       </BaseButton>
     </BaseCard>
   </li>

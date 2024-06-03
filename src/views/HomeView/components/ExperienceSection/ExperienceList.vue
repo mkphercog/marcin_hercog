@@ -11,7 +11,7 @@ const { webContent } = storeToRefs(useWebContentStore())
 <template>
   <ul :class="styles.list">
     <ExperienceItem
-      v-for="{ id, description } in webContent.experience.experienceList"
+      v-for="{ id, description } in webContent.editable.experienceSectionList"
       :key="id"
       :description="description"
     />

@@ -23,7 +23,7 @@ const { webContent } = storeToRefs(webContentStore)
       :class="styles.submitBtn"
       :rest-props="{ disabled: !isFormValid }"
     >
-      {{ webContent.editMode.submitBtn }}
+      {{ webContent.staticEditMode.submitBtn }}
     </BaseButton>
 
     <BaseButton
@@ -32,12 +32,12 @@ const { webContent } = storeToRefs(webContentStore)
       type="button"
       variant="secondary"
     >
-      {{ webContent.editMode.restoreBtn }}
+      {{ webContent.staticEditMode.restoreBtn }}
     </BaseButton>
 
     <!-- TODO PUBLISH DATA VIA ADMIN -->
     <BaseButton v-if="false" type="button" variant="secondary" :rest-props="{ disabled: true }">
-      {{ webContent.editMode.publishBtn }}
+      {{ webContent.staticEditMode.publishBtn }}
     </BaseButton>
   </div>
 </template>

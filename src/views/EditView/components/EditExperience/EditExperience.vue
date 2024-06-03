@@ -21,7 +21,7 @@ const experienceDesc = reactive(props.experienceDescription)
 
 <template>
   <BaseText as="h3">
-    {{ webContentStore.webContent.editMode.experienceSectionTitle }}
+    {{ webContentStore.webContent.staticEditMode.experienceTitle }}
   </BaseText>
   <BaseCard>
     <BaseCard :class="styles.containter">

@@ -121,68 +121,62 @@ export const ONE_MINUTE_IN_MS = ONE_SECOND_IN_MS * 60
 export const FIFTEEN_MINUTES_IN_MS = ONE_MINUTE_IN_MS * 15
 
 export const DEFAULT_WEB_CONTENT: WebContentType = {
-  header: {
-    editBtn: '',
-    langBtn: '',
+  staticHomeView: {
+    editSiteBtn: '',
+    changeLangBtn: '',
     fullName: '',
-    jobPosition: ''
+    codingTitle: '',
+    codingSubTitle: '',
+    experienceTitle: '',
+    downloadCVBtn: '',
+    socialsTitle: '',
+    contactPhoneNumber: '',
+    contactEmail: ''
   },
-  about: {
-    description: '',
-    photoUrl: ''
-  },
-  programmingSkills: {
-    header: '',
-    skillsList: [],
-    additionalHeader: '',
-    additionalDescription: ''
-  },
-  experience: {
-    header: '',
-    description: '',
-    experienceList: [],
-    downloadBtn: ''
-  },
-  socials: {
-    header: ''
-  },
-  footer: {
-    header: '',
-    phoneNumber: '',
-    email: '',
-    visitors: ''
-  },
-  emailTemplate: {
+
+  staticEmailTemplate: {
     title: '',
     message: ''
   },
-  editMode: {
-    backBtn: '',
-    currentLang: '',
-    header: '',
-    hintInfo: '',
-    localChangesInfo: '',
-    publishBtn: '',
-    restoreBtn: '',
-    submitBtn: '',
-    aboutSectionTitle: '',
-    addNewBtn: '',
-    addNewHeader: '',
-    codingSectionTitle: '',
-    deleteItemBtn: '',
-    experienceSectionTitle: '',
-    headerSectionTitle: '',
-    hideListBtn: '',
-    showListBtn: ''
+
+  staticErrors: {
+    emptyField: '',
+    maxLength: '',
+    exceededRange: ''
   },
-  notFound: {
+
+  staticNotFoundView: {
     header: '',
     message: '',
     backBtn: ''
   },
-  errors: {
-    emptyField: '',
-    exceededRange: '',
-    maxLength: ''
+
+  staticEditMode: {
+    title: '',
+    subTitle: '',
+    localChangesInfo: '',
+    backBtn: '',
+    aboutWebInfo: '',
+    submitBtn: '',
+    restoreBtn: '',
+    publishBtn: '',
+    addNewItemHeader: '',
+    addNewItemBtn: '',
+    showListBtn: '',
+    hideListBtn: '',
+    deleteItemBtn: '',
+    jobPositionTitle: '',
+    aboutTitle: '',
+    codingTitle: '',
+    experienceTitle: ''
+  },
+
+  editable: {
+    headerJobPosition: '',
+    aboutSectionDescription: '',
+    codingSectionList: [],
+    codingSectionDescription: '',
+    experienceSectionDescription: '',
+    experienceSectionList: []
   }
 }

@@ -11,14 +11,14 @@ const { webContent } = storeToRefs(useWebContentStore())
 </script>
 
 <template>
-  <BaseSection :title="webContent.programmingSkills.header">
+  <BaseSection :title="webContent.staticHomeView.codingTitle">
     <CodingSectionList />
     <div :class="styles.additionalInfoWrapper">
       <BaseText size="lg" :class="styles.additionalInfoHeader">
-        {{ webContent.programmingSkills.additionalHeader }}
+        {{ webContent.staticHomeView.codingSubTitle }}
       </BaseText>
       <BaseText justify>
-        {{ webContent.programmingSkills.additionalDescription }}
+        {{ webContent.editable.codingSectionDescription }}
       </BaseText>
     </div>
 

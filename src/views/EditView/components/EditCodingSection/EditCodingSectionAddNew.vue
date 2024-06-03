@@ -35,7 +35,7 @@ watch(newSkill, () => {
   isFormValid.value = isValid && noErrors
 
   if (newSkill.label.value !== undefined && newSkill.scaleValue.value !== undefined) {
-    const originalContent = webContentStore.originalWebContent.programmingSkills.skillsList.find(
+    const originalContent = webContentStore.originalWebContent.editable.codingSectionList.find(
       (originalSkill) => newSkill.id === originalSkill.id
     )
 
@@ -60,7 +60,7 @@ const addNewSkill = () => {
 <template>
   <BaseCard :class="styles.addNewContainer">
     <BaseText>
-      {{ webContentStore.webContent.editMode.addNewHeader }}
+      {{ webContentStore.webContent.staticEditMode.addNewItemHeader }}
     </BaseText>
     <BaseInput
       name="newlabel"
@@ -89,7 +89,7 @@ const addNewSkill = () => {
         disabled: !isFormValid
       }"
     >
-      {{ webContentStore.webContent.editMode.addNewBtn }}
+      {{ webContentStore.webContent.staticEditMode.addNewItemBtn }}
     </BaseButton>
   </BaseCard>
 </template>

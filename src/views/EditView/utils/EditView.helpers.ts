@@ -1,4 +1,4 @@
-import type { CodingSkillType } from '@/types'
+import type { CodingSkillType, ExperienceListItemType } from '@/types'
 import type { InputValuesType, CodingSkillInputType } from '../types/EditView.types'
 import { useWebContentStore } from '@/store'
 
@@ -11,9 +11,9 @@ export const checkInputField = (
   const webContentStore = useWebContentStore()
 
   if (!field.value?.length) {
-    field.error = webContentStore.webContent.errors.emptyField
+    field.error = webContentStore.webContent.staticErrors.emptyField
   } else if (field.value?.length > maxLength) {
-    field.error = `${webContentStore.webContent.errors.maxLength} ${maxLength}`
+    field.error = `${webContentStore.webContent.staticErrors.maxLength} ${maxLength}`
   } else {
     field.error = null
   }
@@ -42,9 +42,9 @@ export const checkCodingSkillField = (
 
   const label = field.label
   if (!label.value?.length) {
-    label.error = webContentStore.webContent.errors.emptyField
+    label.error = webContentStore.webContent.staticErrors.emptyField
   } else if (label.value?.length > maxLength) {
-    label.error = `${webContentStore.webContent.errors.maxLength} ${maxLength}`
+    label.error = `${webContentStore.webContent.staticErrors.maxLength} ${maxLength}`
   } else {
     label.error = null
   }
@@ -58,9 +58,9 @@ export const checkCodingSkillField = (
 
   const scaleValue = field.scaleValue
   if (!scaleValue.value && scaleValue.value !== 0) {
-    scaleValue.error = webContentStore.webContent.errors.emptyField
+    scaleValue.error = webContentStore.webContent.staticErrors.emptyField
   } else if (scaleValue.value < 0 || scaleValue.value > 100) {
-    scaleValue.error = webContentStore.webContent.errors.exceededRange
+    scaleValue.error = webContentStore.webContent.staticErrors.exceededRange
   } else {
     scaleValue.error = null
   }
@@ -96,5 +96,14 @@ export const mapSkillsToDisplay = (mappedSkills: CodingSkillInputType[]): Coding
     id: skill.id,
     label: skill.label.value || '',
     scaleValue: Number(skill.scaleValue.value)
+  }))
+}
+
+export const mapExperienceListToDisplay = (
+  experienceItems: InputValuesType[]
+): ExperienceListItemType[] => {
+  return experienceItems.map((item) => ({
+    id: item.id || '',
+    description: item.value || ''
   }))
 }

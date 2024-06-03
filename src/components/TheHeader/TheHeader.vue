@@ -22,22 +22,22 @@ const route = useRoute()
 const WEB_CONTENT_PER_PAGE_MAP: Record<RouteNamesEnum, HeaderContent> = {
   home: {
     linkTo: { name: RouteNamesEnum.EDIT_MODE },
-    linkBtnText: computed(() => webContent.value.header.editBtn),
-    headerText: computed(() => webContent.value.header.fullName),
-    additionalInfoText: computed(() => webContent.value.header.jobPosition)
+    linkBtnText: computed(() => webContent.value.staticHomeView.editSiteBtn),
+    headerText: computed(() => webContent.value.staticHomeView.fullName),
+    additionalInfoText: computed(() => webContent.value.editable.headerJobPosition)
   },
   editMode: {
     linkTo: { name: RouteNamesEnum.HOME },
-    linkBtnText: computed(() => webContent.value.editMode.backBtn),
-    headerText: computed(() => webContent.value.editMode.header),
+    linkBtnText: computed(() => webContent.value.staticEditMode.backBtn),
+    headerText: computed(() => webContent.value.staticEditMode.title),
     additionalInfoText: computed(
-      () => `${webContent.value.editMode.currentLang} ${appStateStore.currentLanguage}`
+      () => `${webContent.value.staticEditMode.subTitle} ${appStateStore.currentLanguage}`
     )
   },
   notFound: {
     linkTo: { name: RouteNamesEnum.HOME },
-    linkBtnText: computed(() => webContent.value.notFound.backBtn),
-    additionalInfoText: computed(() => webContent.value.notFound.header)
+    linkBtnText: computed(() => webContent.value.staticNotFoundView.backBtn),
+    additionalInfoText: computed(() => webContent.value.staticNotFoundView.header)
   }
 }
 
@@ -52,10 +52,10 @@ const headerContent = computed(() => WEB_CONTENT_PER_PAGE_MAP[route.name as Rout
           {{ headerContent.linkBtnText.value }}
         </BaseLink>
         <BaseText v-if="appStateStore.hasLocalChanges" :class="styles.localChanges" size="sm">
-          {{ webContent.editMode.localChangesInfo }}
+          {{ webContent.staticEditMode.localChangesInfo }}
         </BaseText>
         <BaseButton @click="appStateStore.toggleCurrentLanguage" type="normal">
-          {{ webContent.header.langBtn }}
+          {{ webContent.staticHomeView.changeLangBtn }}
         </BaseButton>
       </nav>
 

@@ -25,7 +25,7 @@ const { webContent } = storeToRefs(webContentStore)
     <BaseCard :class="styles.infoCard">
       <InfoIcon :class="styles.infoIcon" />
       <BaseText size="sm" justify>
-        {{ webContent.editMode.hintInfo }}
+        {{ webContent.staticEditMode.aboutWebInfo }}
       </BaseText>
     </BaseCard>
 

@@ -23,7 +23,7 @@ const skills = computed(() => props.codingSkills)
 
 <template>
   <BaseText as="h3">
-    {{ webContentStore.webContent.editMode.codingSectionTitle }}
+    {{ webContentStore.webContent.staticEditMode.codingTitle }}
   </BaseText>
   <BaseCard>
     <EditCodingSectionAddNew />
@@ -32,7 +32,7 @@ const skills = computed(() => props.codingSkills)
     <BaseCard :class="styles.containter">
       <BaseTextarea
         name="codingAdditionalDesc"
-        label="programmingSkills.additionalDescription"
+        label="codingSkills.additionalDescription"
         :has-changes="additionalInfo.hasChanges && !additionalInfo.error"
         :error-message="additionalInfo.error"
         v-model="additionalInfo.value"

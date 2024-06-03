@@ -11,7 +11,7 @@ const { webContent, profilePhotoUrl } = storeToRefs(useWebContentStore())
 <template>
   <section :class="styles.wrapper">
     <BaseText justify>
-      {{ webContent.about.description }}
+      {{ webContent.editable.aboutSectionDescription }}
     </BaseText>
 
     <div :class="styles.photoWrapper">

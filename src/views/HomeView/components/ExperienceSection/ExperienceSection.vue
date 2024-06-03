@@ -12,10 +12,10 @@ const { webContent } = storeToRefs(webContentStore)
 </script>
 
 <template>
-  <BaseSection :title="webContent.experience.header">
+  <BaseSection :title="webContent.staticHomeView.experienceTitle">
     <div :class="styles.contentWrapper">
       <BaseText justify>
-        {{ webContent.experience.description }}
+        {{ webContent.editable.experienceSectionDescription }}
       </BaseText>
       <ExperienceList />
 
@@ -26,7 +26,7 @@ const { webContent } = storeToRefs(webContentStore)
         size="lg"
       >
         <div :class="styles.pdfBtnContainer">
-          {{ webContent.experience.downloadBtn }}
+          {{ webContent.staticHomeView.downloadCVBtn }}
           <DownloadPdfIcon :class="styles.pdfIcon" />
         </div>
       </BaseButton>

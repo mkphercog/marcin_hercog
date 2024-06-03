@@ -18,8 +18,8 @@ const webContentStore = useWebContentStore()
 const showListItems = ref(true)
 const buttonText = computed(() =>
   showListItems.value
-    ? webContentStore.webContent.editMode.hideListBtn
-    : webContentStore.webContent.editMode.showListBtn
+    ? webContentStore.webContent.staticEditMode.hideListBtn
+    : webContentStore.webContent.staticEditMode.showListBtn
 )
 
 const toggleListVisibility = () => {

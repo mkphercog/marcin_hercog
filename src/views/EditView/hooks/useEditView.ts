@@ -1,7 +1,7 @@
 import { computed, shallowReactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { mapSkillsToDisplay } from '../utils/EditView.helpers'
+import { mapExperienceListToDisplay, mapSkillsToDisplay } from '../utils/EditView.helpers'
 import { useWebContentStore } from '@/store'
 import type { WebContentType } from '@/types'
 import { useEditJobPositionField } from './useEditJobPosition'
@@ -54,26 +54,13 @@ export const useEditView = () => {
 
     const formData: WebContentType = {
       ...originalWebContent.value,
-      header: {
-        ...originalWebContent.value.header,
-        jobPosition: jobPosition.value!
-      },
-      about: {
-        ...originalWebContent.value.about,
-        description: aboutDescription.value!
-      },
-      programmingSkills: {
-        ...originalWebContent.value.programmingSkills,
-        skillsList: mapSkillsToDisplay(formCodingSkillsList),
-        additionalDescription: codingDescription.value!
-      },
-      experience: {
-        ...originalWebContent.value.experience,
-        description: experienceDescription.value!,
-        experienceList: formExperienceListItems.map((item) => ({
-          id: item.id || '',
-          description: item.value || ''
-        }))
+      editable: {
+        headerJobPosition: jobPosition.value!,
+        aboutSectionDescription: aboutDescription.value!,
+        codingSectionList: mapSkillsToDisplay(formCodingSkillsList),
+        codingSectionDescription: codingDescription.value!,
+        experienceSectionDescription: experienceDescription.value!,
+        experienceSectionList: mapExperienceListToDisplay(formExperienceListItems)
       }
     }
 

@@ -1,10 +1,12 @@
 import { reactive, watch, watchEffect } from 'vue'
+import { storeToRefs } from 'pinia'
 import type { InputValuesType } from '../types/EditView.types'
 import { checkInputField } from '../utils/EditView.helpers'
 import { useAppStateStore, useWebContentStore } from '@/store'
 
 export const useEditJobPositionField = () => {
   const webContentStore = useWebContentStore()
+  const { webContent, originalWebContent } = storeToRefs(webContentStore)
   const appStateStore = useAppStateStore()
 
   const jobPosition = reactive<InputValuesType>({
@@ -17,14 +19,14 @@ export const useEditJobPositionField = () => {
   watch(jobPosition, () => {
     checkInputField(
       jobPosition,
-      webContentStore.originalWebContent.header.jobPosition,
+      originalWebContent.value.editable.headerJobPosition,
       40,
       appStateStore.hasLocalChanges
     )
   })
 
   watchEffect(() => {
-    jobPosition.value = webContentStore.webContent.header.jobPosition
+    jobPosition.value = webContent.value.editable.headerJobPosition
   })
 
   return { jobPosition }

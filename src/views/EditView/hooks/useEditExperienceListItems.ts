@@ -1,15 +1,17 @@
 import { computed, reactive, watch } from 'vue'
+import { storeToRefs } from 'pinia'
 import type { InputValuesType } from '../types/EditView.types'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { checkInputField } from '../utils/EditView.helpers'
 
 export const useEditExperienceListItems = () => {
   const webContentStore = useWebContentStore()
+  const { webContent, originalWebContent } = storeToRefs(webContentStore)
   const appStateStore = useAppStateStore()
 
   const formExperienceListItems = reactive<InputValuesType[]>([])
 
-  const webExperienceList = computed(() => webContentStore.webContent.experience.experienceList)
+  const webExperienceList = computed(() => webContent.value.editable.experienceSectionList)
   watch(
     webExperienceList,
     () => {
@@ -29,11 +31,11 @@ export const useEditExperienceListItems = () => {
 
   watch(formExperienceListItems, () => {
     formExperienceListItems.forEach((item) => {
-      const originalContent = webContentStore.originalWebContent.experience.experienceList.find(
+      const originalContent = originalWebContent.value.editable.experienceSectionList.find(
         (originalItem) => item.id === originalItem.id
       )
 
-      checkInputField(item, originalContent?.description || '', 200, appStateStore.hasLocalChanges)
+      checkInputField(item, originalContent?.description || '', 1024, appStateStore.hasLocalChanges)
     })
   })
 

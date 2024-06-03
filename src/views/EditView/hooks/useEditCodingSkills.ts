@@ -1,15 +1,17 @@
 import { computed, reactive, watch } from 'vue'
+import { storeToRefs } from 'pinia'
 import type { CodingSkillInputType } from '../types/EditView.types'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { checkCodingSkillField, createFormCodingSkill } from '../utils/EditView.helpers'
 
 export const useEditCodingSkills = () => {
   const webContentStore = useWebContentStore()
+  const { webContent, originalWebContent } = storeToRefs(webContentStore)
   const appStateStore = useAppStateStore()
 
   const formCodingSkillsList = reactive<CodingSkillInputType[]>([])
+  const webCodingSkills = computed(() => webContent.value.editable.codingSectionList)
 
-  const webCodingSkills = computed(() => webContentStore.webContent.programmingSkills.skillsList)
   watch(
     webCodingSkills,
     () => {
@@ -23,7 +25,7 @@ export const useEditCodingSkills = () => {
 
   watch(formCodingSkillsList, () => {
     formCodingSkillsList.forEach((skill) => {
-      const originalContent = webContentStore.originalWebContent.programmingSkills.skillsList.find(
+      const originalContent = originalWebContent.value.editable.codingSectionList.find(
         (originalSkill) => skill.id === originalSkill.id
       )
 

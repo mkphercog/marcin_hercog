@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import type { RouteLocationNamedRaw } from 'vue-router'
 import { BaseLink, BaseText } from '@/components/ui'
 import { RouteNamesEnum } from '@/routes'
@@ -7,7 +8,7 @@ import { useWebContentStore } from '@/store'
 
 import styles from './NotFoundView.module.scss'
 
-const webContentStore = useWebContentStore()
+const { webContent } = storeToRefs(useWebContentStore())
 
 const goToHomePage: RouteLocationNamedRaw = {
   name: RouteNamesEnum.HOME,
@@ -19,10 +20,10 @@ const goToHomePage: RouteLocationNamedRaw = {
   <div :class="styles.wrapper">
     <CancelCircleIcon :class="styles.notFoundIcon" />
     <BaseText :as="'h3'">
-      {{ webContentStore.webContent.notFound.message }}
+      {{ webContent.staticNotFoundView.message }}
     </BaseText>
     <BaseLink :to="goToHomePage">
-      {{ webContentStore.webContent.notFound.backBtn }}
+      {{ webContent.staticNotFoundView.backBtn }}
     </BaseLink>
   </div>
 </template>

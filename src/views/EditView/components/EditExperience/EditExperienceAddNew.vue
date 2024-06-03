@@ -24,7 +24,7 @@ watch(newExperienceItem, () => {
   isFormValid.value = !!newExperienceItem.isValid && !newExperienceItem.error
 
   if (newExperienceItem.value !== undefined) {
-    const originalContent = webContentStore.originalWebContent.experience.experienceList.find(
+    const originalContent = webContentStore.originalWebContent.editable.experienceSectionList.find(
       (originalItem) => newExperienceItem.id === originalItem.id
     )
 
@@ -54,7 +54,7 @@ const addNewExperienceItem = () => {
 <template>
   <BaseCard :class="styles.addNewContainer">
     <BaseText>
-      {{ webContentStore.webContent.editMode.addNewHeader }}
+      {{ webContentStore.webContent.staticEditMode.addNewItemHeader }}
     </BaseText>
     <BaseInput
       name="newExperienceListItem"
@@ -73,7 +73,7 @@ const addNewExperienceItem = () => {
         disabled: !isFormValid
       }"
     >
-      {{ webContentStore.webContent.editMode.addNewBtn }}
+      {{ webContentStore.webContent.staticEditMode.addNewItemBtn }}
     </BaseButton>
   </BaseCard>
 </template>

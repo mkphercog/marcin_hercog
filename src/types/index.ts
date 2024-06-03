@@ -16,71 +16,72 @@ export type IconType = {
   name: string
 }
 
+type StaticHomeViewType = {
+  editSiteBtn: string
+  changeLangBtn: string
+  fullName: string
+  codingTitle: string
+  codingSubTitle: string
+  experienceTitle: string
+  downloadCVBtn: string
+  socialsTitle: string
+  contactPhoneNumber: string
+  contactEmail: string
+}
+
+type StaticEmailTemplateType = {
+  title: string
+  message: string
+}
+
+type StaticErrorsType = {
+  emptyField: string
+  maxLength: string
+  exceededRange: string
+}
+
+type StaticNotFoundViewType = {
+  header: string
+  message: string
+  backBtn: string
+}
+
+type StaticEditModeType = {
+  title: string
+  subTitle: string
+  localChangesInfo: string
+  backBtn: string
+  aboutWebInfo: string
+  submitBtn: string
+  restoreBtn: string
+  publishBtn: string
+  addNewItemHeader: string
+  addNewItemBtn: string
+  showListBtn: string
+  hideListBtn: string
+  deleteItemBtn: string
+  jobPositionTitle: string
+  aboutTitle: string
+  codingTitle: string
+  experienceTitle: string
+}
+
+type EditableType = {
+  headerJobPosition: string
+  aboutSectionDescription: string
+  codingSectionList: CodingSkillType[]
+  codingSectionDescription: string
+  experienceSectionDescription: string
+  experienceSectionList: ExperienceListItemType[]
+}
+
 export type WebContentType = {
-  header: {
-    editBtn: string
-    langBtn: string
-    fullName: string
-    jobPosition: string
-  }
-  about: {
-    description: string
-    photoUrl: string
-  }
-  programmingSkills: {
-    header: string
-    skillsList: CodingSkillType[]
-    additionalHeader: string
-    additionalDescription: string
-  }
-  experience: {
-    header: string
-    description: string
-    experienceList: ExperienceListItemType[]
-    downloadBtn: string
-  }
-  socials: {
-    header: string
-  }
-  footer: {
-    header: string
-    phoneNumber: string
-    email: string
-    visitors: string
-  }
-  emailTemplate: {
-    title: string
-    message: string
-  }
-  editMode: {
-    header: string
-    currentLang: string
-    localChangesInfo: string
-    hintInfo: string
-    backBtn: string
-    submitBtn: string
-    restoreBtn: string
-    publishBtn: string
-    addNewHeader: string
-    addNewBtn: string
-    showListBtn: string
-    hideListBtn: string
-    deleteItemBtn: string
-    headerSectionTitle: string
-    aboutSectionTitle: string
-    codingSectionTitle: string
-    experienceSectionTitle: string
-  }
-  notFound: {
-    header: string
-    message: string
-    backBtn: string
-  }
-  errors: {
-    emptyField: string
-    maxLength: string
-    exceededRange: string
-  }
+  staticHomeView: StaticHomeViewType
+  staticEmailTemplate: StaticEmailTemplateType
+  staticErrors: StaticErrorsType
+  staticNotFoundView: StaticNotFoundViewType
+  staticEditMode: StaticEditModeType
+  editable: EditableType
 }
 
 export enum LangEnums {

@@ -1,10 +1,12 @@
 import { reactive, watch, watchEffect } from 'vue'
+import { storeToRefs } from 'pinia'
 import type { InputValuesType } from '../types/EditView.types'
 import { checkInputField } from '../utils/EditView.helpers'
 import { useAppStateStore, useWebContentStore } from '@/store'
 
 export const useEditExperienceDescription = () => {
   const webContentStore = useWebContentStore()
+  const { webContent, originalWebContent } = storeToRefs(webContentStore)
   const appStateStore = useAppStateStore()
 
   const experienceDescription = reactive<InputValuesType>({
@@ -17,14 +19,14 @@ export const useEditExperienceDescription = () => {
   watch(experienceDescription, () => {
     checkInputField(
       experienceDescription,
-      webContentStore.originalWebContent.experience.description,
+      originalWebContent.value.editable.experienceSectionDescription,
       1024,
       appStateStore.hasLocalChanges
     )
   })
 
   watchEffect(() => {
-    experienceDescription.value = webContentStore.webContent.experience.description
+    experienceDescription.value = webContent.value.editable.experienceSectionDescription
   })
 
   return { experienceDescription }

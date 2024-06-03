@@ -16,7 +16,7 @@ const aboutDesc = reactive(props.aboutDescription)
 
 <template>
   <BaseText as="h3">
-    {{ webContentStore.webContent.editMode.aboutSectionTitle }}
+    {{ webContentStore.webContent.staticEditMode.aboutTitle }}
   </BaseText>
   <BaseCard>
     <BaseTextarea

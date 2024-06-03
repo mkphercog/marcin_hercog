@@ -16,7 +16,7 @@ const jobPosition = reactive(props.jobPosition)
 
 <template>
   <BaseText as="h3">
-    {{ webContentStore.webContent.editMode.headerSectionTitle }}
+    {{ webContentStore.webContent.staticEditMode.jobPositionTitle }}
   </BaseText>
   <BaseCard>
     <BaseInput

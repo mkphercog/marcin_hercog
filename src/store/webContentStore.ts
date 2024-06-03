@@ -67,7 +67,7 @@ export const useWebContentStore = defineStore('web-content-store', {
 
     addCodingSkill(label: string, scaleValue: number) {
       const newSkills = [
-        ...this.webContent.programmingSkills.skillsList,
+        ...this.webContent.editable.codingSectionList,
         {
           id: new Date().getTime().toLocaleString(),
           label: label,
@@ -77,30 +77,30 @@ export const useWebContentStore = defineStore('web-content-store', {
 
       this.changeWebContentLocally({
         ...this.webContent,
-        programmingSkills: {
-          ...this.webContent.programmingSkills,
-          skillsList: newSkills
+        editable: {
+          ...this.webContent.editable,
+          codingSectionList: newSkills
         }
       })
     },
 
     deleteCodingSkill(id: string) {
-      const filteredSkills = this.webContent.programmingSkills.skillsList.filter(
+      const filteredSkills = this.webContent.editable.codingSectionList.filter(
         (skill) => skill.id !== id
       )
 
       this.changeWebContentLocally({
         ...this.webContent,
-        programmingSkills: {
-          ...this.webContent.programmingSkills,
-          skillsList: filteredSkills
+        editable: {
+          ...this.webContent.editable,
+          codingSectionList: filteredSkills
         }
       })
     },
 
     addExperienceListItem(description: string) {
-      const newExperienceListItems = [
-        ...this.webContent.experience.experienceList,
+      const newExperienceList = [
+        ...this.webContent.editable.experienceSectionList,
         {
           id: new Date().getTime().toString(),
           description
@@ -109,23 +109,23 @@ export const useWebContentStore = defineStore('web-content-store', {
 
       this.changeWebContentLocally({
         ...this.webContent,
-        experience: {
-          ...this.webContent.experience,
-          experienceList: newExperienceListItems
+        editable: {
+          ...this.webContent.editable,
+          experienceSectionList: newExperienceList
         }
       })
     },
 
     deleteExperienceListItem(id: string | undefined) {
-      const filteredExperienceListItems = this.webContent.experience.experienceList.filter(
+      const filteredExperienceList = this.webContent.editable.experienceSectionList.filter(
         (item) => item.id !== id
       )
 
       this.changeWebContentLocally({
         ...this.webContent,
-        experience: {
-          ...this.webContent.experience,
-          experienceList: filteredExperienceListItems
+        editable: {
+          ...this.webContent.editable,
+          experienceSectionList: filteredExperienceList
         }
       })
     },
