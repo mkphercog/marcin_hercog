@@ -1,6 +1,7 @@
 import type { CodingSkillType, ExperienceListItemType } from '@/types'
 import type { InputValuesType, CodingSkillInputType } from '../types/EditView.types'
 import { useWebContentStore } from '@/store'
+import isEqual from 'lodash.isequal'
 
 export const checkInputField = (
   field: InputValuesType,
@@ -18,7 +19,7 @@ export const checkInputField = (
     field.error = null
   }
 
-  if (field.value !== originalWebContent) {
+  if (!isEqual(field.value, originalWebContent)) {
     field.isValid = true
   } else if (!areLocalChanges) {
     field.isValid = undefined

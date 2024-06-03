@@ -66,8 +66,7 @@ export const useEditView = () => {
 
     webContentStore.changeWebContentLocally(formData)
     routerPush({
-      name: 'home',
-      replace: true
+      name: 'home'
     })
   }
 

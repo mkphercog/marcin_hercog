@@ -1,4 +1,4 @@
-import { reactive, watch, watchEffect } from 'vue'
+import { reactive, watchEffect } from 'vue'
 import { storeToRefs } from 'pinia'
 import type { InputValuesType } from '../types/EditView.types'
 import { checkInputField } from '../utils/EditView.helpers'
@@ -16,7 +16,7 @@ export const useEditExperienceDescription = () => {
     hasChanges: false
   })
 
-  watch(experienceDescription, () => {
+  watchEffect(() => {
     checkInputField(
       experienceDescription,
       originalWebContent.value.editable.experienceSectionDescription,
