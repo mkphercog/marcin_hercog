@@ -38,6 +38,7 @@ type StaticErrorsType = {
   emptyField: string
   maxLength: string
   exceededRange: string
+  login: string
 }
 
 type StaticNotFoundViewType = {
@@ -64,9 +65,17 @@ type StaticEditModeType = {
   aboutTitle: string
   codingTitle: string
   experienceTitle: string
+  loginBtn: string
 }
 
-type EditableType = {
+type StaticLoginViewType = {
+  title: string
+  submitBtn: string
+  loggedUserHint: string
+  logoutBtn: string
+}
+
+export type EditableType = {
   headerJobPosition: string
   aboutSectionDescription: string
   codingSectionList: CodingSkillType[]
@@ -81,6 +90,7 @@ export type WebContentType = {
   staticErrors: StaticErrorsType
   staticNotFoundView: StaticNotFoundViewType
   staticEditMode: StaticEditModeType
+  staticLoginView: StaticLoginViewType
   editable: EditableType
 }
 

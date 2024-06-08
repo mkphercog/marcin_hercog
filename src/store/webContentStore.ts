@@ -1,16 +1,18 @@
 import { defineStore } from 'pinia'
 import isEqual from 'lodash.isequal'
 import { DEFAULT_WEB_CONTENT } from '@/constants'
-import type { DeepPartial, WebContentType } from '@/types'
+import type { WebContentType } from '@/types'
 import { useAppStateStore } from './appStateStore'
 import { firebaseApi } from '@/firebase/firebase'
+import type { User } from 'firebase/auth'
 
 export const useWebContentStore = defineStore('web-content-store', {
   state: () => {
     return {
       webContentRef: DEFAULT_WEB_CONTENT,
       localWebContentRef: null as WebContentType | null,
-      profilePhotoUrlDataRef: undefined as string | undefined
+      profilePhotoUrlDataRef: undefined as string | undefined,
+      currentLoggedUserDataRef: null as User | null
     }
   },
   getters: {
@@ -26,6 +28,10 @@ export const useWebContentStore = defineStore('web-content-store', {
       firebaseApi.getProfilePhotoUrl((url: string) => (state.profilePhotoUrlDataRef = url))
 
       return state.profilePhotoUrlDataRef
+    },
+
+    currentLoggedUserName(state) {
+      return state.currentLoggedUserDataRef?.displayName || state.currentLoggedUserDataRef?.email
     }
   },
   actions: {
@@ -45,12 +51,18 @@ export const useWebContentStore = defineStore('web-content-store', {
       appStateStore.setIsLoading(false)
     },
 
-    async updateWebContent(newWebContent: DeepPartial<WebContentType>) {
+    async updateWebContent(newWebContent: Partial<WebContentType['editable']>) {
       const appStateStore = useAppStateStore()
 
       appStateStore.setIsLoading(true)
-      await firebaseApi.setWebContent(appStateStore.currentLanguage, newWebContent)
-      await this.fetchWebContent(true)
+
+      try {
+        await firebaseApi.setWebContent(appStateStore.currentLanguage, newWebContent)
+        await this.fetchWebContent(true)
+      } catch (error) {
+        console.error('Something went wrong while updating webContent.', error)
+      }
+
       appStateStore.setIsLoading(false)
     },
 
@@ -144,6 +156,10 @@ export const useWebContentStore = defineStore('web-content-store', {
     downloadCVFile() {
       const appStateStore = useAppStateStore()
       firebaseApi.downloadCVFile(appStateStore.currentLanguage)
+    },
+
+    setCurrentUserData() {
+      firebaseApi.getCurrentLoggedUser((data) => (this.currentLoggedUserDataRef = data))
     }
   }
 })

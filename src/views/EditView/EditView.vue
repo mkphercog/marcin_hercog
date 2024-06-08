@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { BaseText, BaseCard } from '@/components/ui'
+import { BaseText, BaseCard, BaseLink } from '@/components/ui'
 import InfoIcon from '@/assets/icons/InfoIcon.vue'
-import { useWebContentStore } from '@/store'
+import { useAppStateStore, useWebContentStore } from '@/store'
 import {
   EditAbout,
   EditExperience,
@@ -11,17 +11,27 @@ import {
   EditViewActions
 } from './components'
 import { useEditView } from './hooks/useEditView'
+import { RouteNamesEnum } from '@/routes'
 
 import styles from './EditView.module.scss'
 
 const { formFields, formState, submitForm } = useEditView()
 
+const appStateStore = useAppStateStore()
 const webContentStore = useWebContentStore()
 const { webContent } = storeToRefs(webContentStore)
+
+const goToLoginView = { name: RouteNamesEnum.LOGIN }
 </script>
 
 <template>
   <main :class="styles.editMain">
+    <div v-if="!appStateStore.isLoggedUser" :class="styles.loginButton">
+      <BaseLink size="sm" :to="goToLoginView">
+        {{ webContent.staticEditMode.loginBtn }}
+      </BaseLink>
+    </div>
+
     <BaseCard :class="styles.infoCard">
       <InfoIcon :class="styles.infoIcon" />
       <BaseText size="sm" justify>

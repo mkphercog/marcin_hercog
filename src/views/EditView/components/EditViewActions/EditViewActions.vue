@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import isEqual from 'lodash.isequal'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { BaseButton } from '@/components/ui'
 
 import styles from './EditViewActions.module.scss'
+import type { EditableType } from '@/types'
 
 type Props = {
   isFormValid: boolean
@@ -13,7 +15,19 @@ defineProps<Props>()
 
 const appStateStore = useAppStateStore()
 const webContentStore = useWebContentStore()
-const { webContent } = storeToRefs(webContentStore)
+const { webContent, originalWebContent } = storeToRefs(webContentStore)
+
+const updateWebContentAsAdmin = () => {
+  const currentEditedFields = Object.entries(webContent.value.editable).filter(([key, value]) => {
+    const originalValue = originalWebContent.value.editable[key as keyof EditableType]
+
+    return !isEqual(value, originalValue)
+  })
+
+  if (currentEditedFields.length) {
+    webContentStore.updateWebContent(Object.fromEntries(currentEditedFields))
+  }
+}
 </script>
 
 <template>
@@ -34,9 +48,13 @@ const { webContent } = storeToRefs(webContentStore)
     >
       {{ webContent.staticEditMode.restoreBtn }}
     </BaseButton>
-
-    <!-- TODO PUBLISH DATA VIA ADMIN -->
-    <BaseButton v-if="false" type="button" variant="secondary" :rest-props="{ disabled: true }">
+    <BaseButton
+      v-if="appStateStore.isLoggedUser"
+      @click="updateWebContentAsAdmin"
+      type="button"
+      variant="secondary"
+      :rest-props="{ disabled: !appStateStore.hasLocalChanges }"
+    >
       {{ webContent.staticEditMode.publishBtn }}
     </BaseButton>
   </div>

@@ -7,8 +7,9 @@ import { TheFooter, TheHeader } from './components'
 import styles from './App.module.scss'
 
 const appStateStore = useAppStateStore()
-const webContentStore = useWebContentStore()
 const { currentLanguage } = storeToRefs(appStateStore)
+const webContentStore = useWebContentStore()
+webContentStore.setCurrentUserData()
 
 watch(currentLanguage, () => webContentStore.fetchWebContent(false), {
   immediate: true
@@ -21,7 +22,7 @@ watch(currentLanguage, () => webContentStore.fetchWebContent(false), {
     <TheHeader />
 
     <RouterView v-slot="{ Component }">
-      <KeepAlive>
+      <KeepAlive exclude="LoginView">
         <component :is="Component" />
       </KeepAlive>
     </RouterView>

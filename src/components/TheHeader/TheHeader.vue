@@ -12,11 +12,13 @@ type HeaderContent = {
   linkTo: RouteLocationNamedRaw
   linkBtnText: ComputedRef<string>
   headerText?: ComputedRef<string>
-  additionalInfoText: ComputedRef<string>
+  additionalInfoText?: ComputedRef<string>
 }
 
-const { webContent } = storeToRefs(useWebContentStore())
+const webContentStore = useWebContentStore()
+const { webContent } = storeToRefs(webContentStore)
 const appStateStore = useAppStateStore()
+const { isLoggedUser } = storeToRefs(appStateStore)
 const route = useRoute()
 
 const WEB_CONTENT_PER_PAGE_MAP: Record<RouteNamesEnum, HeaderContent> = {
@@ -34,6 +36,11 @@ const WEB_CONTENT_PER_PAGE_MAP: Record<RouteNamesEnum, HeaderContent> = {
       () => `${webContent.value.staticEditMode.subTitle} ${appStateStore.currentLanguage}`
     )
   },
+  login: {
+    linkTo: { name: RouteNamesEnum.EDIT_MODE },
+    linkBtnText: computed(() => webContent.value.staticEditMode.backBtn),
+    headerText: computed(() => webContent.value.staticLoginView.title)
+  },
   notFound: {
     linkTo: { name: RouteNamesEnum.HOME },
     linkBtnText: computed(() => webContent.value.staticNotFoundView.backBtn),
@@ -47,6 +54,16 @@ const headerContent = computed(() => WEB_CONTENT_PER_PAGE_MAP[route.name as Rout
 <template>
   <header :class="styles.header">
     <div :class="styles.wrapper">
+      <div v-if="isLoggedUser" :class="styles.loginBar">
+        <BaseText :class="styles.localChanges" size="sm">
+          {{ webContent.staticLoginView.loggedUserHint }}
+          {{ webContentStore.currentLoggedUserName }}
+        </BaseText>
+        <BaseButton size="sm" @click="appStateStore.logout">{{
+          webContent.staticLoginView.logoutBtn
+        }}</BaseButton>
+      </div>
+
       <nav :class="styles.nav">
         <BaseLink :to="headerContent.linkTo" size="sm" variant="secondary">
           {{ headerContent.linkBtnText.value }}
@@ -64,7 +81,7 @@ const headerContent = computed(() => WEB_CONTENT_PER_PAGE_MAP[route.name as Rout
           {{ headerContent.headerText.value }}
         </BaseText>
         <BaseText variant="secondary">
-          {{ headerContent.additionalInfoText.value }}
+          {{ headerContent.additionalInfoText?.value }}
         </BaseText>
       </div>
     </div>

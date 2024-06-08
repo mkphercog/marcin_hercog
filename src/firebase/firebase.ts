@@ -1,4 +1,3 @@
-import { initializeApp } from 'firebase/app'
 import {
   getFirestore,
   doc,
@@ -10,10 +9,12 @@ import {
   persistentLocalCache,
   getDocFromCache
 } from 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
 import { collectionPath, firebaseConfig } from './firebase.config'
-import type { DeepPartial, LangEnums, WebContentType } from '@/types'
-import { useLSLastUpdate } from '@/helpers/useLocalStorageLastUpdate'
 import { getStorage, ref as firebaseRef, getDownloadURL } from 'firebase/storage'
+import { getAuth, signInWithEmailAndPassword, signOut, type User } from 'firebase/auth'
+import type { LangEnums, WebContentType } from '@/types'
+import { useLSLastUpdate } from '@/helpers/useLocalStorageLastUpdate'
 import axios from 'axios'
 
 const app = initializeApp(firebaseConfig)
@@ -21,6 +22,7 @@ initializeFirestore(app, {
   localCache: persistentLocalCache({})
 })
 const db = getFirestore(app)
+const auth = getAuth(app)
 
 type GetWebContentPropsType = {
   lang: LangEnums
@@ -80,13 +82,13 @@ class FirebaseApi {
     }
   }
 
-  public async setWebContent(lang: LangEnums, newData: DeepPartial<WebContentType>) {
+  public async setWebContent(lang: LangEnums, newData: Partial<WebContentType['editable']>) {
     const headerRef = collection(this.db, this.mainPath)
 
     await setDoc(
       doc(headerRef, lang),
       {
-        ...newData
+        editable: newData
       },
       {
         merge: true
@@ -132,6 +134,37 @@ class FirebaseApi {
       .catch((error) => {
         console.error('Failure while fetching profile photo url', error)
       })
+  }
+
+  public async loginToFirebase(
+    mail: string,
+    password: string,
+    setError: (message: boolean) => void
+  ) {
+    await signInWithEmailAndPassword(auth, mail, password)
+      .then(() => {
+        setError(false)
+        console.info('You have logged in successfully.')
+      })
+      .catch(() => {
+        setError(true)
+      })
+  }
+
+  public logoutFromFirebase() {
+    signOut(auth)
+      .then(() => {
+        console.info('You have logged out successfully.')
+      })
+      .catch(() => {
+        console.error('Something went wrong with logout.')
+      })
+  }
+
+  public getCurrentLoggedUser(callback: (userData: User | null) => void) {
+    auth.onAuthStateChanged((user) => {
+      callback(user)
+    })
   }
 }
 

@@ -142,7 +142,8 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
   staticErrors: {
     emptyField: '',
     maxLength: '',
-    exceededRange: ''
+    exceededRange: '',
+    login: ''
   },
 
   staticNotFoundView: {
@@ -168,7 +169,15 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
     jobPositionTitle: '',
     aboutTitle: '',
     codingTitle: '',
-    experienceTitle: ''
+    experienceTitle: '',
+    loginBtn: ''
+  },
+
+  staticLoginView: {
+    title: '',
+    submitBtn: '',
+    loggedUserHint: '',
+    logoutBtn: ''
   },
 
   editable: {
