@@ -83,10 +83,10 @@ class FirebaseApi {
   }
 
   public async setWebContent(lang: LangEnums, newData: Partial<WebContentType['editable']>) {
-    const headerRef = collection(this.db, this.mainPath)
+    const collectionRef = collection(this.db, this.mainPath)
 
     await setDoc(
-      doc(headerRef, lang),
+      doc(collectionRef, lang),
       {
         editable: newData
       },

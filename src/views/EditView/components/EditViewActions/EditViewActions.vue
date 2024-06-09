@@ -42,17 +42,20 @@ const updateWebContentAsAdmin = () => {
 
     <BaseButton
       v-if="appStateStore.hasLocalChanges"
+      :class="styles.restoreBtn"
       @click="webContentStore.restoreWebContent"
       type="button"
       variant="secondary"
     >
       {{ webContent.staticEditMode.restoreBtn }}
     </BaseButton>
+
     <BaseButton
       v-if="appStateStore.isLoggedUser"
+      :class="styles.publishBtn"
       @click="updateWebContentAsAdmin"
       type="button"
-      variant="secondary"
+      variant="green"
       :rest-props="{ disabled: !appStateStore.hasLocalChanges }"
     >
       {{ webContent.staticEditMode.publishBtn }}

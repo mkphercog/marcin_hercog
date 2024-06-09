@@ -1,8 +1,30 @@
 .actionsWrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, max-content) auto;
+  grid-template-areas:
+    'submit restore'
+    'publish .';
   gap: 10px;
+
+  @include for-tablet-up {
+    grid-template-columns: repeat(2, max-content) auto;
+    grid-template-areas: 'submit restore publish';
+  }
 }
 
 .submitBtn {
+  grid-area: submit;
   align-self: center;
+}
+
+.restoreBtn {
+  grid-area: restore;
+}
+
+.publishBtn {
+  grid-area: publish;
+
+  @include for-tablet-up {
+    justify-self: right;
+  }
 }
