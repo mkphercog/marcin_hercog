@@ -28,7 +28,7 @@ withDefaults(defineProps<Props>(), {
       <BaseText size="sm">
         {{ label }}
       </BaseText>
-      <BaseText v-if="maxLength" size="sm">
+      <BaseText v-if="maxLength" size="xs">
         {{ model?.toString().length || 0 }}/{{ maxLength }}
       </BaseText>
     </label>

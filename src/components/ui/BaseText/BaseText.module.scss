@@ -43,6 +43,14 @@
 }
 
 .p {
+  &.xs {
+    font-size: 9px;
+
+    @include for-tablet-lg-up {
+      font-size: 13px;
+    }
+  }
+
   &.sm {
     font-size: 12px;
 
