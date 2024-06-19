@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { ref, watch, type TextareaHTMLAttributes } from 'vue'
 import { BaseText } from '@/components/ui'
 
 import styles from './BaseTextarea.module.scss'
-import { ref, watch, type TextareaHTMLAttributes } from 'vue'
 
 type Props = {
   name: string
@@ -12,11 +12,12 @@ type Props = {
   errorMessage?: string | null
   restProps?: TextareaHTMLAttributes
   isResizable?: boolean
+  maxLength?: number
 }
 
 const textarea = ref<HTMLTextAreaElement | undefined>()
 
-const model = defineModel<TextareaHTMLAttributes['value']>()
+const model = defineModel<string>()
 
 withDefaults(defineProps<Props>(), {
   isValid: undefined,
@@ -44,6 +45,7 @@ watch(
       <BaseText size="sm">
         {{ label }}
       </BaseText>
+      <BaseText v-if="maxLength" size="sm"> {{ model?.length || 0 }}/{{ maxLength }} </BaseText>
     </label>
     <textarea
       ref="textarea"

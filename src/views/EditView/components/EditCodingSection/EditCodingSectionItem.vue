@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useWebContentStore } from '@/store'
 import { BaseButton, BaseCard, BaseInput } from '@/components/ui'
 import type { CodingSkillInputType } from '../../types/EditView.types.ts'
+import { CODING_LABEL_MAX_LENGTH } from '@/constants'
 
 import styles from './EditCodingSection.module.scss'
 
@@ -27,6 +28,7 @@ const skill = computed(() => props.codingSkill)
         :has-changes="skill.label.hasChanges && !skill.label.error"
         :error-message="skill.label.error"
         v-model="skill.label.value"
+        :max-length="CODING_LABEL_MAX_LENGTH"
       />
       <BaseInput
         :name="`scaleValue-${skill.id}`"

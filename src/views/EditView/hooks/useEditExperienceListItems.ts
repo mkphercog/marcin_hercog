@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import type { InputValuesType } from '../types/EditView.types'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { checkInputField } from '../utils/EditView.helpers'
+import { EXP_ITEM_MAX_LENGTH } from '@/constants'
 
 export const useEditExperienceListItems = () => {
   const webContentStore = useWebContentStore()
@@ -12,6 +13,7 @@ export const useEditExperienceListItems = () => {
   const formExperienceListItems = reactive<InputValuesType[]>([])
 
   const webExperienceList = computed(() => webContent.value.editable.experienceSectionList)
+
   watch(
     webExperienceList,
     () => {
@@ -35,7 +37,12 @@ export const useEditExperienceListItems = () => {
         (originalItem) => item.id === originalItem.id
       )
 
-      checkInputField(item, originalContent?.description || '', 1024, appStateStore.hasLocalChanges)
+      checkInputField(
+        item,
+        originalContent?.description || '',
+        EXP_ITEM_MAX_LENGTH,
+        appStateStore.hasLocalChanges
+      )
     })
   })
 

@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import type { InputValuesType } from '../types/EditView.types'
 import { checkInputField } from '../utils/EditView.helpers'
 import { useAppStateStore, useWebContentStore } from '@/store'
+import { CODING_DESC_MAX_LENGTH } from '@/constants'
 
 export const useEditCodingDescriptionField = () => {
   const webContentStore = useWebContentStore()
@@ -20,7 +21,7 @@ export const useEditCodingDescriptionField = () => {
     checkInputField(
       codingDescription,
       originalWebContent.value.editable.codingSectionDescription,
-      1024,
+      CODING_DESC_MAX_LENGTH,
       appStateStore.hasLocalChanges
     )
   })

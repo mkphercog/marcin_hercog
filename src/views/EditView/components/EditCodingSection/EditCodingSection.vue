@@ -5,6 +5,7 @@ import EditCodingSectionAddNew from './EditCodingSectionAddNew.vue'
 import EditCodingSectionList from './EditCodingSectionList.vue'
 import type { InputValuesType, CodingSkillInputType } from '../../types/EditView.types'
 import { useWebContentStore } from '@/store'
+import { CODING_DESC_MAX_LENGTH } from '@/constants'
 
 import styles from './EditCodingSection.module.scss'
 
@@ -36,6 +37,7 @@ const skills = computed(() => props.codingSkills)
         :has-changes="additionalInfo.hasChanges && !additionalInfo.error"
         :error-message="additionalInfo.error"
         v-model="additionalInfo.value"
+        :max-length="CODING_DESC_MAX_LENGTH"
       />
     </BaseCard>
   </BaseCard>

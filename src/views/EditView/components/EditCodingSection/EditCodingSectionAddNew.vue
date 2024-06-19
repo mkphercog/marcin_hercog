@@ -5,6 +5,7 @@ import { BaseButton, BaseCard, BaseInput, BaseText } from '@/components/ui'
 import type { CodingSkillInputType } from '@/views/EditView/types/EditView.types'
 import { checkCodingSkillField } from '@/views/EditView/utils/EditView.helpers'
 import { clearNewSkillFields } from './EditCodingSection.helpers'
+import { CODING_LABEL_MAX_LENGTH } from '@/constants'
 
 import styles from './EditCodingSection.module.scss'
 
@@ -39,7 +40,12 @@ watch(newSkill, () => {
       (originalSkill) => newSkill.id === originalSkill.id
     )
 
-    checkCodingSkillField(newSkill, originalContent, 50, appStateStore.hasLocalChanges)
+    checkCodingSkillField(
+      newSkill,
+      originalContent,
+      CODING_LABEL_MAX_LENGTH,
+      appStateStore.hasLocalChanges
+    )
   }
 })
 
@@ -68,6 +74,7 @@ const addNewSkill = () => {
       :is-valid="newSkill.label.isValid && !newSkill.label.error"
       :error-message="newSkill.label.error"
       v-model="newSkill.label.value"
+      :max-length="CODING_LABEL_MAX_LENGTH"
     />
     <BaseInput
       name="newScaleValue"

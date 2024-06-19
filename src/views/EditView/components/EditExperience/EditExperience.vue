@@ -5,6 +5,7 @@ import type { InputValuesType } from '../../types/EditView.types'
 import EditExperienceAddNew from './EditExperienceAddNew.vue'
 import EditExperienceList from './EditExperienceList.vue'
 import { useWebContentStore } from '@/store'
+import { EXP_DESC_MAX_LENGTH } from '@/constants'
 
 import styles from './EditExperience.module.scss'
 
@@ -31,6 +32,7 @@ const experienceDesc = reactive(props.experienceDescription)
         :has-changes="experienceDesc.hasChanges && !experienceDesc.error"
         :error-message="experienceDesc.error"
         v-model="experienceDesc.value"
+        :max-length="EXP_DESC_MAX_LENGTH"
       />
     </BaseCard>
 

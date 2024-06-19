@@ -3,6 +3,7 @@ import { reactive } from 'vue'
 import { BaseCard, BaseText, BaseTextarea } from '@/components/ui'
 import type { InputValuesType } from '../../types/EditView.types'
 import { useWebContentStore } from '@/store'
+import { ABOUT_DESC_MAX_LENGTH } from '@/constants'
 
 const webContentStore = useWebContentStore()
 
@@ -25,6 +26,7 @@ const aboutDesc = reactive(props.aboutDescription)
       :has-changes="aboutDesc.hasChanges && !aboutDesc.error"
       :error-message="aboutDesc.error"
       v-model="aboutDesc.value"
+      :max-length="ABOUT_DESC_MAX_LENGTH"
     />
   </BaseCard>
 </template>

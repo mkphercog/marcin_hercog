@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { BaseButton, BaseCard, BaseTextarea } from '@/components/ui'
 import { useWebContentStore } from '@/store'
 import type { InputValuesType } from '../../types/EditView.types.ts'
+import { EXP_ITEM_MAX_LENGTH } from '@/constants/editMode.js'
 
 import styles from './EditExperience.module.scss'
 
@@ -27,6 +28,7 @@ const listItem = computed(() => props.experienceListItem)
         :has-changes="listItem.hasChanges && !listItem.error"
         :error-message="listItem.error"
         v-model="listItem.value"
+        :max-length="EXP_ITEM_MAX_LENGTH"
       />
 
       <BaseButton

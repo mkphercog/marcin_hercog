@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import type { InputValuesType } from '../types/EditView.types'
 import { checkInputField } from '../utils/EditView.helpers'
 import { useAppStateStore, useWebContentStore } from '@/store'
+import { EXP_DESC_MAX_LENGTH } from '@/constants'
 
 export const useEditExperienceDescription = () => {
   const webContentStore = useWebContentStore()
@@ -20,7 +21,7 @@ export const useEditExperienceDescription = () => {
     checkInputField(
       experienceDescription,
       originalWebContent.value.editable.experienceSectionDescription,
-      1024,
+      EXP_DESC_MAX_LENGTH,
       appStateStore.hasLocalChanges
     )
   })

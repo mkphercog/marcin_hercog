@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue'
 import { useAppStateStore, useWebContentStore } from '@/store'
-import { BaseButton, BaseCard, BaseInput, BaseText } from '@/components/ui'
+import { BaseButton, BaseCard, BaseText, BaseTextarea } from '@/components/ui'
 import type { InputValuesType } from '@/views/EditView/types/EditView.types'
 import { checkInputField } from '@/views/EditView/utils/EditView.helpers'
 import { clearNewExperienceItemField } from './EditExperience.helpers'
+import { EXP_ITEM_MAX_LENGTH } from '@/constants'
 
 import styles from './EditExperience.module.scss'
 
@@ -31,7 +32,7 @@ watch(newExperienceItem, () => {
     checkInputField(
       newExperienceItem,
       originalContent?.description || '',
-      50,
+      EXP_ITEM_MAX_LENGTH,
       appStateStore.hasLocalChanges
     )
   }
@@ -56,12 +57,13 @@ const addNewExperienceItem = () => {
     <BaseText>
       {{ webContentStore.webContent.staticEditMode.addNewItemHeader }}
     </BaseText>
-    <BaseInput
+    <BaseTextarea
       name="newExperienceListItem"
       label="Description"
       :is-valid="newExperienceItem.isValid && !newExperienceItem.error"
       :error-message="newExperienceItem.error"
       v-model="newExperienceItem.value"
+      :max-length="EXP_ITEM_MAX_LENGTH"
     />
 
     <BaseButton

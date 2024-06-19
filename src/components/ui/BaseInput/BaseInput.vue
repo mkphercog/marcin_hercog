@@ -11,9 +11,10 @@ type Props = {
   hasChanges?: boolean
   errorMessage?: string | null
   restProps?: InputHTMLAttributes
+  maxLength?: number
 }
 
-const model = defineModel()
+const model = defineModel<string | number>()
 
 withDefaults(defineProps<Props>(), {
   isValid: undefined,
@@ -26,6 +27,9 @@ withDefaults(defineProps<Props>(), {
     <label :class="styles.label" :for="name">
       <BaseText size="sm">
         {{ label }}
+      </BaseText>
+      <BaseText v-if="maxLength" size="sm">
+        {{ model?.toString().length || 0 }}/{{ maxLength }}
       </BaseText>
     </label>
     <input

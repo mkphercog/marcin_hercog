@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import type { CodingSkillInputType } from '../types/EditView.types'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { checkCodingSkillField, createFormCodingSkill } from '../utils/EditView.helpers'
+import { CODING_LABEL_MAX_LENGTH } from '@/constants'
 
 export const useEditCodingSkills = () => {
   const webContentStore = useWebContentStore()
@@ -29,7 +30,12 @@ export const useEditCodingSkills = () => {
         (originalSkill) => skill.id === originalSkill.id
       )
 
-      checkCodingSkillField(skill, originalContent, 50, appStateStore.hasLocalChanges)
+      checkCodingSkillField(
+        skill,
+        originalContent,
+        CODING_LABEL_MAX_LENGTH,
+        appStateStore.hasLocalChanges
+      )
     })
   })
 

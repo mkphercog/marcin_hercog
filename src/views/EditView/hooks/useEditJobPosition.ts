@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import type { InputValuesType } from '../types/EditView.types'
 import { checkInputField } from '../utils/EditView.helpers'
 import { useAppStateStore, useWebContentStore } from '@/store'
+import { JOB_POSITION_MAX_LENGTH } from '@/constants'
 
 export const useEditJobPositionField = () => {
   const webContentStore = useWebContentStore()
@@ -20,7 +21,7 @@ export const useEditJobPositionField = () => {
     checkInputField(
       jobPosition,
       originalWebContent.value.editable.headerJobPosition,
-      40,
+      JOB_POSITION_MAX_LENGTH,
       appStateStore.hasLocalChanges
     )
   })
