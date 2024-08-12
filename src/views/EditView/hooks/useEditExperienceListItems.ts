@@ -17,6 +17,8 @@ export const useEditExperienceListItems = () => {
   watch(
     webExperienceList,
     () => {
+      //I need to clear formExperienceListItems here before I generate new list
+      //without it i'm doubling fields
       formExperienceListItems.splice(0, formExperienceListItems.length)
       webExperienceList.value.map((item) => {
         formExperienceListItems.push({

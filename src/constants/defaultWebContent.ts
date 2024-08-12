@@ -8,6 +8,8 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
     codingTitle: '',
     codingSubTitle: '',
     experienceTitle: '',
+    projectsTitle: '',
+    projectDate: '',
     downloadCVBtn: '',
     socialsTitle: '',
     contactPhoneNumber: '',
@@ -38,6 +40,7 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
     localChangesInfo: '',
     backBtn: '',
     aboutWebInfo: '',
+    checkCurrentWebCode: '',
     submitBtn: '',
     restoreBtn: '',
     publishBtn: '',
@@ -50,6 +53,7 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
     aboutTitle: '',
     codingTitle: '',
     experienceTitle: '',
+    projectsTitle: '',
     loginBtn: ''
   },
 
@@ -66,6 +70,18 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
     codingSectionList: [],
     codingSectionDescription: '',
     experienceSectionDescription: '',
-    experienceSectionList: []
+    experienceSectionList: [],
+    projectsSectionList: [
+      {
+        id: '',
+        order: '',
+        imgLink: '',
+        liveLink: '',
+        projectYear: '',
+        sourceCodeLink: '',
+        techStack: '',
+        title: ''
+      }
+    ]
   }
 }

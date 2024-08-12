@@ -49,7 +49,7 @@ class FirebaseApi {
       if (cachedDocSnap.exists() && !isUpdateDataNeeded) {
         const newWebContent = cachedDocSnap.data() as WebContentType
         callback(newWebContent)
-        console.log('Cached data loaded correctly.')
+        console.info('Cached data loaded correctly.')
         return true
       }
     } catch (error) {
@@ -76,7 +76,7 @@ class FirebaseApi {
     if (docSnap.exists()) {
       const newWebContent = docSnap.data() as WebContentType
       callback(newWebContent)
-      console.log('Fetched data loaded correctly.')
+      console.info('Fetched data loaded correctly.')
     } else {
       console.error('There is no data in this firebase document.')
     }

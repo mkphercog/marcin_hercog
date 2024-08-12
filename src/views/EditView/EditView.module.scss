@@ -1,19 +1,43 @@
 .editMain {
   max-width: 1200px;
   margin: 30px auto;
-  padding: 0 30px;
+  padding: 0 15px;
+
+  @include for-tablet-lg-up {
+    padding: 0 30px;
+  }
 }
 
 .infoCard {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, max-content) 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'icon text text'
+    '. checkCode btn';
+  justify-items: start;
   gap: 10px;
 }
 
 .infoIcon {
+  grid-area: icon;
   flex-shrink: 0;
   height: 24px;
   width: auto;
   color: $success-color;
+}
+
+.infoText {
+  grid-area: text;
+}
+
+.githubBtn {
+  grid-area: btn;
+}
+
+.checkCode {
+  grid-area: checkCode;
+  align-self: center;
 }
 
 .form {

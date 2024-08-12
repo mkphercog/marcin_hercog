@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { BaseText, BaseCard, BaseLink } from '@/components/ui'
+import { BaseText, BaseCard, BaseLink, BaseButton } from '@/components/ui'
 import InfoIcon from '@/assets/icons/InfoIcon.vue'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import {
@@ -8,10 +8,13 @@ import {
   EditExperience,
   EditHeader,
   EditCodingSection,
-  EditViewActions
+  EditViewActions,
+  EditProjectsSection
 } from './components'
 import { useEditView } from './hooks/useEditView'
 import { RouteNamesEnum } from '@/routes'
+import { openUrlInNewTab } from '@/helpers/general'
+import { CURRENT_WEB_GITHUB_LINK } from '@/constants'
 
 import styles from './EditView.module.scss'
 
@@ -34,9 +37,20 @@ const goToLoginView = { name: RouteNamesEnum.LOGIN }
 
     <BaseCard :class="styles.infoCard">
       <InfoIcon :class="styles.infoIcon" />
-      <BaseText size="sm" justify>
+      <BaseText :class="styles.infoText" size="sm" justify>
         {{ webContent.staticEditMode.aboutWebInfo }}
       </BaseText>
+      <BaseText :class="styles.checkCode" size="sm" justify>
+        {{ webContent.staticEditMode.checkCurrentWebCode }}
+      </BaseText>
+      <BaseButton
+        @click="openUrlInNewTab(CURRENT_WEB_GITHUB_LINK)"
+        :class="styles.githubBtn"
+        variant="green"
+        size="sm"
+      >
+        Github
+      </BaseButton>
     </BaseCard>
 
     <form @submit.prevent="submitForm" :class="styles.form">
@@ -50,6 +64,7 @@ const goToLoginView = { name: RouteNamesEnum.LOGIN }
         :experience-description="formFields.experienceDescription"
         :experience-list-items="formFields.formExperienceListItems"
       />
+      <EditProjectsSection :projects="formFields.formProjectsList" />
       <EditViewActions :is-form-valid="formState.isValid" />
     </form>
   </main>

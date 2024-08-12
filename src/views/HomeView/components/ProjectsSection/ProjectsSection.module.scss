@@ -1,0 +1,76 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+
+  @include for-tablet-up {
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include for-tablet-lg-up {
+    gap: 50px;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  overflow-y: clip;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
+}
+
+.hover {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 10px;
+  opacity: 0;
+  transition: all 300ms;
+  background-color: rgba(255, 255, 255, 0.85);
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.year {
+  align-self: end;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  @include for-tablet-lg-up {
+  }
+}

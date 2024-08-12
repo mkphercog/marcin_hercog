@@ -1,29 +1,29 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { BaseButton } from '@/components/ui'
-import EditCodingSectionItem from './EditCodingSectionItem.vue'
-import type { CodingSkillInputType } from '@/views/EditView/types/EditView.types'
+import EditProjectSectionItem from './EditProjectsSectionItem.vue'
+import type { ProjectInputType } from '@/views/EditView/types/EditView.types'
 import { useWebContentStore } from '@/store'
 
-import styles from './EditCodingSection.module.scss'
+import styles from './EditProjectsSection.module.scss'
 
 type Props = {
-  codingSkills: CodingSkillInputType[]
+  projects: ProjectInputType[]
 }
 
 defineProps<Props>()
 
 const webContentStore = useWebContentStore()
 
-const showSkills = ref(false)
+const showProjects = ref(false)
 const buttonText = computed(() =>
-  showSkills.value
+  showProjects.value
     ? webContentStore.webContent.staticEditMode.hideListBtn
     : webContentStore.webContent.staticEditMode.showListBtn
 )
 
 const toggleListVisibility = () => {
-  showSkills.value = !showSkills.value
+  showProjects.value = !showProjects.value
 }
 </script>
 
@@ -39,12 +39,12 @@ const toggleListVisibility = () => {
     {{ buttonText }}
   </BaseButton>
 
-  <ul :class="styles.listContainter" v-show="showSkills">
-    <EditCodingSectionItem
-      v-for="skill in codingSkills"
-      :key="skill.id"
-      :coding-skill="skill"
-      @delete-skill="webContentStore.deleteCodingSkill(skill.id)"
+  <ul :class="styles.listContainter" v-show="showProjects">
+    <EditProjectSectionItem
+      v-for="project in projects"
+      :key="project.id"
+      :project="project"
+      @delete-skill="webContentStore.deleteProject(project.id)"
     />
   </ul>
 </template>

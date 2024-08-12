@@ -1,5 +1,9 @@
-import type { CodingSkillType, ExperienceListItemType } from '@/types'
-import type { InputValuesType, CodingSkillInputType } from '../types/EditView.types'
+import type { CodingSkillType, ExperienceListItemType, ProjectsListItemType } from '@/types'
+import type {
+  InputValuesType,
+  CodingSkillInputType,
+  ProjectInputType
+} from '../types/EditView.types'
 import { useWebContentStore } from '@/store'
 import isEqual from 'lodash.isequal'
 
@@ -29,18 +33,11 @@ export const checkInputField = (
 
 export const checkCodingSkillField = (
   field: CodingSkillInputType,
-  originalWebContent:
-    | {
-        id: string
-        label: string
-        scaleValue: number
-      }
-    | undefined,
+  originalWebContent: CodingSkillType | undefined,
   maxLength: number,
   areLocalChanges: boolean
 ) => {
   const webContentStore = useWebContentStore()
-
   const label = field.label
   if (!label.value?.length) {
     label.error = webContentStore.webContent.staticErrors.emptyField
@@ -106,5 +103,49 @@ export const mapExperienceListToDisplay = (
   return experienceItems.map((item) => ({
     id: item.id || '',
     description: item.value || ''
+  }))
+}
+
+export const checkProjectFields = (
+  fields: ProjectInputType,
+  originalWebContent: ProjectsListItemType | undefined,
+  maxLength: number,
+  areLocalChanges: boolean
+) => {
+  const webContentStore = useWebContentStore()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { id, ...restFields } = fields
+
+  Object.entries(restFields).forEach(([key, field]) => {
+    if (!field.value?.length) {
+      field.error = webContentStore.webContent.staticErrors.emptyField
+    } else if (field.value.length > maxLength) {
+      field.error = `${webContentStore.webContent.staticErrors.maxLength} ${maxLength}`
+    } else {
+      field.error = null
+    }
+
+    field.hasChanges = field.value !== originalWebContent?.[key as keyof ProjectInputType]
+
+    if (field.value !== originalWebContent?.[key as keyof ProjectInputType]) {
+      field.isValid = true
+    } else if (!areLocalChanges) {
+      field.isValid = undefined
+    }
+  })
+}
+
+export const mapProjectsToDisplay = (
+  mappedProjects: ProjectInputType[]
+): ProjectsListItemType[] => {
+  return mappedProjects.map((project) => ({
+    id: project.id || '',
+    order: project.order.value || '',
+    title: project.title.value || '',
+    techStack: project.techStack.value || '',
+    liveLink: project.liveLink.value || '',
+    sourceCodeLink: project.sourceCodeLink.value || '',
+    imgLink: project.imgLink.value || '',
+    projectYear: project.projectYear.value || ''
   }))
 }

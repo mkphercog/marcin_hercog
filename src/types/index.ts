@@ -9,6 +9,17 @@ export type ExperienceListItemType = {
   description: string
 }
 
+export type ProjectsListItemType = {
+  id: string
+  order: string
+  title: string
+  techStack: string
+  liveLink: string
+  sourceCodeLink: string
+  imgLink: string
+  projectYear: string
+}
+
 export type IconType = {
   id: string
   icon: string
@@ -23,6 +34,8 @@ type StaticHomeViewType = {
   codingTitle: string
   codingSubTitle: string
   experienceTitle: string
+  projectsTitle: string
+  projectDate: string
   downloadCVBtn: string
   socialsTitle: string
   contactPhoneNumber: string
@@ -53,6 +66,7 @@ type StaticEditModeType = {
   localChangesInfo: string
   backBtn: string
   aboutWebInfo: string
+  checkCurrentWebCode: string
   submitBtn: string
   restoreBtn: string
   publishBtn: string
@@ -65,6 +79,7 @@ type StaticEditModeType = {
   aboutTitle: string
   codingTitle: string
   experienceTitle: string
+  projectsTitle: string
   loginBtn: string
 }
 
@@ -82,6 +97,7 @@ export type EditableType = {
   codingSectionDescription: string
   experienceSectionDescription: string
   experienceSectionList: ExperienceListItemType[]
+  projectsSectionList: ProjectsListItemType[]
 }
 
 export type WebContentType = {

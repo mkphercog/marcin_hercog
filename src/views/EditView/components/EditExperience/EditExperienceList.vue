@@ -15,7 +15,7 @@ defineProps<Props>()
 
 const webContentStore = useWebContentStore()
 
-const showListItems = ref(true)
+const showListItems = ref(false)
 const buttonText = computed(() =>
   showListItems.value
     ? webContentStore.webContent.staticEditMode.hideListBtn

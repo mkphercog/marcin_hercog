@@ -1,15 +1,18 @@
 # marcin_hercog
 
-Welcome to the repository for my personal website. I created this project after completing a Vue course to consolidate and enhance my knowledge of Vue.
+Welcome to the repository for my personal website. I created this project after completing a Vue course to consolidate and enhance my knowledge of Vue and Firebase.
 
-## Technologies Used
+## Technologies used
 
 - **Vue.js**
+- **Vue router**
 - **Pinia**
 - **Firebase**
 
-## Features
+## Web features
 
-Here's what you can do on my site:
+- **Ability to edit site content locally**
+- **Ability to log in as admin**
+- **Ability to publish local changes as admin**
 
-- **readonly** - for now
+**[Live here](https://marcin-hercog.netlify.app/)**

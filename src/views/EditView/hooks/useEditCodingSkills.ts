@@ -16,6 +16,8 @@ export const useEditCodingSkills = () => {
   watch(
     webCodingSkills,
     () => {
+      //I need to clear formCodingSkillsList here before I generate new list
+      //without it i'm doubling fields
       formCodingSkillsList.splice(0, formCodingSkillsList.length)
       webCodingSkills.value.map((skill) => {
         formCodingSkillsList.push(createFormCodingSkill(skill))

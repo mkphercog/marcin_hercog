@@ -1,7 +1,11 @@
 import { computed, shallowReactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { mapExperienceListToDisplay, mapSkillsToDisplay } from '../utils/EditView.helpers'
+import {
+  mapExperienceListToDisplay,
+  mapProjectsToDisplay,
+  mapSkillsToDisplay
+} from '../utils/EditView.helpers'
 import { useWebContentStore } from '@/store'
 import type { WebContentType } from '@/types'
 import { useEditJobPositionField } from './useEditJobPosition'
@@ -10,6 +14,7 @@ import { useEditCodingSkills } from './useEditCodingSkills'
 import { useEditCodingDescriptionField } from './useEditCodingDescription'
 import { useEditExperienceDescription } from './useEditExperienceDescription'
 import { useEditExperienceListItems } from './useEditExperienceListItems'
+import { useEditProjectsList } from './useEditProjectsList'
 
 export const useEditView = () => {
   const webContentStore = useWebContentStore()
@@ -22,6 +27,7 @@ export const useEditView = () => {
   const { codingDescription } = useEditCodingDescriptionField()
   const { experienceDescription } = useEditExperienceDescription()
   const { formExperienceListItems } = useEditExperienceListItems()
+  const { formProjectsList } = useEditProjectsList()
 
   const formState = computed(() => {
     const formFields = shallowReactive([
@@ -41,9 +47,24 @@ export const useEditView = () => {
       (skill) => !!skill.label.isValid || !!skill.scaleValue.isValid
     )
 
+    const haveProjectsError = formProjectsList.some((project) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { id, ...projectFields } = project
+      return Object.values(projectFields).some((field) => field.error)
+    })
+    const areProjectsValid = formProjectsList.some((project) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { id, ...projectFields } = project
+      return Object.values(projectFields).some((field) => !!field.isValid)
+    })
+
     return {
-      hasErrors: hasFormError || haveSkillsError,
-      isValid: (isFormValid || areSkillsValid) && !hasFormError && !haveSkillsError
+      hasErrors: hasFormError || haveSkillsError || haveProjectsError,
+      isValid:
+        (isFormValid || areSkillsValid || areProjectsValid) &&
+        !hasFormError &&
+        !haveSkillsError &&
+        !haveProjectsError
     }
   })
 
@@ -60,7 +81,8 @@ export const useEditView = () => {
         codingSectionList: mapSkillsToDisplay(formCodingSkillsList),
         codingSectionDescription: codingDescription.value!,
         experienceSectionDescription: experienceDescription.value!,
-        experienceSectionList: mapExperienceListToDisplay(formExperienceListItems)
+        experienceSectionList: mapExperienceListToDisplay(formExperienceListItems),
+        projectsSectionList: mapProjectsToDisplay(formProjectsList)
       }
     }
 
@@ -77,7 +99,8 @@ export const useEditView = () => {
       formCodingSkillsList,
       codingDescription,
       experienceDescription,
-      formExperienceListItems
+      formExperienceListItems,
+      formProjectsList
     },
     formState,
     submitForm

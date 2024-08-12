@@ -1,0 +1,103 @@
+.listContainter {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listItem {
+  list-style: none;
+  width: 100%;
+}
+
+.skillCard {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin: 10px auto;
+  gap: 10px;
+  grid-template-areas:
+    'order order order projectYear projectYear projectYear'
+    'title title title title title title'
+    'techStack techStack techStack techStack techStack techStack'
+    'liveLink liveLink liveLink liveLink liveLink liveLink'
+    'sourceCodeLink sourceCodeLink sourceCodeLink sourceCodeLink sourceCodeLink sourceCodeLink'
+    'imgLink imgLink imgLink imgLink imgLink imgLink'
+    '. . . . . deleteBtn';
+
+  @include for-tablet-lg-up {
+    max-width: 80%;
+    grid-template-areas:
+      'order title title title projectYear projectYear'
+      'techStack techStack techStack techStack imgLink imgLink'
+      'liveLink liveLink liveLink sourceCodeLink sourceCodeLink sourceCodeLink'
+      '. . . . . deleteBtn';
+  }
+}
+
+.addNewContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin: 10px auto;
+  gap: 10px;
+  grid-template-areas:
+    'sectionTitle sectionTitle sectionTitle sectionTitle sectionTitle sectionTitle'
+    'order order order projectYear projectYear projectYear'
+    'title title title title title title'
+    'techStack techStack techStack techStack techStack techStack'
+    'liveLink liveLink liveLink liveLink liveLink liveLink'
+    'sourceCodeLink sourceCodeLink sourceCodeLink sourceCodeLink sourceCodeLink sourceCodeLink'
+    'imgLink imgLink imgLink imgLink imgLink imgLink'
+    'addBtn addBtn addBtn addBtn addBtn addBtn ';
+
+  @include for-tablet-up {
+    width: 70%;
+    grid-template-areas:
+      'sectionTitle sectionTitle sectionTitle sectionTitle sectionTitle sectionTitle'
+      'order title title title projectYear projectYear'
+      'techStack techStack techStack techStack imgLink imgLink'
+      'liveLink liveLink liveLink sourceCodeLink sourceCodeLink sourceCodeLink'
+      'addBtn addBtn addBtn addBtn addBtn addBtn ';
+  }
+}
+
+.sectionTitle {
+  grid-area: sectionTitle;
+  justify-self: center;
+}
+
+.order {
+  grid-area: order;
+}
+
+.title {
+  grid-area: title;
+}
+
+.techStack {
+  grid-area: techStack;
+}
+
+.liveLink {
+  grid-area: liveLink;
+}
+
+.sourceCodeLink {
+  grid-area: sourceCodeLink;
+}
+
+.imgLink {
+  grid-area: imgLink;
+}
+
+.projectYear {
+  grid-area: projectYear;
+}
+
+.addBtn {
+  grid-area: addBtn;
+  justify-self: center;
+}
+
+.deleteBtn {
+  grid-area: deleteBtn;
+}

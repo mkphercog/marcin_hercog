@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import isEqual from 'lodash.isequal'
 import { DEFAULT_WEB_CONTENT } from '@/constants'
-import type { WebContentType } from '@/types'
+import type { ProjectsListItemType, WebContentType } from '@/types'
 import { useAppStateStore } from './appStateStore'
 import { firebaseApi } from '@/firebase/firebase'
 import type { User } from 'firebase/auth'
@@ -138,6 +138,32 @@ export const useWebContentStore = defineStore('web-content-store', {
         editable: {
           ...this.webContent.editable,
           experienceSectionList: filteredExperienceList
+        }
+      })
+    },
+
+    addProject(newProject: ProjectsListItemType) {
+      const newProjects = [...this.webContent.editable.projectsSectionList, newProject]
+
+      this.changeWebContentLocally({
+        ...this.webContent,
+        editable: {
+          ...this.webContent.editable,
+          projectsSectionList: newProjects
+        }
+      })
+    },
+
+    deleteProject(id: string | undefined) {
+      const filteredProjects = this.webContent.editable.projectsSectionList.filter(
+        (project) => project.id !== id
+      )
+
+      this.changeWebContentLocally({
+        ...this.webContent,
+        editable: {
+          ...this.webContent.editable,
+          projectsSectionList: filteredProjects
         }
       })
     },
