@@ -50,16 +50,14 @@ watch(currentLang, () => {
 
 const addNewProject = () => {
   if (isFormValid.value) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, ...newProjectFields } = newProject
     let newProjectValues = {} as Omit<ProjectsListItemType, 'id'>
     Object.entries(newProjectFields).forEach(([key, field]) => {
       Object.assign(newProjectValues, { [key]: field.value })
     })
 
-    webContentStore.addProject({
-      id: id || new Date().getTime().toLocaleString(),
-      ...newProjectValues
-    })
+    webContentStore.addProject(newProjectValues)
     clearNewProjectFields(newProject)
   }
 }

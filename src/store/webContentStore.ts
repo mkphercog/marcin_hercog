@@ -81,7 +81,7 @@ export const useWebContentStore = defineStore('web-content-store', {
       const newSkills = [
         ...this.webContent.editable.codingSectionList,
         {
-          id: new Date().getTime().toLocaleString(),
+          id: new Date().getTime().toString(),
           label: label,
           scaleValue: scaleValue
         }
@@ -142,8 +142,11 @@ export const useWebContentStore = defineStore('web-content-store', {
       })
     },
 
-    addProject(newProject: ProjectsListItemType) {
-      const newProjects = [...this.webContent.editable.projectsSectionList, newProject]
+    addProject(newProject: Omit<ProjectsListItemType, 'id'>) {
+      const newProjects = [
+        ...this.webContent.editable.projectsSectionList,
+        { id: new Date().getTime().toString(), ...newProject }
+      ]
 
       this.changeWebContentLocally({
         ...this.webContent,

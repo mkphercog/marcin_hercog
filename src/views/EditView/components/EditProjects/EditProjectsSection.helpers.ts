@@ -45,5 +45,5 @@ export const createProjectFields = (project?: ProjectsListItemType) => {
     })
   }
 
-  return { id: project?.id || new Date().toLocaleString(), ...fields }
+  return { id: project?.id || new Date().getTime().toString(), ...fields }
 }

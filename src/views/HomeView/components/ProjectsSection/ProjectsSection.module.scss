@@ -24,6 +24,11 @@
   padding: 0;
   margin: 0;
   overflow-y: clip;
+  transition: all 300ms;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .image {

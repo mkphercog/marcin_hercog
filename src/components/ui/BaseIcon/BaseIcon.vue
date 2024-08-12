@@ -14,6 +14,6 @@ defineProps<Props>()
 
 <template>
   <div @click="openUrlInNewTab(link)" :class="[styles.wrapper, { [styles.clickable]: link }]">
-    <img :src="src" alt="" />
+    <img :src="src" :alt="alt" />
   </div>
 </template>

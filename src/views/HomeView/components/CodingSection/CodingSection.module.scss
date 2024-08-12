@@ -31,10 +31,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
 
   @include for-tablet-lg-up {
-    gap: 50px;
+    gap: 40px;
     max-width: 800px;
   }
 }

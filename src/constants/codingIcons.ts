@@ -14,87 +14,123 @@ import NpmIcon from '@/assets/icons/npm.svg'
 import YarnIcon from '@/assets/icons/yarn.svg'
 import ConfluenceIcon from '@/assets/icons/Confluence.svg'
 import JiraIcon from '@/assets/icons/Jira_with_text.svg'
+import FirebaseIcon from '@/assets/icons/Firebase.svg'
+import NextJSIcon from '@/assets/icons/NextJS.svg'
+import OpenAIIcon from '@/assets/icons/OpenAI.svg'
+import TailwindIcon from '@/assets/icons/Tailwind.svg'
+import GitHubIcon from '@/assets/icons/Github.svg'
+import SassIcon from '@/assets/icons/Sass.svg'
 import type { IconType } from '@/types'
 
 export const CODING_ICONS: IconType[] = [
   {
     id: 'TypeScriptIcon',
     icon: TypeScriptIcon,
-    name: 'TypesScript icon'
+    name: 'TypeScriptIcon'
   },
   {
     id: 'JavaScriptIcon',
     icon: JavaScriptIcon,
-    name: 'JavaScript icon'
-  },
-  {
-    id: 'VueIcon',
-    icon: VueIcon,
-    name: 'Vue icon'
+    name: 'JavaScriptIcon'
   },
   {
     id: 'ReactIcon',
     icon: ReactIcon,
-    name: 'React icon'
+    name: 'ReactIcon'
   },
   {
-    id: 'CSSIcon',
-    icon: CSSIcon,
-    name: 'CSS icon'
+    id: 'VueIcon',
+    icon: VueIcon,
+    name: 'VueIcon'
+  },
+  {
+    id: 'NextJSIcon',
+    icon: NextJSIcon,
+    name: 'NextJSIcon'
   },
   {
     id: 'HTMLIcon',
     icon: HTMLIcon,
-    name: 'HTML icon'
+    name: 'HTMLIcon'
   },
   {
-    id: 'VSCodeIcon',
-    icon: VSCodeIcon,
-    name: 'VSCode icon'
+    id: 'CSSIcon',
+    icon: CSSIcon,
+    name: 'CSSIcon'
   },
   {
-    id: 'GITIcon',
-    icon: GITIcon,
-    name: 'GIT icon'
+    id: 'TailwindIcon',
+    icon: TailwindIcon,
+    name: 'TailwindIcon'
   },
   {
-    id: 'GitLabIcon',
-    icon: GitLabIcon,
-    name: 'GitLab icon'
-  },
-  {
-    id: 'StorybookIcon',
-    icon: StorybookIcon,
-    name: 'Storybook icon'
-  },
-  {
-    id: 'WindowsIcon',
-    icon: WindowsIcon,
-    name: 'Windows icon'
+    id: 'SassIcon',
+    icon: SassIcon,
+    name: 'SassIcon'
   },
   {
     id: 'FigmaIcon',
     icon: FigmaIcon,
-    name: 'Figma icon'
+    name: 'FigmaIcon'
+  },
+  {
+    id: 'VSCodeIcon',
+    icon: VSCodeIcon,
+    name: 'VSCodeIcon'
+  },
+  {
+    id: 'GITIcon',
+    icon: GITIcon,
+    name: 'GITIcon'
+  },
+  {
+    id: 'GitLabIcon',
+    icon: GitLabIcon,
+    name: 'GitLabIcon'
+  },
+  {
+    id: 'GitHubIcon',
+    icon: GitHubIcon,
+    name: 'GitHubIcon'
+  },
+  {
+    id: 'OpenAIIcon',
+    icon: OpenAIIcon,
+    name: 'OpenAIIcon'
+  },
+  {
+    id: 'StorybookIcon',
+    icon: StorybookIcon,
+    name: 'StorybookIcon'
+  },
+  {
+    id: 'FirebaseIcon',
+    icon: FirebaseIcon,
+    name: 'FirebaseIcon'
   },
   {
     id: 'NpmIcon',
     icon: NpmIcon,
-    name: 'Npm icon'
+    name: 'NpmIcon'
   },
   {
     id: 'YarnIcon',
     icon: YarnIcon,
-    name: 'Yarn icon'
+    name: 'YarnIcon'
   },
   {
     id: 'ConfluenceIcon',
     icon: ConfluenceIcon,
-    name: 'Confluence icon'
+    name: 'ConfluenceIcon'
   },
   {
     id: 'JiraIcon',
     icon: JiraIcon,
-    name: 'Jira icon'
+    name: 'JiraIcon'
+  },
+  {
+    id: 'WindowsIcon',
+    icon: WindowsIcon,
+    name: 'WindowsIcon'
   }
 ]
