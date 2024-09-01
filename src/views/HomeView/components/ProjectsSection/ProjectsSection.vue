@@ -18,14 +18,17 @@ const sortByProjectOrder = (projectA: ProjectsListItemType, projectB: ProjectsLi
 const sortedProjectList = computed(() =>
   webContent.value.editable.projectsSectionList.slice(0).sort(sortByProjectOrder)
 )
+
+const currentYearString = new Date().getFullYear().toString()
 </script>
 
 <template>
   <BaseSection :title="webContent.staticHomeView.projectsTitle">
     <div :class="styles.wrapper">
       <ProjectsSectionItem
-        v-for="project in sortedProjectList"
+        v-for="(project, index) in sortedProjectList"
         :project="project"
+        :is-new="index === 0 && project.projectYear.includes(currentYearString)"
         :key="project.id"
       />
     </div>

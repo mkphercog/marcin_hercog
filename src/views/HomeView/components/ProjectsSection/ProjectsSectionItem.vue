@@ -13,6 +13,7 @@ const { webContent } = storeToRefs(webContentStore)
 
 type Props = {
   project: ProjectsListItemType
+  isNew: boolean
 }
 
 defineProps<Props>()
@@ -27,6 +28,11 @@ const handleImageError = (payload: Event) => {
 
 <template>
   <BaseCard :class="styles.item">
+    <div v-if="isNew" :class="styles.ribbon">
+      <BaseText size="sm" :class="styles.ribonText">
+        {{ webContent.staticHomeView.ribbonText }}
+      </BaseText>
+    </div>
     <img
       :class="styles.image"
       :src="project.imgLink"

@@ -40,6 +40,7 @@ type StaticHomeViewType = {
   socialsTitle: string
   contactPhoneNumber: string
   contactEmail: string
+  ribbonText: string
 }
 
 type StaticEmailTemplateType = {

@@ -13,7 +13,8 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
     downloadCVBtn: '',
     socialsTitle: '',
     contactPhoneNumber: '',
-    contactEmail: ''
+    contactEmail: '',
+    ribbonText: ''
   },
 
   staticEmailTemplate: {

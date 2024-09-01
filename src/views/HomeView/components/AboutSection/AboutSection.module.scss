@@ -15,10 +15,20 @@
 .photoWrapper {
   flex-shrink: 0;
   position: relative;
-  width: 290px;
-  height: 290px;
+  width: 160px;
+  height: 160px;
   overflow: hidden;
   border-radius: 50%;
+
+  @include for-xs-phone-up {
+    width: 250px;
+    height: 250px;
+  }
+
+  @include for-tablet-up {
+    width: 300px;
+    height: 300px;
+  }
 
   @include for-tablet-lg-up {
     width: 430px;
