@@ -3,9 +3,13 @@
   flex-direction: row;
   column-gap: 40px;
   justify-content: center;
-  margin-bottom: 40px;
 
   @include for-tablet-lg-up {
     column-gap: 60px;
   }
+}
+
+.googleCalendarInfo {
+  text-align: center;
+  margin: 40px 0;
 }

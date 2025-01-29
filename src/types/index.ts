@@ -38,6 +38,7 @@ type StaticHomeViewType = {
   projectDate: string
   downloadCVBtn: string
   socialsTitle: string
+  googleCalendarInfo: string
   contactPhoneNumber: string
   contactEmail: string
   ribbonText: string

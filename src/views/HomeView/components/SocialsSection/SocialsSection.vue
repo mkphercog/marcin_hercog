@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { BaseSection, BaseIcon } from '@/components/ui'
+import { BaseSection, BaseIcon, BaseText } from '@/components/ui'
 import { SOCIALS } from '@/constants'
 import { useWebContentStore } from '@/store'
 
@@ -20,5 +20,8 @@ const { webContent } = storeToRefs(useWebContentStore())
         :link="link"
       />
     </ul>
+    <BaseText :class="styles.googleCalendarInfo" as="p" size="sm">{{
+      webContent.staticHomeView.googleCalendarInfo
+    }}</BaseText>
   </BaseSection>
 </template>
