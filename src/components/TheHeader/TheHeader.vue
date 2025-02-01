@@ -2,6 +2,7 @@
 import { computed, type ComputedRef } from 'vue'
 import { useRoute, type RouteLocationNamedRaw } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import TheLogo from '../TheLogo/TheLogo.vue'
 import { BaseText, BaseButton, BaseLink } from '@/components/ui'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { RouteNamesEnum } from '@/routes'
@@ -65,16 +66,20 @@ const headerContent = computed(() => WEB_CONTENT_PER_PAGE_MAP[route.name as Rout
       </div>
 
       <nav :class="styles.nav">
-        <BaseLink :to="headerContent.linkTo" size="sm" variant="secondary">
-          {{ headerContent.linkBtnText.value }}
-        </BaseLink>
-        <BaseText v-if="appStateStore.hasLocalChanges" :class="styles.localChanges" size="sm">
-          {{ webContent.staticEditMode.localChangesInfo }}
-        </BaseText>
-        <BaseButton @click="appStateStore.toggleCurrentLanguage" type="normal">
-          {{ webContent.staticHomeView.changeLangBtn }}
-        </BaseButton>
+        <TheLogo />
+        <div :class="styles.actionBtns">
+          <BaseLink :to="headerContent.linkTo" size="sm" variant="secondary">
+            {{ headerContent.linkBtnText.value }}
+          </BaseLink>
+          <BaseButton @click="appStateStore.toggleCurrentLanguage" type="normal">
+            {{ webContent.staticHomeView.changeLangBtn }}
+          </BaseButton>
+        </div>
       </nav>
+
+      <BaseText v-if="appStateStore.hasLocalChanges" :class="styles.localChanges" size="sm">
+        {{ webContent.staticEditMode.localChangesInfo }}
+      </BaseText>
 
       <div :class="styles.fullNameWrapper">
         <BaseText v-if="headerContent.headerText?.value" as="h1" size="lg" variant="secondary">
