@@ -5,6 +5,8 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
     editSiteBtn: '',
     changeLangBtn: '',
     fullName: '',
+    codeComment: '',
+    codeObjectContent: [],
     codingTitle: '',
     codingSubTitle: '',
     experienceTitle: '',

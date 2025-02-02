@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
 import { BaseText } from '@/components/ui'
+import { useWebContentStore } from '@/store'
 
 import styles from './AboutSection.module.scss'
 
-const fullText = `// Hello, I am Marcin! `
+const webContentStore = useWebContentStore()
+const { webContent } = storeToRefs(webContentStore)
+
+const fullText = webContent.value.staticHomeView.codeComment
 const displayedText = ref('')
 const typingSpeed = 150
 const initialDelay = 1500

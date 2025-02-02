@@ -27,10 +27,17 @@ export type IconType = {
   name: string
 }
 
+export type CodeObjectContentItem = {
+  keyName: string
+  values: string[]
+}
+
 type StaticHomeViewType = {
   editSiteBtn: string
   changeLangBtn: string
   fullName: string
+  codeComment: string
+  codeObjectContent: CodeObjectContentItem[]
   codingTitle: string
   codingSubTitle: string
   experienceTitle: string

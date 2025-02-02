@@ -1,28 +1,16 @@
 <script setup lang="ts">
 import { BaseText } from '@/components/ui'
-import AboutSectionCodeItem, { type CodeItemProps } from './AboutSectionCodeItem.vue'
+import AboutSectionCodeItem from './AboutSectionCodeItem.vue'
 import AboutSectionCodeComment from './AboutSectionCodeComment.vue'
+import { storeToRefs } from 'pinia'
+import { useWebContentStore } from '@/store'
 
 import styles from './AboutSection.module.scss'
 
-const objectData: CodeItemProps[] = [
-  {
-    objKey: 'commercialExperience: ',
-    objValues: ['since 2022']
-  },
-  {
-    objKey: 'codingLangs: ',
-    objValues: ['JavaScript', 'TypeScript']
-  },
-  {
-    objKey: 'mainLibrary: ',
-    objValues: ['React']
-  },
-  {
-    objKey: 'other: ',
-    objValues: ['Next.js', 'Vue.js']
-  }
-]
+const webContentStore = useWebContentStore()
+const { webContent } = storeToRefs(webContentStore)
+
+const codeObjectContent = webContent.value.staticHomeView.codeObjectContent
 </script>
 
 <template>
@@ -32,10 +20,10 @@ const objectData: CodeItemProps[] = [
 
     <div :class="styles.contentWrapper">
       <AboutSectionCodeItem
-        v-for="item in objectData"
-        :key="item.objKey"
-        :obj-key="item.objKey"
-        :obj-values="item.objValues"
+        v-for="item in codeObjectContent"
+        :key="item.keyName"
+        :key-name="item.keyName"
+        :values="item.values"
       />
     </div>
 
