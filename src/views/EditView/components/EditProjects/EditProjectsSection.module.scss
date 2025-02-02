@@ -1,20 +1,9 @@
-.listContainter {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.listItem {
-  list-style: none;
-  width: 100%;
-}
-
 .skillCard {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   margin: 10px auto;
   gap: 10px;
+  box-shadow: $inset-box-shadow;
   grid-template-areas:
     'order order order projectYear projectYear projectYear'
     'title title title title title title'
@@ -34,11 +23,12 @@
   }
 }
 
-.addNewContainer {
+.addNewProjectContainer {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   margin: 10px auto;
   gap: 10px;
+  box-shadow: $inset-box-shadow;
   grid-template-areas:
     'sectionTitle sectionTitle sectionTitle sectionTitle sectionTitle sectionTitle'
     'order order order projectYear projectYear projectYear'

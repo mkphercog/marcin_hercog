@@ -5,7 +5,7 @@ import EditCodingSectionItem from './EditCodingSectionItem.vue'
 import type { CodingSkillInputType } from '@/views/EditView/types/EditView.types'
 import { useWebContentStore } from '@/store'
 
-import styles from './EditCodingSection.module.scss'
+import sharedStyles from '../EditSharedStyles.module.scss'
 
 type Props = {
   codingSkills: CodingSkillInputType[]
@@ -39,7 +39,7 @@ const toggleListVisibility = () => {
     {{ buttonText }}
   </BaseButton>
 
-  <ul :class="styles.listContainter" v-show="showSkills">
+  <ul :class="sharedStyles.listContainter" v-show="showSkills">
     <EditCodingSectionItem
       v-for="skill in codingSkills"
       :key="skill.id"

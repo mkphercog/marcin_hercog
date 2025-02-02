@@ -4,13 +4,17 @@ import BaseDivider from '../BaseDivider/BaseDivider.vue'
 
 import styles from './BaseSection.module.scss'
 
-type Props = { title?: string; hideDivider?: boolean }
+type Props = { title?: string; hideDivider?: boolean; headerPosition?: 'center' | 'left' }
 
-defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  headerPosition: 'center'
+})
+
+const isPosLeft = props.headerPosition === 'left'
 </script>
 
 <template>
-  <section :class="styles.wrapper">
+  <section :class="[styles.wrapper, { [styles.wrapperLeft]: isPosLeft }]">
     <BaseText :class="styles.header" as="h3">
       {{ title }}
     </BaseText>

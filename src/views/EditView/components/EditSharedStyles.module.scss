@@ -1,0 +1,61 @@
+.listContainter {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.listItem {
+  list-style: none;
+  width: 100%;
+}
+
+.addNewContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+  gap: 10px;
+  box-shadow: $inset-box-shadow;
+
+  @include for-tablet-lg-up {
+    width: 70%;
+  }
+}
+
+.editContainter {
+  width: 100%;
+  box-shadow: $inset-box-shadow;
+
+  @include for-tablet-lg-up {
+    margin: 30px auto 0;
+    width: 80%;
+  }
+}
+
+.editCardItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: none;
+  padding: 20px;
+  width: 100%;
+  gap: 10px;
+  box-shadow: $inset-box-shadow;
+
+  @include for-tablet-lg-up {
+    flex-direction: row;
+    align-items: baseline;
+    width: 80%;
+  }
+
+  button {
+    align-self: flex-end;
+
+    @include for-tablet-lg-up {
+      align-self: unset;
+    }
+  }
+}

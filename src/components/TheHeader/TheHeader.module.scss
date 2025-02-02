@@ -2,6 +2,7 @@
   width: 100%;
   background-color: $primary-bg-color;
   padding: 15px;
+  box-shadow: $basic-box-shadow;
 
   @include for-tablet-lg-up {
     padding: 30px;

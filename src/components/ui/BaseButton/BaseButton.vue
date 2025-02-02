@@ -7,7 +7,7 @@ import styles from './BaseButton.module.scss'
 
 type Props = {
   size?: BaseTextSizeType
-  variant?: 'primary' | 'secondary' | 'green'
+  variant?: 'primary' | 'secondary' | 'green' | 'destructive'
   restProps?: ButtonHTMLAttributes
 }
 

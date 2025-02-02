@@ -7,7 +7,7 @@ import { checkCodingSkillField } from '@/views/EditView/utils/EditView.helpers'
 import { clearNewSkillFields } from './EditCodingSection.helpers'
 import { CODING_LABEL_MAX_LENGTH } from '@/constants'
 
-import styles from './EditCodingSection.module.scss'
+import shadedStyles from '../EditSharedStyles.module.scss'
 
 const webContentStore = useWebContentStore()
 const appStateStore = useAppStateStore()
@@ -64,7 +64,7 @@ const addNewSkill = () => {
 </script>
 
 <template>
-  <BaseCard :class="styles.addNewContainer">
+  <BaseCard :class="shadedStyles.addNewContainer">
     <BaseText>
       {{ webContentStore.webContent.staticEditMode.addNewItemHeader }}
     </BaseText>
@@ -89,8 +89,8 @@ const addNewSkill = () => {
 
     <BaseButton
       @click="addNewSkill"
-      :variant="'secondary'"
-      :size="'sm'"
+      variant="secondary"
+      size="sm"
       :rest-props="{
         type: 'button',
         disabled: !isFormValid

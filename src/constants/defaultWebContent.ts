@@ -14,7 +14,8 @@ export const DEFAULT_WEB_CONTENT: WebContentType = {
     socialsTitle: '',
     contactPhoneNumber: '',
     contactEmail: '',
-    ribbonText: ''
+    ribbonText: '',
+    googleCalendarInfo: ''
   },
 
   staticEmailTemplate: {

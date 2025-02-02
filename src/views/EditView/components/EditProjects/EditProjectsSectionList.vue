@@ -5,7 +5,7 @@ import EditProjectSectionItem from './EditProjectsSectionItem.vue'
 import type { ProjectInputType } from '@/views/EditView/types/EditView.types'
 import { useWebContentStore } from '@/store'
 
-import styles from './EditProjectsSection.module.scss'
+import sharedStyles from '../EditSharedStyles.module.scss'
 
 type Props = {
   projects: ProjectInputType[]
@@ -39,7 +39,7 @@ const toggleListVisibility = () => {
     {{ buttonText }}
   </BaseButton>
 
-  <ul :class="styles.listContainter" v-show="showProjects">
+  <ul :class="sharedStyles.listContainter" v-show="showProjects">
     <EditProjectSectionItem
       v-for="project in projects"
       :key="project.id"

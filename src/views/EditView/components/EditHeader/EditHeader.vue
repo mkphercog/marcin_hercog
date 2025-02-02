@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { BaseCard, BaseInput, BaseText } from '@/components/ui'
+import { BaseCard, BaseInput, BaseSection } from '@/components/ui'
 import type { InputValuesType } from '../../types/EditView.types'
 import { useWebContentStore } from '@/store'
 import { JOB_POSITION_MAX_LENGTH } from '@/constants'
+
+import sharedStyles from '../EditSharedStyles.module.scss'
 
 const webContentStore = useWebContentStore()
 
@@ -16,17 +18,19 @@ const jobPosition = reactive(props.jobPosition)
 </script>
 
 <template>
-  <BaseText as="h3">
-    {{ webContentStore.webContent.staticEditMode.jobPositionTitle }}
-  </BaseText>
-  <BaseCard>
-    <BaseInput
-      name="jobPosition"
-      label="header.jobPosition"
-      :has-changes="jobPosition.hasChanges && !jobPosition.error"
-      :error-message="jobPosition.error"
-      v-model="jobPosition.value"
-      :max-length="JOB_POSITION_MAX_LENGTH"
-    />
-  </BaseCard>
+  <BaseSection
+    :title="webContentStore.webContent.staticEditMode.jobPositionTitle"
+    header-position="left"
+  >
+    <BaseCard :class="sharedStyles.editCardItem">
+      <BaseInput
+        name="jobPosition"
+        label="header.jobPosition"
+        :has-changes="jobPosition.hasChanges && !jobPosition.error"
+        :error-message="jobPosition.error"
+        v-model="jobPosition.value"
+        :max-length="JOB_POSITION_MAX_LENGTH"
+      />
+    </BaseCard>
+  </BaseSection>
 </template>

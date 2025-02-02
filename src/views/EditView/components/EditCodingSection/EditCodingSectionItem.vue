@@ -5,7 +5,7 @@ import { BaseButton, BaseCard, BaseInput } from '@/components/ui'
 import type { CodingSkillInputType } from '../../types/EditView.types.ts'
 import { CODING_LABEL_MAX_LENGTH } from '@/constants'
 
-import styles from './EditCodingSection.module.scss'
+import sharedStyles from '../EditSharedStyles.module.scss'
 
 const webContentStore = useWebContentStore()
 
@@ -20,8 +20,8 @@ const skill = computed(() => props.codingSkill)
 </script>
 
 <template>
-  <li :class="styles.listItem">
-    <BaseCard :class="styles.skillCard">
+  <li :class="sharedStyles.listItem">
+    <BaseCard :class="sharedStyles.editCardItem">
       <BaseInput
         :name="`label-${skill.id}`"
         label="Label"
@@ -43,8 +43,8 @@ const skill = computed(() => props.codingSkill)
 
       <BaseButton
         @click="$emit('deleteSkill', skill.id)"
-        :size="'sm'"
-        :variant="'secondary'"
+        size="sm"
+        variant="destructive"
         :rest-props="{
           type: 'button'
         }"

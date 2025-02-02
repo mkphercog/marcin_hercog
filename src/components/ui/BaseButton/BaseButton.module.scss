@@ -22,6 +22,14 @@
   }
 }
 
+.destructive {
+  background-color: $error-color;
+
+  &:hover {
+    background-color: $error-color-darker;
+  }
+}
+
 .button {
   padding: 5px 15px;
   border: none;

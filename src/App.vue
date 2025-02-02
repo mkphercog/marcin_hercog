@@ -3,6 +3,7 @@ import { watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import { TheFooter, TheHeader } from './components'
+import { BaseCard } from './components/ui'
 
 import styles from './App.module.scss'
 
@@ -21,12 +22,15 @@ watch(currentLanguage, () => webContentStore.fetchWebContent(false), {
   <div v-if="appStateStore.hasLoadedWebContent" :class="styles.appWrapper">
     <TheHeader />
 
-    <RouterView v-slot="{ Component }">
-      <KeepAlive exclude="LoginView">
-        <component :is="Component" />
-      </KeepAlive>
-    </RouterView>
-
+    <main :class="styles.mainWrapper">
+      <BaseCard :class="styles.mainCard">
+        <RouterView v-slot="{ Component }">
+          <KeepAlive exclude="LoginView">
+            <component :is="Component" />
+          </KeepAlive>
+        </RouterView>
+      </BaseCard>
+    </main>
     <TheFooter />
   </div>
 </template>

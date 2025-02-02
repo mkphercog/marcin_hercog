@@ -1,24 +1,35 @@
 .wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column-reverse;
-  margin-top: 30px;
-  row-gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas:
+    'code'
+    'photo'
+    'about';
+  justify-items: center;
+  width: 100%;
+  gap: 50px;
+  margin: 50px auto 0;
 
   @include for-tablet-lg-up {
-    flex-direction: row;
-    column-gap: 80px;
-    margin: 50px auto 20px;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      'photo code'
+      'about about';
+    align-items: center;
   }
 }
 
 .photoWrapper {
-  flex-shrink: 0;
+  grid-area: photo;
+
   position: relative;
   width: 160px;
   height: 160px;
   overflow: hidden;
   border-radius: 50%;
+  box-shadow: $basic-box-shadow;
 
   @include for-xs-phone-up {
     width: 250px;
@@ -39,4 +50,67 @@
     width: 100%;
     height: auto;
   }
+}
+
+.about {
+  grid-area: about;
+  text-indent: 30px;
+
+  @include for-tablet-lg-up {
+    text-indent: 50px;
+  }
+}
+
+.codeWrapper {
+  grid-area: code;
+
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: $code-bg;
+  box-shadow: $basic-box-shadow;
+
+  @include for-tablet-lg-up {
+    max-width: unset;
+    padding: 40px;
+  }
+
+  .contentWrapper {
+    margin-left: 30px;
+  }
+
+  p {
+    color: $secondary-text-color;
+  }
+
+  .stringColor {
+    color: $success-color !important;
+  }
+
+  .brackets {
+    color: $code-brackets;
+  }
+
+  .objectKey {
+    color: $code-object-key;
+  }
+}
+
+.cursor {
+  animation: cursorAnimation 1.5s infinite;
+}
+
+@keyframes cursorAnimation {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+}
+
+.codeCommentContainer {
+  margin-bottom: 20px;
 }

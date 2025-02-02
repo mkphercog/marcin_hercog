@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { BaseText, BaseCard, BaseLink, BaseButton } from '@/components/ui'
+import { BaseText, BaseLink, BaseButton, BaseDivider } from '@/components/ui'
 import InfoIcon from '@/assets/icons/InfoIcon.vue'
 import { useAppStateStore, useWebContentStore } from '@/store'
 import {
@@ -35,7 +35,7 @@ const goToLoginView = { name: RouteNamesEnum.LOGIN }
       </BaseLink>
     </div>
 
-    <BaseCard :class="styles.infoCard">
+    <div :class="styles.infoCard">
       <InfoIcon :class="styles.infoIcon" />
       <BaseText :class="styles.infoText" size="sm" justify>
         {{ webContent.staticEditMode.aboutWebInfo }}
@@ -51,7 +51,9 @@ const goToLoginView = { name: RouteNamesEnum.LOGIN }
       >
         Github
       </BaseButton>
-    </BaseCard>
+    </div>
+
+    <BaseDivider />
 
     <form @submit.prevent="submitForm" :class="styles.form">
       <EditHeader :job-position="formFields.jobPosition" />

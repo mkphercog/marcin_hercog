@@ -5,7 +5,7 @@ import EditExperienceItem from './EditExperienceItem.vue'
 import type { InputValuesType } from '@/views/EditView/types/EditView.types'
 import { useWebContentStore } from '@/store'
 
-import styles from './EditExperience.module.scss'
+import sharedStyles from '../EditSharedStyles.module.scss'
 
 type Props = {
   listItems: InputValuesType[]
@@ -39,7 +39,7 @@ const toggleListVisibility = () => {
     {{ buttonText }}
   </BaseButton>
 
-  <ul :class="styles.listContainter" v-show="showListItems">
+  <ul :class="sharedStyles.listContainter" v-show="showListItems">
     <EditExperienceItem
       v-for="item in listItems"
       :key="item.id"

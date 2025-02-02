@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
-import { BaseCard, BaseText, BaseTextarea } from '@/components/ui'
+import { BaseCard, BaseSection, BaseTextarea } from '@/components/ui'
 import EditCodingSectionAddNew from './EditCodingSectionAddNew.vue'
 import EditCodingSectionList from './EditCodingSectionList.vue'
 import type { InputValuesType, CodingSkillInputType } from '../../types/EditView.types'
 import { useWebContentStore } from '@/store'
 import { CODING_DESC_MAX_LENGTH } from '@/constants'
 
-import styles from './EditCodingSection.module.scss'
+import sharedStyles from '../EditSharedStyles.module.scss'
 
 const webContentStore = useWebContentStore()
 
@@ -23,14 +23,14 @@ const skills = computed(() => props.codingSkills)
 </script>
 
 <template>
-  <BaseText as="h3">
-    {{ webContentStore.webContent.staticEditMode.codingTitle }}
-  </BaseText>
-  <BaseCard>
+  <BaseSection
+    :title="webContentStore.webContent.staticEditMode.codingTitle"
+    header-position="left"
+  >
     <EditCodingSectionAddNew />
     <EditCodingSectionList :coding-skills="skills" />
 
-    <BaseCard :class="styles.containter">
+    <BaseCard :class="sharedStyles.editContainter">
       <BaseTextarea
         name="codingAdditionalDesc"
         label="codingSkills.additionalDescription"
@@ -40,5 +40,5 @@ const skills = computed(() => props.codingSkills)
         :max-length="CODING_DESC_MAX_LENGTH"
       />
     </BaseCard>
-  </BaseCard>
+  </BaseSection>
 </template>

@@ -1,8 +1,17 @@
 .card {
-  width: 100%;
+  max-width: 1200px;
+  min-width: 80%;
   padding: 20px;
-  border: 1px solid $primary-bg-color;
-  box-shadow: 0 0 5px $primary-bg-color;
   margin: 10px auto;
   border-radius: 10px;
+  box-shadow: $basic-box-shadow;
+  background-color: $card-bg;
+
+  @include for-tablet-up {
+    min-width: 60%;
+  }
+
+  @include for-tablet-lg-up {
+    min-width: 450px;
+  }
 }

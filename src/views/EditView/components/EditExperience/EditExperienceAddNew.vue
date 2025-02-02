@@ -7,7 +7,7 @@ import { checkInputField } from '@/views/EditView/utils/EditView.helpers'
 import { clearNewExperienceItemField } from './EditExperience.helpers'
 import { EXP_ITEM_MAX_LENGTH } from '@/constants'
 
-import styles from './EditExperience.module.scss'
+import shaderdStyles from '../EditSharedStyles.module.scss'
 
 const webContentStore = useWebContentStore()
 const appStateStore = useAppStateStore()
@@ -53,7 +53,7 @@ const addNewExperienceItem = () => {
 </script>
 
 <template>
-  <BaseCard :class="styles.addNewContainer">
+  <BaseCard :class="shaderdStyles.addNewContainer">
     <BaseText>
       {{ webContentStore.webContent.staticEditMode.addNewItemHeader }}
     </BaseText>
@@ -68,8 +68,8 @@ const addNewExperienceItem = () => {
 
     <BaseButton
       @click="addNewExperienceItem"
-      :variant="'secondary'"
-      :size="'sm'"
+      variant="secondary"
+      size="sm"
       :rest-props="{
         type: 'button',
         disabled: !isFormValid

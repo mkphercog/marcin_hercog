@@ -5,7 +5,7 @@ import { useWebContentStore } from '@/store'
 import type { InputValuesType } from '../../types/EditView.types.ts'
 import { EXP_ITEM_MAX_LENGTH } from '@/constants/editMode.js'
 
-import styles from './EditExperience.module.scss'
+import sharedStyles from '../EditSharedStyles.module.scss'
 
 const webContentStore = useWebContentStore()
 
@@ -20,8 +20,8 @@ const listItem = computed(() => props.experienceListItem)
 </script>
 
 <template>
-  <li :class="styles.listItem">
-    <BaseCard :class="styles.experienceCard">
+  <li :class="sharedStyles.listItem">
+    <BaseCard :class="sharedStyles.editCardItem">
       <BaseTextarea
         :name="`item-${listItem.id}`"
         label="experienceList.item"
@@ -33,8 +33,8 @@ const listItem = computed(() => props.experienceListItem)
 
       <BaseButton
         @click="$emit('deleteListItem', listItem.id)"
-        :size="'sm'"
-        :variant="'secondary'"
+        size="sm"
+        variant="destructive"
         :rest-props="{
           type: 'button'
         }"

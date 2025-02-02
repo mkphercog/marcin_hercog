@@ -6,6 +6,7 @@ import type { ProjectInputType } from '@/views/EditView/types/EditView.types'
 import { PROJECT_ITEM_MAX_LENGTH } from '@/constants'
 import { PROJECT_FIELDS_NAMES } from './EditProjects.constants'
 
+import sharedStyles from '../EditSharedStyles.module.scss'
 import styles from './EditProjectsSection.module.scss'
 
 const webContentStore = useWebContentStore()
@@ -21,7 +22,7 @@ const projectDetails = computed(() => props.project)
 </script>
 
 <template>
-  <li :class="styles.listItem">
+  <li :class="sharedStyles.listItem">
     <BaseCard :class="styles.skillCard">
       <BaseInput
         v-for="fieldName in PROJECT_FIELDS_NAMES"
@@ -37,8 +38,8 @@ const projectDetails = computed(() => props.project)
 
       <BaseButton
         @click="$emit('deleteSkill', projectDetails.id)"
-        :size="'sm'"
-        :variant="'secondary'"
+        size="sm"
+        variant="destructive"
         :rest-props="{
           type: 'button'
         }"

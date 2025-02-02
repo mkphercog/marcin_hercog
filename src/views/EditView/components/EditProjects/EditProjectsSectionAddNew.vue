@@ -64,7 +64,7 @@ const addNewProject = () => {
 </script>
 
 <template>
-  <BaseCard :class="styles.addNewContainer">
+  <BaseCard :class="styles.addNewProjectContainer">
     <BaseText :class="styles.sectionTitle">
       {{ webContentStore.webContent.staticEditMode.addNewItemHeader }}
     </BaseText>
@@ -82,8 +82,8 @@ const addNewProject = () => {
 
     <BaseButton
       @click="addNewProject"
-      :variant="'secondary'"
-      :size="'sm'"
+      variant="secondary"
+      size="sm"
       :rest-props="{
         type: 'button',
         disabled: !isFormValid

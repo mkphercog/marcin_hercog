@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { BaseCard, BaseText, BaseTextarea } from '@/components/ui'
+import { BaseCard, BaseSection, BaseTextarea } from '@/components/ui'
 import type { InputValuesType } from '../../types/EditView.types'
 import EditExperienceAddNew from './EditExperienceAddNew.vue'
 import EditExperienceList from './EditExperienceList.vue'
 import { useWebContentStore } from '@/store'
 import { EXP_DESC_MAX_LENGTH } from '@/constants'
 
-import styles from './EditExperience.module.scss'
+import sharedStyles from '../EditSharedStyles.module.scss'
 
 const webContentStore = useWebContentStore()
 
@@ -21,11 +21,14 @@ const experienceDesc = reactive(props.experienceDescription)
 </script>
 
 <template>
-  <BaseText as="h3">
-    {{ webContentStore.webContent.staticEditMode.experienceTitle }}
-  </BaseText>
-  <BaseCard>
-    <BaseCard :class="styles.containter">
+  <BaseSection
+    :title="webContentStore.webContent.staticEditMode.experienceTitle"
+    header-position="left"
+  >
+    <EditExperienceAddNew />
+    <EditExperienceList :list-items="experienceListItems" />
+
+    <BaseCard :class="sharedStyles.editContainter">
       <BaseTextarea
         name="experienceDesc"
         label="experience.description"
@@ -35,8 +38,5 @@ const experienceDesc = reactive(props.experienceDescription)
         :max-length="EXP_DESC_MAX_LENGTH"
       />
     </BaseCard>
-
-    <EditExperienceAddNew />
-    <EditExperienceList :list-items="experienceListItems" />
-  </BaseCard>
+  </BaseSection>
 </template>

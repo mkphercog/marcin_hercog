@@ -2,5 +2,9 @@
   background-color: $success-color-darker;
   box-shadow: 0px 0px 5px 2px $success-color-darker;
   border-radius: 10px;
-  height: 60px;
+  height: 40px;
+
+  @include for-tablet-lg-up {
+    height: 50px;
+  }
 }

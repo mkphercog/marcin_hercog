@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { BaseCard, BaseText } from '@/components/ui'
+import { BaseSection } from '@/components/ui'
 import EditProjectsSectionAddNew from './EditProjectsSectionAddNew.vue'
 import type { ProjectInputType } from '../../types/EditView.types'
 import { useWebContentStore } from '@/store'
@@ -18,11 +18,11 @@ const projectsList = computed(() => props.projects)
 </script>
 
 <template>
-  <BaseText as="h3">
-    {{ webContentStore.webContent.staticEditMode.projectsTitle }}
-  </BaseText>
-  <BaseCard>
+  <BaseSection
+    :title="webContentStore.webContent.staticEditMode.projectsTitle"
+    header-position="left"
+  >
     <EditProjectsSectionAddNew />
     <EditProjectsSectionList :projects="projectsList" />
-  </BaseCard>
+  </BaseSection>
 </template>
