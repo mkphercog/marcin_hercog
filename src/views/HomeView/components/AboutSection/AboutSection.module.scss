@@ -69,7 +69,7 @@
   max-width: 500px;
   padding: 20px;
   border-radius: 15px;
-  background-color: $code-bg;
+  background-color: $primary-bg-color;
   box-shadow: $basic-box-shadow;
 
   @include for-tablet-lg-up {
