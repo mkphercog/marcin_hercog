@@ -16,7 +16,7 @@ const fullText =
     : `// Hello ${companyName}, it’s great to have you here! I’m Marcin.`
 const displayedText = ref('')
 const typingSpeed = 150
-const initialDelay = 1500
+const initialDelay = 500
 
 onMounted(() => {
   let index = 0
