@@ -15,7 +15,7 @@ const fullText =
     ? webContent.value.staticHomeView.codeComment
     : `// Hello ${companyName}, it’s great to have you here! I’m Marcin.`
 const displayedText = ref('')
-const typingSpeed = 150
+const typingSpeed = 100
 const initialDelay = 500
 
 onMounted(() => {
