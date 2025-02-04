@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import CodingSectionChart from './CodingSectionChart.vue'
 import { BaseSection, BaseText, BaseIcon } from '@/components/ui'
-import CodingSectionList from './CodingSectionList.vue'
 import { CODING_ICONS } from '@/constants'
 import { useWebContentStore } from '@/store'
 
@@ -12,7 +12,8 @@ const { webContent } = storeToRefs(useWebContentStore())
 
 <template>
   <BaseSection :title="webContent.staticHomeView.codingTitle">
-    <CodingSectionList />
+    <CodingSectionChart />
+
     <div :class="styles.additionalInfoWrapper">
       <BaseText size="lg" :class="styles.additionalInfoHeader">
         {{ webContent.staticHomeView.codingSubTitle }}
