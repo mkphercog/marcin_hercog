@@ -9,7 +9,11 @@ import styles from './AboutSection.module.scss'
 const webContentStore = useWebContentStore()
 const { webContent } = storeToRefs(webContentStore)
 
-const fullText = webContent.value.staticHomeView.codeComment
+const companyName = new URLSearchParams(window.location.search).get('hello')?.replace(/\+/, ' ')
+const fullText =
+  companyName == null
+    ? webContent.value.staticHomeView.codeComment
+    : `// Hello ${companyName}, it’s great to have you here! I’m Marcin.`
 const displayedText = ref('')
 const typingSpeed = 150
 const initialDelay = 1500
