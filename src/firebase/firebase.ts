@@ -98,8 +98,9 @@ class FirebaseApi {
 
   public downloadCVFile(lang: LangEnums) {
     const storage = getStorage()
-    const fileName = `CV Marcin Hercog ${lang}.pdf`
-    const fileRef = firebaseRef(storage, fileName)
+    const storageFileName = `CV Marcin Hercog ${lang}.pdf`
+    const downloadedFileName = `CV_${lang}_Marcin_Hercog_Frontend_React`
+    const fileRef = firebaseRef(storage, storageFileName)
 
     getDownloadURL(fileRef)
       .then(async (url) => {
@@ -111,7 +112,7 @@ class FirebaseApi {
             const blob = new Blob([response.data], { type: 'application/pdf' })
             const link = document.createElement('a')
             link.href = URL.createObjectURL(blob)
-            link.download = fileName
+            link.download = downloadedFileName
             link.click()
             URL.revokeObjectURL(link.href)
           })
